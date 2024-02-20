@@ -1,1 +1,4 @@
 tfe/build/
+tfe/node_modules/
+admin/build
+admin/node_modules/
