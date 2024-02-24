@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/css/style.css">
+
+	<title>Управление пользователями | РобИн-2024</title>
+</head>
+<body>
+	<div class="wrap">
+		<div class="admin-panel">
+			<div class="admin-panel__menu">
+				<div class="admin-panel__logo">
+					<img src="/img/logo.png" alt="">
+				</div>
+				<nav class="admin-panel__nav">
+					<ul class="admin-panel__menu-list">
+						<li>
+							<a href="#" class="admin-panel__menu-link admin-panel__menu-link--event"></a>
+						</li>
+						<li>
+							<a href="#" class="admin-panel__menu-link admin-panel__menu-link--judgment"></a>
+						</li>
+						<li>
+							<a href="#" class="admin-panel__menu-link admin-panel__menu-link--users"></a>
+						</li>
+						<li>
+							<a href="#" class="admin-panel__menu-link admin-panel__menu-link--settings"></a>
+						</li>
+					</ul>
+					<ul class="admin-panel__menu-list">
+						<li>
+							<a href="#" class="admin-panel__menu-link admin-panel__menu-link--logout"></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="admin-panel__content">
+				<h2>Редактирование номинации</h2>
+
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mt-3">
+						<li class="breadcrumb-item">
+							<a href="#">Мероприятия</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#">РобИн-2024</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Робототехника</li>
+					</ol>
+				</nav>
+
+				<div class="mt-5">
+					<h3 class="text-center">Этапы</h3>
+					
+					<div class="admin-panel__controls admin-panel__controls--right">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNominationModal">Добавить этап</button>
+					</div>
+
+					<table class="table table-striped table-bordered mt-2 caption-top">
+						<thead>
+							<tr class="d-none d-sm-table-row">
+								<th>Имя&nbsp;этапа</th>
+								<th>Система розыгрыша</th>
+								<th style="width: 0%">Количество&nbsp;участников</th>
+								<th style="width: 0%">Действия</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Отборочные</td>
+								<td>Круговая система</td>
+								<td>30</td>
+								<td class="d-flex justify-content-around">
+									<button class="button button--edit"></button>
+									<button class="button button--delete"></button>
+								</td>
+							</tr>
+							<tr>
+								<td>Четвертьфинал</td>
+								<td>По заданным критериям</td>
+								<td>15</td>
+								<td class="d-flex justify-content-around">
+									<button class="button button--edit"></button>
+									<button class="button button--delete"></button>
+								</td>
+							</tr>
+							<tr>
+								<td>Полуфинал</td>
+								<td>Круговая система</td>
+								<td>30</td>
+								<td class="d-flex justify-content-around">
+									<button class="button button--edit"></button>
+									<button class="button button--delete"></button>
+								</td>
+							</tr>
+							<tr>
+								<td>Финал</td>
+								<td>Олимпийская система</td>
+								<td>30</td>
+								<td class="d-flex justify-content-around">
+									<button class="button button--edit"></button>
+									<button class="button button--delete"></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="mt-5">
+					<h3 class="text-center">Участники</h3>
+					<div class="admin-panel__controls admin-panel__controls--right">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNominationModal">Добавить участника</button>
+					</div>
+					<table class="table table-striped table-bordered mt-2 caption-top">
+						<thead>
+							<tr class="d-none d-sm-table-row">
+								<th style="width: 0%"></th>
+								<th>ФИО</th>
+								<th style="width: 0%">Действия</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="form-check d-flex justify-content-center align-items-center">
+										<input class="form-check-input" type="checkbox" value="">
+									</div>
+								</td>
+								<td>Робототехника</td>
+								<td class="d-flex justify-content-around">
+									<button class="button button--edit"></button>
+									<button class="button button--delete"></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="modal fade" id="addNominationModal" tabindex="-1" aria-labelledby="addNominationModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h1 class="modal-title fs-5" id="addNominationModalLabel">Добавить номинацию</h1>
+					  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="mb-3">
+								<label for="nomination_name_input" class="form-label">Имя номинации</label>
+								<input type="text" class="form-control" id="nomination_name_input">
+								<div class="form-text">Пример: Веб-дизайн</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+							<button type="button" class="btn btn-primary">Добавить</button>
+						</div>
+					</form>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

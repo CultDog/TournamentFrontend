@@ -31,3 +31,26 @@ img {
 
 	overflow: hidden;
 }
+
+.button {
+	cursor: pointer;
+
+	border: 0;
+
+	width: 25px;
+	height: 25px;
+
+	background-color: transparent;
+
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.button--delete {
+	background-image: url('/img/delete-btn.png');
+}
+
+.button--edit {
+	background-image: url('/img/edit-btn.png');
+}

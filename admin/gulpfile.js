@@ -102,7 +102,7 @@ function buildFonts() {
 function buildImg() {
     return gulp.src(filesPath.src.img)
         .pipe(newer(filesPath.build.img))
-        .pipe(imagemin())
+        // .pipe(imagemin())
         .pipe(gulp.dest(filesPath.build.img))
         .pipe(reload({
             stream: true
