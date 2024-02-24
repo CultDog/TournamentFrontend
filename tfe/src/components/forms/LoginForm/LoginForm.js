@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 
 function LoginForm() {
+	const loginUrl = 'http://127.0.0.1:8000/auth/login';
 
 	const [username, setUsername] = useState('');
 
@@ -9,18 +11,52 @@ function LoginForm() {
 
 	const [showPassword, setShowPassword] = useState(false);
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 
 		event.preventDefault();
 
-		// Вставить логику входа(когда бэк перепишется) ...
+		// Get the values from the form
+		const username = document.getElementById('username').value;
+		const password = document.getElementById('password').value;
+
+		// Create a request body
+		const requestBody = {
+			email:	 username,
+			password:password
+		};
+
+		// Send a POST request to the backend for user authentication
+		try {
+			const response = await fetch(loginUrl, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(requestBody)
+			});
+
+			const response_json  = await response.json();
+			//console.log(response_json);
+
+			// Check if the request was successful
+			if (response.ok) {
+				// If the request was successful, redirect the user to the dashboard page
+				window.location.href = '/dashboard';
+			} else {
+				// If the request was not successful, display an error message
+				alert('Error: Invalid username or password. Please try again.');
+			}
+		} catch (error) {
+			// If there was an error with the request, display an error message
+			alert('Error: Unable to authenticate user. Please try again.');
+		}
 
 	}
 
 
 	return (
-		<div class="login-wrap">
-			<header class="login-pf-header">
+		<div className="login-wrap">
+			<header className="login-pf-header">
 				<div>
 					<div>
 						<div>
