@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 
 function LoginForm() {
-	const loginUrl = 'http://127.0.0.1:8000/auth/login';
+	const loginUrl = 'http://localhost:8000/auth/login';
 
 	const [username, setUsername] = useState('');
 
