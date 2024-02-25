@@ -4,7 +4,10 @@ import LoginForm from "./components/forms/LoginForm/LoginForm";
 
 function App() {
   return (
-    <LoginForm id="login-form" />
+    <div className='App'>
+      <LoginForm id="login-form" />
+    </div>
+    
   );
 }
 
