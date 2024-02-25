@@ -42,7 +42,7 @@ function LoginForm() {
 				// If the request was successful, redirect the user to the dashboard page
 				const response_json  = await response.json();
 				console.log(response_json);
-				window.location.href = 'http://127.0.0.1:3001/';// пока с запуском дополнительно admin 
+				window.location.href = 'http://localhost:3001/';// пока с запуском дополнительно admin 
 			} else {
 				// If the request was not successful, display an error message
 				alert('Error: Invalid username or password. Please try again.');
