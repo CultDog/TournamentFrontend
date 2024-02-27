@@ -1,0 +1,22 @@
+@import '@src/sass/bootstrap.scss';
+@import "@node_modules/bootstrap/scss/card";
+
+.user-card {
+	@extend .card;
+
+	margin: 15px 0;
+
+	&__body {
+		@extend .card-body;
+
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__role {
+		font-size: 13px;
+		color: #a6a6a6;
+
+		margin-left: 10px;
+	}
+}

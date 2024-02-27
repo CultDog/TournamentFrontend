@@ -1,0 +1,14 @@
+@import '@src/sass/bootstrap.scss';
+@import '@node_modules/bootstrap/scss/buttons';
+
+.button {
+	@extend .btn;
+
+	&--primary {
+		@extend .btn-primary;
+	}
+	
+	&--warning {
+		@extend .btn-warning;
+	}
+}

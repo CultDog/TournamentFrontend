@@ -1,3 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow: #добавить каталоги которые не могут использоваться веб-роботами
