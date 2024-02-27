@@ -1,4 +1,4 @@
-import Button from "@components/UI/button/Button.jsx";
+import Button from "@components/UI/button/button.jsx";
 import AdminPanelControls from "../admin-panel/admin-panel-controls.jsx";
 import UserCard from "./user-card.jsx";
 
