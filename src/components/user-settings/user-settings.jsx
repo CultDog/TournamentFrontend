@@ -2,15 +2,10 @@ import './sass/user-settings.scss';
 import Button from "@components/UI/button/button.jsx";
 import Input from "@components/UI/input-panel/input-panel.jsx";
 import Choose from "@components/UI/choose-panel/choose-panel.jsx";
-import { useState } from 'react';
-
+import  {useState} from "react";
 function UsersSettings(){
-    // написать(исправить)евенты потомучто уже 3 часа ночи
-    const [FIO, setFIO] = useState('');
-    const [Email, setEmail] = useState('');
-    const [Password, setPassword] = useState('');
-    const [Telnumber, setTelnumber] = useState('+375 ');
-    const [Organization, setOrganization] = useState('');
+    
+    const [showPassword, setShowPassword] = useState(false);
 
     return(
         <div class="user-settings">
@@ -21,17 +16,15 @@ function UsersSettings(){
                     name = 'ФИО'
                     type = 'text'
                     ID = 'user_fio_input'
-                    value = {FIO}
-                    event = {eFIO}
+                    // value = ''
                     description = 'Пример: Иванов Иван Иванович'
-                    onChange = {(eFIO) => setFIO(eFIO.target.value)}
                 />
 
                 <Choose
                     for = 'user_role_select'
                     name = 'Роль пользователя'
                     ID = 'user_role_select'
-                    options = {['Суперпользователь 1', 'Судья 2', 'Специалист 3', 'Участник 4']}
+                    options = {['Суперпользователь', 'Судья', 'Специалист']}
                     description = 'Обратитесь к администратору сайта, чтобы изменить роль'
                 />
 
@@ -40,24 +33,24 @@ function UsersSettings(){
                     name = 'Email'
                     type = 'email'
                     ID = 'user_email_input'
-                    value = {Email}
+                    value = ''
                     description = 'Пример: example@robin-zubronok.by'
-                    onChange = {(eEmail) => setEmail(eEmail.target.value)}
                 />
 
                 <Input
                     for = 'user_password_input'
                     name = 'Пороль'
-                    type = 'password'
+                    type = {showPassword ? "text" : "password"}
                     ID = 'user_password_input'
-                    value = {Password}
+                    value = ''
                     description = ''
-                    onChange = {(ePassword) => setPassword(ePassword.target.value)}
                 />
-                    {/* <Button>Показать</Button>
-                    <Button>Сгенерировать новый</Button>
 
-                </Input> */}
+                
+
+                <Button Click = {() => setShowPassword(!showPassword)}>Показать</Button>
+                <Button>Сгенирировать</Button>
+                    
                 
 
                 <Input
@@ -65,19 +58,24 @@ function UsersSettings(){
                     name = 'Телефон'
                     type = 'tel'
                     ID = 'user_phone_input'
-                    value = {Telnumber}
+                    placeholder = '+375 '
                     description = 'Пример: +375 25 123-45-67'
-                    onChange = {(eTelnumber) => setTelnumber(eTelnumber.target.value)}
+                    Focus = {(e)=> {e.target.value = e.target.placeholder;} }
+                    Blur = {(e)=>{
+                        if (e.target.value == e.target.placeholder){
+                            e.target.value = ''
+                        }
+                    }}
                 />
+                
 
                 <Input
                     for = 'user_organization_input'
                     name = 'Учереждение образования'
                     type = 'text'
                     ID = 'user_organization_input'
-                    value = {Organization}
+                    value = ''
                     description = 'Пример: ГУО "Гимназия-колледж искусств'
-                    onChange = {(eOrganization) => setOrganization(eOrganization.target.value)}
                 />
 
                 <Button>Сохранить настройки</Button>

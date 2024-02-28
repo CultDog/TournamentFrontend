@@ -4,7 +4,7 @@ function ChoosePanel(props){
     return(
         <div>
             <label for={props.for} class="form-label">{props.name ?? ""}</label>
-            <select id={props.ID} class="form-select" disabled>
+            <select id={props.ID} class="form-select" >
                 {props.options.map((option, index) => (
                         <option key={index}>{option}</option>
                     ))}
