@@ -3,8 +3,8 @@ function ChoosePanel(props){
     
     return(
         <div>
-            <label for={props.for} class="form-label">{props.name ?? ""}</label>
-            <select id={props.ID} class="form-select" >
+            <label htmlFor={props.for} className="form-label">{props.name ?? ""}</label>
+            <select id={props.ID} className="form-select" >
                 {props.options.map((option, index) => (
                         <option key={index}>{option}</option>
                     ))}
@@ -13,7 +13,7 @@ function ChoosePanel(props){
                         <option>{option}</option>
                     ))} */}
             </select>
-            <div class="form-text">{props.description ?? ""}</div>
+            <div className="form-text">{props.description ?? ""}</div>
         </div>
     )
 }

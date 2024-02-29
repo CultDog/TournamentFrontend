@@ -8,7 +8,7 @@ function UsersSettings(){
     const [showPassword, setShowPassword] = useState(false);
 
     return(
-        <div class="user-settings">
+        <div className="user-settings">
 			<h2>Настройки пользователя</h2>
             <div>
                 <Input
@@ -60,7 +60,11 @@ function UsersSettings(){
                     ID = 'user_phone_input'
                     placeholder = '+375 '
                     description = 'Пример: +375 25 123-45-67'
-                    Focus = {(e)=> {e.target.value = e.target.placeholder;} }
+                    Focus = {(e)=> {
+                        if(e.target.value == ''){
+                        e.target.value = e.target.placeholder;
+                        } 
+                    }}
                     Blur = {(e)=>{
                         if (e.target.value == e.target.placeholder){
                             e.target.value = ''
