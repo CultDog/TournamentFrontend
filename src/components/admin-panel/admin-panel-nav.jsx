@@ -5,7 +5,7 @@ function AdminPanelNav() {
 		<nav className="admin-panel__nav">
 			<ul className="admin-panel__menu-list">
 				<li>
-					<a href="#" className="admin-panel__menu-link admin-panel__menu-link--event"></a>
+					<Link to="/admin/events" className="admin-panel__menu-link admin-panel__menu-link--event"></Link>
 				</li>
 				<li>
 					<a href="#" className="admin-panel__menu-link admin-panel__menu-link--judgment"></a>
