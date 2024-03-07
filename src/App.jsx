@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UsersControlPage from './pages/users-control-page.jsx';
 import UserSettingsPage from './pages/user-settings-page.jsx';
 import EventsPage from './pages/events-page.jsx';
+import EventSettingsPage from './pages/event-settings-page.jsx';
+import NotFoundPage from './pages/notfoud-page.jsx';
 
 function App() {
 	return (
@@ -10,6 +12,8 @@ function App() {
 				<Route path="/admin/users" element={<UsersControlPage />} />
 				<Route path="/admin/settings" element={<UserSettingsPage />} />
 				<Route path="/admin/events" element = {<EventsPage />} />
+				<Route path="admin/events/settings" element = {<EventSettingsPage/>}/>
+				<Route path="*" element={<NotFoundPage/>} />
 			</Routes>	
 		</BrowserRouter>
 	)

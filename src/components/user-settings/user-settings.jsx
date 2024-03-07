@@ -1,7 +1,8 @@
-import { Button, Select, Input, Typography, message, Space, Form } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Button, Select, Input, Typography, message, Flex, Form, Space } from 'antd';
+import { EyeInvisibleOutlined, UserOutlined, PhoneOutlined, LockOutlined, BankOutlined, MailOutlined, CrownOutlined} from '@ant-design/icons';
 import {useState} from "react"
 import FormItem from 'antd/es/form/FormItem';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 const {Title,Text} = Typography;
 
@@ -33,7 +34,7 @@ function UsersSettings(){
       };
 
     return(
-        <Space direction="vertical" size="small" style={{ display: 'flex' }}>
+        <Flex vertical gap = "small">
 			<Title level={2}>Настройки пользователя</Title>
             {/* Полее ввода данных */}
             <Form  
@@ -62,16 +63,17 @@ function UsersSettings(){
                             }
                         ]}
                     >
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                        <Flex vertical>
                             <Text>Фамилия</Text>
                             <Input
+                            prefix = {<UserOutlined />}
                             allowClear
                             placeholder="Введите фамилию"
                             id = "user_lname_input"
                             maxLength={255}
                             />
                             <Text type="secondary">Пример: Иванов</Text>
-                        </Space>
+                        </Flex>
 
                     </FormItem>
 
@@ -90,16 +92,17 @@ function UsersSettings(){
                             }
                         ]}
                     >
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                        <Flex vertical>
                             <Text>Имя</Text>
                             <Input
                             allowClear
+                            prefix = {<UserOutlined />}
                             placeholder="Введите имя"
                             id = "user_fname_input"
                             maxLength={255}
                             />
                             <Text type="secondary">Пример: Иван</Text>
-                        </Space>
+                        </Flex>
 
                     </FormItem>
 
@@ -113,42 +116,48 @@ function UsersSettings(){
                             message : "Максимальное значение 255"
                         }
                     ]}>
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                        <Flex vertical>
                             <Text>Отчество(если таковое имеется)</Text>
                             <Input
+                            prefix = {<UserOutlined />}
                             allowClear
                             placeholder="Введите отчество"
                             id = "user_sname_input"
                             maxLength={255}
                             />
                             <Text type="secondary">Пример: Иванович</Text>
-                        </Space>
+                        </Flex>
 
                     </FormItem>
                     {/* Роль пользователя */}
                     <FormItem>
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                        <Flex vertical>
                             <Text>Роль пользователя</Text>
-                            <Select
-                            id="user_role_select"
-                            defaultValue="Участник"
-                            options={[
-                                {
-                                    value: 'Судья',
-                                    label: 'Судья',
-                                },
-                                {
-                                    value: 'Специалист',
-                                    label: 'Специалист',
-                                },
-                                {
-                                    value: 'Участник',
-                                    label: 'Участник',
-                                },
-                            ]}
-                            />
+                            <div>
+                                <Flex>
+                                <Space.Compact>
+                                    <Input prefix = {<CrownOutlined/>} disabled style={{"width": "12%"}}/>
+                                    <Select
+                                        style={{"width":"88%"}}
+                                        id="user_role_select"
+                                        defaultValue="Специалист"
+                                        options={[
+                                            {
+                                                value: 'Судья',
+                                                label: 'Судья',
+                                                
+                                            },
+                                            {
+                                                value: 'Специалист',
+                                                label: 'Специалист',
+                                            },
+                                        ]}
+                                    />
+                                </Space.Compact>
+                                </Flex>
+                            </div>
                             <Text type="secondary">Обратитесь к администратору сайта, чтобы изменить роль</Text>
-                            </Space>
+                            </Flex>
                     </FormItem>
                     {/* Email */}
                     <FormItem
@@ -160,20 +169,23 @@ function UsersSettings(){
                                 required: true,
                                 message: 'Пожалуйста введите Email',
                             },
+                            { 
+                                type: 'email', 
+                                message : "Некоректный Email" ,
+                            },
                         ]}
                     >
-                    <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-                        {/* {Дописать onSerch on Select} */}
+                    <Flex vertical>
                         <Text>Email</Text>
-                        {/* Реализовать AutoComplite позже */}
                         <Input
-                        type="email"
-                        // pattern="+@gmail.com"
-                        id = "user_email_input"
-                        placeholder="Введите Email"
+                            prefix = {<MailOutlined />}
+                            type="email"
+                            // pattern="+@gmail.com"
+                            id = "user_email_input"
+                            placeholder="Введите Email"
                         />
                         <Text type="secondary">Пример: example@example.com</Text>
-                        </Space>
+                        </Flex>
                     </FormItem>
                     {/* Пароль */}
                     <FormItem
@@ -191,14 +203,15 @@ function UsersSettings(){
                             }
                         ]}
                     >
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>  
+                        <Flex vertical>  
                         <Text>Пароль</Text>
                         <Input.Password 
-                        placeholder="Введите Пароль"
-                        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                        id = "user_password_input"
+                            prefix = {<LockOutlined/>}
+                            placeholder="Введите Пароль"
+                            iconRender={() => <EyeInvisibleOutlined />}
+                            id = "user_password_input"
                         />  
-                        </Space>     
+                        </Flex>     
                     </FormItem>
                     {/* Телефон */}
                     <FormItem
@@ -210,21 +223,29 @@ function UsersSettings(){
                                 required: true,
                                 message: 'Пожалуйста введите телефон',
                             },
+                            {
+                                min: 9,
+                                message: "Телефон должен быть длиной 9 цифер"
+                            },
+                            {
+                                type: "number" ,
+                                message: "Телефон должен быть числом"
+                            },
                         ]}
                     >
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                        <Flex vertical>
                         <Text>Телефон</Text>
-                        {/* Починить pattern при вводе автоматически разделял "-" */}
                         <Input
+                            prefix = {<PhoneOutlined/>}
+                            addonBefore={"+375"}
                             type="tel"
-                            // pattern="+375 (99) 999-99-99"
                             allowClear
                             placeholder="Введите телефон"                    
-                            maxLength={12}
+                            maxLength={9}
                             id="user_phone_input"
                         />
-                        <Text type="secondary">Пример: +375 25 123-45-67</Text>
-                        </Space>
+                        <Text type="secondary">Пример: 251234567</Text>
+                        </Flex>
                         </FormItem>
                     {/* Организация */}
                     <FormItem
@@ -238,28 +259,27 @@ function UsersSettings(){
                             },
                         ]}
                     >
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>  
+                        <Flex vertical>  
                         <Text>Учереждение образования</Text>
                         <Input
+                        prefix ={<BankOutlined />}
                         placeholder="Введите учереждение образования"
                         id ="user_organization_input"                    
                         />
                         <Text type="secondary">Пример: ГУО "Гимназия-колледж искусств</Text>   
-                        </Space>             
+                        </Flex>             
                     </FormItem>
                     {/* Кнопка  добавления пользователя */}
                     <FormItem>
-                        {/* Подвязать submit к loading */}
                         <Button 
                             type="primary" 
                             htmlType="submit" 
                             loading={loadings[0]} onClick={() => enterLoading(0)}
-                        >
-                            Сохранить настройки
+                        >Сохранить настройки
                         </Button>
                     </FormItem>
             </Form>
-        </Space>
+        </Flex>
     );
 }
 

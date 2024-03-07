@@ -91,11 +91,12 @@ function Events(){
             <Card 
             key={index}
             size="small"
-            title = {<Space direction="vertical">
-                        <Title level={2}>{event.title}</Title>
-                        <Text type="secondary">{event.date}</Text>
-                     </Space>
-                    } 
+            title = {
+              <Space direction="vertical">
+                <Title level={2}>{event.title}</Title>
+                <Text type="secondary">{event.date}</Text>
+              </Space>
+            } 
             >
                 <List
                     size="small"
@@ -124,7 +125,7 @@ function Events(){
                         }]}
                     />
                 </>
-                <Button type="primary" style={{float : "right"}}>Добавить мероприятие</Button>
+                <Button type="primary" style={{float : "right"}} href="./settings">Добавить мероприятие</Button>
             </div>
             <List
             grid={{ gutter: 5, column: 4 }}
