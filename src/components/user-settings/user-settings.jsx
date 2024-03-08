@@ -2,7 +2,7 @@ import { Button, Select, Input, Typography, message, Flex, Form, Space } from 'a
 import { EyeInvisibleOutlined, UserOutlined, PhoneOutlined, LockOutlined, BankOutlined, MailOutlined, CrownOutlined} from '@ant-design/icons';
 import {useState} from "react"
 import FormItem from 'antd/es/form/FormItem';
-import Icon from '@ant-design/icons/lib/components/Icon';
+
 
 const {Title,Text} = Typography;
 
@@ -110,12 +110,7 @@ function UsersSettings(){
                     name="Sur_Name"
                     hasFeedback
                     validateFirst
-                    rules={[
-                        {
-                            max: 255,
-                            message : "Максимальное значение 255"
-                        }
-                    ]}>
+                    >
                         <Flex vertical>
                             <Text>Отчество(если таковое имеется)</Text>
                             <Input
@@ -136,7 +131,7 @@ function UsersSettings(){
                             <div>
                                 <Flex>
                                 <Space.Compact>
-                                    <Input prefix = {<CrownOutlined/>} disabled style={{"width": "12%"}}/>
+                                    <Input prefix = {<CrownOutlined/>} disabled style={{"width": "12%", border : "none"}}/>
                                     <Select
                                         style={{"width":"88%"}}
                                         id="user_role_select"

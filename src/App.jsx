@@ -4,6 +4,7 @@ import UserSettingsPage from './pages/user-settings-page.jsx';
 import EventsPage from './pages/events-page.jsx';
 import EventSettingsPage from './pages/event-settings-page.jsx';
 import NotFoundPage from './pages/notfoud-page.jsx';
+import ParticipantSettingsPage from './pages/participant-settings-page.jsx';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Route path="/admin/settings" element={<UserSettingsPage />} />
 				<Route path="/admin/events" element = {<EventsPage />} />
 				<Route path="admin/events/settings" element = {<EventSettingsPage/>}/>
+				<Route path="admin/participant/settings" element = {<ParticipantSettingsPage/>}/>
 				<Route path="*" element={<NotFoundPage/>} />
 			</Routes>	
 		</BrowserRouter>
