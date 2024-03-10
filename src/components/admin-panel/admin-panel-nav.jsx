@@ -1,20 +1,23 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function AdminPanelNav() {
 	return (
 		<nav className="admin-panel__nav">
 			<ul className="admin-panel__menu-list">
 				<li>
-					<Link to="/admin/events" className="admin-panel__menu-link admin-panel__menu-link--event"></Link>
+					<NavLink to='/admin/events' className="admin-panel__menu-link admin-panel__menu-link--event"></NavLink>
 				</li>
 				<li>
-					<a href="#" className="admin-panel__menu-link admin-panel__menu-link--judgment"></a>
+					<NavLink to="/admin/judgment" className="admin-panel__menu-link admin-panel__menu-link--judgment"></NavLink>
 				</li>
 				<li>
-					<Link to="/admin/users" className="admin-panel__menu-link admin-panel__menu-link--users"></Link>
+					<NavLink to="/admin/participants" className="admin-panel__menu-link admin-panel__menu-link--add-participants"></NavLink>
 				</li>
 				<li>
-					<Link to="/admin/settings" className="admin-panel__menu-link admin-panel__menu-link--settings"></Link>
+					<NavLink to="/admin/users" className="admin-panel__menu-link admin-panel__menu-link--users"></NavLink>
+				</li>
+				<li>
+					<NavLink to="/admin/settings" className="admin-panel__menu-link admin-panel__menu-link--settings"></NavLink>
 				</li>
 			</ul>
 			<ul className="admin-panel__menu-list">

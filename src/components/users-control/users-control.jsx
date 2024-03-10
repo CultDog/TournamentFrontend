@@ -1,20 +1,40 @@
-import Button from "@components/UI/button/button.jsx";
+import { Button } from 'antd';
+import { useState } from "react";
 import AdminPanelControls from "../admin-panel/admin-panel-controls.jsx";
-import UserCard from "./user-card.jsx";
+import UserModal from "./user-modal.jsx";
+import UsersTable from "./users-table.jsx";
+
 
 function UsersControl() {
+	const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
+
+	const dataUsers = [
+		{
+			key: '1',
+			name: 'Иван',
+			lastname: "Иванов",
+			patronymic: "Иванович",
+			role: "Судья"
+		}
+	];
+
 	return (
 		<div className="users-control">
 			<h2>Управление пользователями</h2>
+			
 			<AdminPanelControls>
-				<Button>Добавить пользователя</Button>
+				<Button type="primary" onClick={() => setIsAddUserModalOpen(true)}>Добавить пользователя</Button>
 			</AdminPanelControls>
 
 			<div className="users-control__users">
-				<UserCard fio="Иванов Иван Иванович" role="Суперадминистратор" />
-				<UserCard fio="Иванов Иван Иванович" role="Суперадминистратор" />
-				<UserCard fio="Иванов Иван Иванович" role="Суперадминистратор" />
+				<UsersTable usersData={dataUsers} />
 			</div>
+
+			<UserModal
+				isOpen={isAddUserModalOpen}
+				onOk={() => setIsAddUserModalOpen(false)}
+				onCancel={() => setIsAddUserModalOpen(false)}
+			/>
 		</div>
 	);
 }

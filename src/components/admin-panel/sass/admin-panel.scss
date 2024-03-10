@@ -47,7 +47,7 @@
 
 		transition: .3s;
 
-		&:hover {
+		&.active, &:hover {
 			background-color: #007AFF;
 			transition: .3s;
 		}
@@ -66,6 +66,10 @@
 
 		&--judgment {
 			background-image: url('@src/assets/img/judge.png');
+		}
+
+		&--add-participants {
+			background-image: url('@src/assets/img/add-participants.png');
 		}
 
 		&--settings {

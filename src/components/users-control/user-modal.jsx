@@ -1,4 +1,4 @@
-import { Button, Typography, message, Form, Col, Row } from 'antd';
+import {Modal, Form, Button, message, Space} from 'antd';
 import { useState } from "react"
 import FormItem from 'antd/es/form/FormItem';
 import UserLastnameInput from "@src/UI/user/user-lastname-input.jsx";
@@ -10,11 +10,13 @@ import UserPasswordInput from "@src/UI/user/user-password-input.jsx";
 import UserPhoneInput from "@src/UI/user/user-phone-input.jsx";
 import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
 
-function UsersSettings() {
+
+function UserModal({ isOpen, onOk, onCancel }) {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onFinish = () => {
 		message.success('Всё в порядке!');
+		setIsLoading(false);
 	};
 
 	const onFinishFailed = () => {
@@ -23,9 +25,16 @@ function UsersSettings() {
 	};
 
 	return (
-		<>
-			<Typography.Title level={2}>Настройки пользователя</Typography.Title>
-
+		<Modal
+			title="Добавить пользователя"
+			style={{
+				top: 20,
+			}}
+			open={isOpen}
+			onOk={onOk}
+			onCancel={onCancel}
+			footer={[]}
+		>
 			<Form
 				layout="vertical"
 				variant="filled"
@@ -33,36 +42,33 @@ function UsersSettings() {
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
 			>
-				<Row gutter={[32, 0]}>
-					<Col span={8}>
-						<UserLastnameInput />
-						<UserFirstnameInput />
-						<UserPatronymicInput />
+				<UserLastnameInput />
+				<UserFirstnameInput />
+				<UserPatronymicInput />
 
-						<UserRoleInput disabled={true} />
-					</Col>
-					<Col span={8}>
-						<UserEmailInput />
-						<UserPasswordInput />
-					</Col>
-					<Col span={8}>
-						<UserPhoneInput />
-						<UserOrganizationInput />
-					</Col>
-				</Row>
+				<UserRoleInput />
 
-				<Row>
+				<UserEmailInput />
+				<UserPasswordInput />
+
+				<UserPhoneInput />
+				<UserOrganizationInput />
+
+				<Space>
 					<FormItem>
 						<Button
 							type="primary"
 							htmlType="submit"
 							loading={isLoading} onClick={() => setIsLoading(true)}
-						>Сохранить настройки</Button>
+						>Добавить пользователя</Button>
 					</FormItem>
-				</Row>
+					<FormItem>
+						<Button onClick={onCancel}>Отмена</Button>
+					</FormItem>
+				</Space>
 			</Form>
-		</>
-	);
+		</Modal>
+	)
 }
 
-export default UsersSettings;
+export default UserModal;

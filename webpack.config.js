@@ -29,7 +29,24 @@ module.exports = (env) => {
 			rules: [
 				{
 					test: /\.s[ac]ss$/i,
-					use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+					use: [
+						MiniCssExtractPlugin.loader,
+						"css-loader",
+						// {
+						// 	loader: 'resolve-url-loader',
+						// 	options: {
+						// 		root: path.join(__dirname, './build/img'),
+						// 		includeRoot: true,
+    					// 		absolute: true,
+						// 	}
+						// },
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: true
+							}
+						}
+					]
 				},
 				{
 					test: /\.jsx?$/,
@@ -46,8 +63,7 @@ module.exports = (env) => {
 					test: /\.(png|svg|jpg|jpeg|gif)$/i,
 					type: 'asset/resource',
 					generator: {
-						publicPath: '/img/',
-						outputPath: 'img/',
+						filename: 'img/[name].[contenthash][ext]'
 					}
 				},
 			]
@@ -72,7 +88,8 @@ module.exports = (env) => {
 				'@src': path.resolve(__dirname, 'src'),
 				'@components': path.resolve(__dirname, 'src', 'components'),
 				'@node_modules': path.resolve(__dirname, 'node_modules')
-			}
+			},
+			extensions: ['', '.js', '.jsx']
 		}
 	}
 }
