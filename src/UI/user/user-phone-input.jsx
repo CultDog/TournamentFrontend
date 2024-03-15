@@ -20,7 +20,7 @@ function UserPhoneInput(props) {
                 },
                 {
                     type: "phone",
-                    message: "Телефон должен быть числом"
+                    message: "Некоректный номер телефона"
                 },
             ]}
         >
@@ -35,7 +35,7 @@ function UserPhoneInput(props) {
                     maxLength={9}
                     id="user_phone_input"
                 />
-                <Typography.Text type="secondary">Пример: 25 123-45-67</Typography.Text>
+                <Typography.Text type="secondary">Пример: 251234567</Typography.Text>
             </Flex>
         </FormItem>
     );

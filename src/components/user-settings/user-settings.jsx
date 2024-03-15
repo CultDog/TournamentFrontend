@@ -44,8 +44,6 @@ function UsersSettings() {
 		credentials: 'include',
 		};
 
-		console.log(document.getElementById('user_role_select'))
-
 		try {
 			const response = await fetch(loginUrl, requestOptions);
 

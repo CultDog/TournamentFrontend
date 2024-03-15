@@ -1,89 +1,30 @@
 import { Button, Typography, Breadcrumb, Card, Space, List } from 'antd';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Events() {
+	const [events , setEvents] = useState([]);
+	const loginUrl = "http://127.0.0.1:8000/event/events_with_nominations?offset=0&limit=10"
+	const GetEvents = async () =>{
+		const myHeaders = new Headers();
+		myHeaders.append("accept", "application/json");
 
-	const events = [
-		{
-		  key  : '1',
-		  title: 'РобИн-2024',
-		  date : '23.03.2024',
-		  compitations : [
-			'Роботехника', 
-			'Веб-дизайн' , 
-			'Веб-Разработка', 
-			'Следование по линии', 
-			'Робосумо', 
-			'Графический дизайн'
-		  ]
-		},
-		{
-			key  : '2',
-			title: 'РобИн-2024',
-			date : '23.03.2024',
-			compitations : [
-			  'Роботехника', 
-			  'Веб-дизайн' , 
-			  'Веб-Разработка', 
-			  'Следование по линии', 
-			  'Робосумо', 
-			  'Графический дизайн'
-			]
-		},
-		{
-			key  : '3',
-			title: 'РобИн-2024',
-			date : '23.03.2024',
-			compitations : [
-			  'Роботехника', 
-			  'Веб-дизайн' , 
-			  'Веб-Разработка', 
-			  'Следование по линии', 
-			  'Робосумо', 
-			  'Графический дизайн'
-			]
-		},
-		{
-			key  : '4',
-			title: 'РобИн-2024',
-			date : '23.03.2024',
-			compitations : [
-			  'Роботехника', 
-			  'Веб-дизайн' , 
-			  'Веб-Разработка', 
-			  'Следование по линии', 
-			  'Робосумо', 
-			  'Графический дизайн'
-			]
-		},
-		{
-			key  : '5',
-			title: 'РобИн-2024',
-			date : '23.03.2024',
-			compitations : [
-			  'Роботехника', 
-			  'Веб-дизайн' , 
-			  'Веб-Разработка', 
-			  'Следование по линии', 
-			  'Робосумо', 
-			  'Графический дизайн'
-			]
-		},
-		{
-			key  : '5',
-			title: 'РобИн-2024',
-			date : '23.03.2024',
-			compitations : [
-			  'Роботехника', 
-			  'Веб-дизайн' , 
-			  'Веб-Разработка', 
-			  'Следование по линии', 
-			  'Робосумо', 
-			  'Графический дизайн'
-			]
-		},
-	  ];
-
+		const requestOptions = {
+		method: "GET",
+		headers: myHeaders,
+		redirect: "follow",
+		credentials: 'include',
+		};
+		try{
+		const response = await fetch(loginUrl, requestOptions);
+		const data = await response.json();
+		console.log(data);
+		setEvents(data)
+		}catch (error){
+			console.error(error);
+		}
+	}
+	
 		const EventsList = events.map((event, index) => {
 			return(
 				<Card 
@@ -91,7 +32,7 @@ function Events() {
 					size="small"
 					title = {
 						<Space direction="vertical">
-							<Typography.Title level={2}>{event.title}</Typography.Title>
+							<Typography.Title level={2}>{event.name}</Typography.Title>
 							<Typography.Text type="secondary">{event.date}</Typography.Text>
 						</Space>
 					} 
@@ -100,7 +41,7 @@ function Events() {
 						size="small"
 						header = {<Typography.Text>Компетенции: </Typography.Text>}
 						footer = {<Link to = {""}>Перейти к мероприятию</Link>}
-						dataSource={event.compitations}
+						dataSource={event.nominations}
 						renderItem={(item) => (
 							<List.Item>
 								{item}
@@ -110,7 +51,7 @@ function Events() {
 				</Card>
 			)
    })
-
+   GetEvents();
    const eventslist = EventsList;
    return (
 		<Space direction="vertical" size="large" style={{ display: 'flex' }}>
