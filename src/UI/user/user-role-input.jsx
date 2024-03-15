@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {Flex, Input, Select, Space, Typography} from "antd";
 import {CrownOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 
 function UserRoleInput(props) {
     const disabled = props.disabled ?? false;
-
     return (
         <FormItem>
             <Flex vertical>
@@ -22,15 +21,16 @@ function UserRoleInput(props) {
                             <Select
                                 disabled={disabled}
                                 id="user_role_select"
-                                defaultValue="Специалист"
+                                defaultValue="specialist"
+                                onSelect= {}
                                 options={[
                                     {
-                                        value: 'Судья',
+                                        value: 'judge',
                                         label: 'Судья',
 
                                     },
                                     {
-                                        value: 'Специалист',
+                                        value: 'specialist',
                                         label: 'Специалист',
                                     },
                                 ]}

@@ -124,7 +124,7 @@ function Events() {
 						}]}
 					/>
 				</>
-				<Button type="primary" style={{float : "right"}} href="./settings">Добавить мероприятие</Button>
+				<Button type="primary" style={{float : "right"}} href="./events/settings">Добавить мероприятие</Button>
 			</div>
 			<List
 				grid={{ gutter: 5, column: 4 }}

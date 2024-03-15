@@ -130,7 +130,7 @@ function EventSettings(){
                 onFinishFailed={onFinishFailed}
             >
                 <Flex vertical align="center">
-                    <Typography.Title level={3}>Данные мероприятия</Typography.Title>
+                    <Typography.Title level={2}>Данные мероприятия</Typography.Title>
                 </Flex>
                 <FormItem
                     name="event_name"
@@ -148,7 +148,7 @@ function EventSettings(){
                     ]}
                 >
                     <Flex vertical>
-                    <Typography.Title>Название мероприятия</Typography.Title>
+                    <Typography.Text>Название мероприятия</Typography.Text>
                     <Input
                         allowClear
                         placeholder="Введите название мероприятия"
@@ -158,7 +158,7 @@ function EventSettings(){
                     />
                     </Flex>
                 </FormItem>
-                <Typography.Title>Дата мероприятия</Typography.Title>
+                <Typography.Text>Дата мероприятия</Typography.Text>
                 <FormItem
                     name="event_date"
                     hasFeedback
@@ -179,7 +179,7 @@ function EventSettings(){
             </Form>
             <Space direction="vertical" size = "middle">
                 <Flex vertical align="center">
-                    <Typography.Title level={3}>Компетенции</Typography.Title>
+                    <Typography.Title level={2}>Компетенции</Typography.Title>
                 </Flex>
                 <Flex vertical align = "flex-end">
                     <Button type='primary'> Добавить компетенцию </Button>

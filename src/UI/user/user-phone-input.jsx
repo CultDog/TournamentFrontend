@@ -1,5 +1,5 @@
 import React from 'react';
-import {Flex, Input, Typography} from "antd";
+import {Flex, Input, InputNumber, Typography} from "antd";
 import {PhoneOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 
@@ -18,10 +18,10 @@ function UserPhoneInput(props) {
                     min: 9,
                     message: "Телефон должен быть длиной 9 цифер"
                 },
-                {
-                    type: "number",
-                    message: "Телефон должен быть числом"
-                },
+                // {
+                //     type: "number",
+                //     message: "Телефон должен быть числом"
+                // },
             ]}
         >
             <Flex vertical>
