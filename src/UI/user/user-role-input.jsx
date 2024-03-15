@@ -22,7 +22,8 @@ function UserRoleInput(props) {
                                 disabled={disabled}
                                 id="user_role_select"
                                 defaultValue="specialist"
-                                onSelect= {}
+                                onSelect={(value) => props.onSelect(value)}
+                                value={props.value}
                                 options={[
                                     {
                                         value: 'judge',

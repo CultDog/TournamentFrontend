@@ -13,6 +13,8 @@ import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
 function UsersSettings() {
 	const loginUrl = 'http://127.0.0.1:8000/user/create_user';
 	const redirectURL = 'http://localhost:9000/admin/users';
+
+	const [role, setRole] = useState('')
 	
 	
 	const CreateUser = async () =>{
@@ -27,10 +29,10 @@ function UsersSettings() {
 		first_name: document.getElementById('user_fname_input').value,
 		second_name: document.getElementById('user_lname_input').value,
 		third_name: document.getElementById('user_sname_input').value,
-		role: RoleSelectRef.current.value,
+		role: role,
 		email: document.getElementById('user_email_input').value,
 		password: document.getElementById('user_password_input').value,
-		phone: document.getElementById('user_phone_input').value,
+		phone: '+375291234567',
 		educational_institution: document.getElementById('user_organization_input').value,
 		});
 
@@ -86,7 +88,7 @@ function UsersSettings() {
 						<UserFirstnameInput />
 						<UserPatronymicInput />
 
-						<UserRoleInput />
+						<UserRoleInput value={role} onSelect={setRole} />
 					</Col>
 					<Col span={8}>
 						<UserEmailInput />
