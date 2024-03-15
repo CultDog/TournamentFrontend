@@ -1,5 +1,5 @@
 import { Button, Typography, message, Form, Col, Row } from 'antd';
-import { useState, useRef } from "react"
+import { useState } from "react"
 import FormItem from 'antd/es/form/FormItem';
 import UserLastnameInput from "@src/UI/user/user-lastname-input.jsx";
 import UserFirstnameInput from "@src/UI/user/user-firstname-input.jsx";
@@ -32,7 +32,7 @@ function UsersSettings() {
 		role: role,
 		email: document.getElementById('user_email_input').value,
 		password: document.getElementById('user_password_input').value,
-		phone: '+375291234567',
+		phone: "+375" + document.getElementById('user_phone_input').value,
 		educational_institution: document.getElementById('user_organization_input').value,
 		});
 

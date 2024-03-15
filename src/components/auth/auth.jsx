@@ -9,7 +9,7 @@ import AuthPasswordInput from "@src/UI/auth/auth-password-input";
 function Auth() {
 	const loginUrl = 'http://127.0.0.1:8000/auth/login';
 	
-	const redirectURL = 'http://localhost:9000/admin/events'
+	const redirectURL = 'http://127.0.0.1:9000/admin/events'
 
 	const [loadings, setLoadings] = useState([]);
 
