@@ -18,10 +18,10 @@ function UserPhoneInput(props) {
                     min: 9,
                     message: "Телефон должен быть длиной 9 цифер"
                 },
-                // {
-                //     type: "number",
-                //     message: "Телефон должен быть числом"
-                // },
+                {
+                    type: "phone",
+                    message: "Телефон должен быть числом"
+                },
             ]}
         >
             <Flex vertical>
