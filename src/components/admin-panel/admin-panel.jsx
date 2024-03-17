@@ -38,7 +38,7 @@ function AdminPanel() {
 			message.error('Ошибка: Невозможно получить данные. Обратитесь к администратору...');
 		}
 	}
-	
+
 	return (
 		<>
 			<Loader show={isLoading} />
