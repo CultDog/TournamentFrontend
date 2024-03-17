@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import AdminPanel from "@components/admin-panel/admin-panel";
 import EventSettings from "@components/event-settings/event-settings";
 import Events from "@components/events/events";
@@ -13,6 +13,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path="/" element={<Navigate to="/admin/auth" replace />} />
 				<Route path="/admin/auth" Component={Auth} />
 				<Route path="/admin/logout" Component={Logout} />
 				<Route path="/admin" Component={AdminPanel}>
@@ -23,6 +24,7 @@ function App() {
 					<Route path="events/settings" Component={EventSettings}/>
 					<Route path="*" Component={NotFound} />
 				</Route>
+				<Route path="*" Component={NotFound} />
 			</Routes>
 		</BrowserRouter>
 	)

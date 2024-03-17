@@ -12,9 +12,7 @@ const Logout = () => {
         credentials: 'include'
     }).then(
         response => {
-            if(response.ok) {
-                navigate('/admin/auth');
-            }
+            navigate('/admin/auth');
         }
     )
 
