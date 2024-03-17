@@ -12,7 +12,7 @@ function UserEmailInput(props) {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите Email',
+                    message: 'Пожалуйста, введите Email',
                 },
                 {
                     type: 'email',

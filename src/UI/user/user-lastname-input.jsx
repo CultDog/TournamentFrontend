@@ -11,7 +11,7 @@ function UserLastnameInput() {
 			rules={[
 				{
 					required: true,
-					message: 'Пожалуйста введите фамилию',
+					message: 'Пожалуйста, введите фамилию',
 				},
 				{
 					max: 255,

@@ -9,12 +9,7 @@ function UserPatronymicInput(props) {
             name="Sur_Name"
             hasFeedback
             validateFirst
-            rules={[
-                {
-                    max: 255,
-                    message: "Максимальное значение 255"
-                }
-            ]}>
+        >
             <Flex vertical>
                 <Typography.Text>Отчество (если таковое имеется)</Typography.Text>
                 <Input

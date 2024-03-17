@@ -1,4 +1,4 @@
-import { Button, Typography, Breadcrumb, Card, Space, List } from 'antd';
+import { Button, Typography, Breadcrumb, Card, Space, List,Calendar, theme, Flex } from 'antd';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ function Events() {
 		return(
 			<Card 
 				key={index}
-				size="small"
+				size="default"
 				title = {
 					<Space direction="vertical">
 						<Typography.Title level={2}>{event.name}</Typography.Title>
@@ -56,8 +56,12 @@ function Events() {
 		)
 	})
    const eventslist = EventsList;
+   const wrapperStyle = {
+		width: 340,
+		height: 360
+   };
    return (
-		<Space direction="vertical" size="large" style={{ display: 'flex' }}>
+		<Flex vertical gap="large" style={{ display: 'flex' }}>
 			<div>
 				<>
 					<Typography.Title level={2}>Мероприятия</Typography.Title>
@@ -70,24 +74,33 @@ function Events() {
 				</>
 				<Button type="primary" style={{float : "right"}} href="./events/settings">Добавить мероприятие</Button>
 			</div>
-			<List
-				grid={{ gutter: 5, column: 4 }}
-				pagination={{
-					onChange: (page) => {
-						console.log(page);
-					},
-					pageSize : 4,
-					position : "bottom",
-					align    : "end",
-			  	}}
-			dataSource={eventslist}
-			renderItem={(item) => (
-				<List.Item>
-					{item}
-				</List.Item>
-			)}
-			/>
-		</Space>
+			<Flex gap="small" >
+				<Card style={wrapperStyle}>
+					<Calendar fullscreen = {false}/>
+				</Card>
+				<div>
+					<List
+						style = {{width : "auto"}}
+						grid={{ gutter: 5, column: 4 }}
+						pagination={{
+							onChange: (page) => {
+								console.log(page);
+							},
+							hideOnSinglePage : true,
+							pageSize : 4,
+							position : "bottom",
+							align    : "center",
+						}}
+						dataSource={eventslist}
+						renderItem={(item) => (
+							<List.Item>
+								{item}
+							</List.Item>
+						)}
+					/>
+				</div>
+			</Flex>
+		</Flex>
    );
 }
 

@@ -12,7 +12,7 @@ function UserPhoneInput(props) {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите телефон',
+                    message: 'Пожалуйста, введите телефон',
                 },
                 {
                     min: 9,

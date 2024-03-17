@@ -12,7 +12,7 @@ function UserOrganizationInput(props) {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите учереждение образования',
+                    message: 'Пожалуйста, введите учереждение образования',
                 },
             ]}
         >

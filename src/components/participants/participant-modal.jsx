@@ -27,7 +27,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите фамилию',
+                        message: 'Пожалуйста, введите фамилию',
                     },
                     {
                         max: 255,
@@ -56,7 +56,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите имя',
+                        message: 'Пожалуйста, введите имя',
                     },
                     {
                         max: 255,
@@ -121,7 +121,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите Email',
+                        message: 'Пожалуйста, введите Email',
                     },
                     {
                         type: 'email',
@@ -149,7 +149,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите регион',
+                        message: 'Пожалуйста, введите регион',
                     },
                 ]}
             >
@@ -172,7 +172,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите учереждение образования',
+                        message: 'Пожалуйста, введите учереждение образования',
                     },
                 ]}
             >
@@ -195,7 +195,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите фамилию ',
+                        message: 'Пожалуйста, введите фамилию учителя',
                     },
                     {
                         max: 255,
@@ -208,7 +208,7 @@ const ParticipantModal = () => {
                     <Input
                         prefix={<TeamOutlined />}
                         allowClear
-                        placeholder="Введите фамилию"
+                        placeholder="Введите фамилию учителя"
                         id="participant_teacher_lname_input"
                         maxLength={255}
                     />
@@ -224,7 +224,7 @@ const ParticipantModal = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите имя',
+                        message: 'Пожалуйста, введите имя учителя',
                     },
                     {
                         max: 255,
@@ -237,7 +237,7 @@ const ParticipantModal = () => {
                     <Input
                         allowClear
                         prefix={<TeamOutlined />}
-                        placeholder="Введите имя"
+                        placeholder="Введите имя учителя"
                         id="participant_teacher_fname_input"
                         maxLength={255}
                     />
@@ -256,7 +256,7 @@ const ParticipantModal = () => {
                     <Input
                         prefix={<TeamOutlined />}
                         allowClear
-                        placeholder="Введите отчество"
+                        placeholder="Введите отчество учителя"
                         id="participant_teacher_sname_input"
                         maxLength={255}
                     />

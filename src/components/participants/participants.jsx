@@ -13,7 +13,7 @@ function Participants() {
             {
                 type: 'object',
                 required: true,
-                message: 'Пожалуйста выбирите дату рождения',
+                message: 'Пожалуйста, выбирите дату рождения',
             },
         ],
     };

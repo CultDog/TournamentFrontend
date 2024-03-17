@@ -12,7 +12,7 @@ function UserPasswordInput(props) {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите пароль',
+                    message: 'Пожалуйста, введите пароль',
                 },
                 {
                     min: 8,

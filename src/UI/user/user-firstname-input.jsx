@@ -12,7 +12,7 @@ function UserFirstnameInput(props) {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите имя',
+                    message: 'Пожалуйста, введите имя',
                 },
                 {
                     max: 255,
