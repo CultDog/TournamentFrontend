@@ -3,7 +3,7 @@ import {Input, Typography} from "antd";
 import FormItem from "antd/es/form/FormItem";
 const {Text} = Typography;
 
-const AuthEmailInput = () => {
+const AuthEmailInput = ({value, onChange}) => {
     return (
         <FormItem
             name="Email"
@@ -28,6 +28,8 @@ const AuthEmailInput = () => {
                 // pattern="+@gmail.com"
                 id="user_email_input"
                 placeholder="Email..."
+                value={value}
+                onChange={(event) => onChange(event.target.value)}
             />
         </FormItem>
     );

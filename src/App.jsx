@@ -1,24 +1,29 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import UsersControlPage from './pages/users-control-page.jsx';
-import UserSettingsPage from './pages/user-settings-page.jsx';
-import EventsPage from './pages/events-page.jsx';
-import EventSettingsPage from './pages/event-settings-page.jsx';
-import NotFoundPage from './pages/notfoud-page.jsx';
-import AuthPage from './pages/auth-page.jsx';
-import ParticipantsPage from "@src/pages/participants-page.jsx";
+import AdminPanel from "@components/admin-panel/admin-panel";
+import EventSettings from "@components/event-settings/event-settings";
+import Events from "@components/events/events";
+import UserSettings from "@components/user-settings/user-settings";
+import UsersControl from "@components/users-control/users-control";
+import Participants from "@components/participants/participants";
+import NotFound from "@components/notfound/notfound";
+import Auth from "@components/auth/auth";
+import Logout from "@components/logout/logout";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/admin/auth" element={<AuthPage />} />
-				<Route path={"/admin/participants"} element={<ParticipantsPage />} />
-				<Route path="/admin/users" element={<UsersControlPage />} />
-				<Route path="/admin/settings" element={<UserSettingsPage />} />
-				<Route path="/admin/events" element={<EventsPage />} />
-				<Route path="/admin/events/settings" element={<EventSettingsPage/>}/>
-				<Route path="*" element={<NotFoundPage/>} />
-			</Routes>	
+				<Route path="/admin/auth" Component={Auth} />
+				<Route path="/admin/logout" Component={Logout} />
+				<Route path="/admin" Component={AdminPanel}>
+					<Route path="participants" Component={Participants} />
+					<Route path="users" Component={UsersControl} />
+					<Route path="settings" Component={UserSettings} />
+					<Route path="events" Component={Events} />
+					<Route path="events/settings" Component={EventSettings}/>
+					<Route path="*" Component={NotFound} />
+				</Route>
+			</Routes>
 		</BrowserRouter>
 	)
 }

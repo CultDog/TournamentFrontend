@@ -3,7 +3,7 @@ import {Flex, Input, Typography} from "antd";
 import {EyeInvisibleOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 
-const AuthPasswordInput = () => {
+const AuthPasswordInput = ({value, onChange}) => {
     return (
         <FormItem
             name="Password"
@@ -25,6 +25,8 @@ const AuthPasswordInput = () => {
                     placeholder="Пароль..."
                     iconRender={() => <EyeInvisibleOutlined />}
                     id="user_password_input"
+                    value={value}
+                    onChange={(event) => onChange(event.target.value)}
                 />
                 <Typography.Text type="secondary">Забыли пароль? Обратитесь к администратору сайта</Typography.Text>
             </Flex>

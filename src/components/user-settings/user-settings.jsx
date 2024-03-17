@@ -46,16 +46,12 @@ function UsersSettings() {
 
 		console.log(document.getElementById('user_role_select'))
 
-		try {
-			const response = await fetch(loginUrl, requestOptions);
+		const response = await fetch(loginUrl);
 
-			if (response.ok) {
-				const response_json  = await response.json();
-				console.log(response_json);
-				window.location.href = redirectURL;
-			} 
-		} catch (error) {
-			console.error(error);
+		if (response.ok) {
+			const response_json  = await response.json();
+			console.log(response_json);
+			window.location.href = redirectURL;
 		}
 		setIsLoading(false)
 	};
