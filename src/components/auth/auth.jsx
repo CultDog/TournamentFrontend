@@ -90,7 +90,7 @@ function Auth() {
 				<div className="auth__container">
 					<div className="auth__header">
 						<div className="auth__logo">
-							<a href="https://zubronok.by/">
+							<a href="https://zubronok.by/" target="_blank">
 								<img src={logo} alt="" />
 							</a>
 						</div>

@@ -11,88 +11,121 @@ import UserPhoneInput from "@src/UI/user/user-phone-input.jsx";
 import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
 
 function UsersSettings() {
-	const loginUrl = 'http://127.0.0.1:8000/user/create_user';
-	const redirectURL = 'http://localhost:9000/admin/users';
+	const [isLoading, setIsLoading] = useState(true);
+	const [isFormLoading, setIsFormLoading] = useState(false);
 
-	const [role, setRole] = useState('')
+	const [form] = Form.useForm();
+
+	if(isLoading) {
+		try {
+			fetch('http://127.0.0.1:8000/user/profile', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				redirect: "follow",
+				credentials: 'include'
+			}).then(
+				response => {
+					if(response.ok) {
+						return response.json();
+					}
+				}
+			).then(
+				user => {
+					form.setFieldsValue({
+						firstname: user.first_name,
+						lastname: user.second_name,
+						patronymic: user.third_name,
+						role: user.role,
+						email: user.email,
+						phone: user.phone,
+						organization: user.educational_institution
+					})
+
+					setTimeout(() => setIsLoading(false), 1000);
+				}
+			)
+		} catch (error) {
+			message.error('Ошибка: Невозможно получить данные. Обратитесь к администратору...');
+		}
+	}
 	
-	
-	const CreateUser = async () =>{
+	const UpdateUser = () => {
+		console.log(21212)
+		setIsFormLoading(true)
 
-		setIsLoading(true)
 
-		const myHeaders = new Headers();
-		myHeaders.append("accept", "application/json");
-		myHeaders.append("Content-Type", "application/json");
-
-		const raw = JSON.stringify({
-		first_name: document.getElementById('user_fname_input').value,
-		second_name: document.getElementById('user_lname_input').value,
-		third_name: document.getElementById('user_sname_input').value,
-		role: role,
-		email: document.getElementById('user_email_input').value,
-		password: document.getElementById('user_password_input').value,
-		phone: "+375" + document.getElementById('user_phone_input').value,
-		educational_institution: document.getElementById('user_organization_input').value,
-		});
+		const data = {
+			first_name: form.getFieldValue('firstname'),
+			second_name: form.getFieldValue('lastname'),
+			third_name: form.getFieldValue('patronymic'),
+			email: form.getFieldValue('email'),
+			phone: form.getFieldValue('phone'),
+			educational_institution: form.getFieldValue('organization')
+		};
+		if(form.getFieldValue('password')) {
+			data.password = form.getFieldValue('password');
+		}
 
 		const requestOptions = {
-		method: "POST",
-		headers: myHeaders,
-		body: raw,
-		redirect: "follow",
-		credentials: 'include',
+			method: "PATCH",
+			headers: {
+				'accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data),
+			redirect: "follow",
+			credentials: 'include',
 		};
 
-		console.log(document.getElementById('user_role_select'))
-
-		const response = await fetch(loginUrl);
-
-		if (response.ok) {
-			const response_json  = await response.json();
-			console.log(response_json);
-			window.location.href = redirectURL;
-		}
-		setIsLoading(false)
+		fetch('http://127.0.0.1:8000/user/profile', requestOptions).then(
+			response => {
+				if(response.ok) {
+					message.success('Данные успешно сохранены');
+				}else{
+					message.error('Ошибка: Невозможно обновить данные пользователя. Обратитесь к администратору...');
+				}
+			}
+		).finally(
+			() => setIsFormLoading(false)
+		)
 	};
 
-	const [isLoading, setIsLoading] = useState(false);
-
-	const onFinish = () => {
-		message.success('Всё в порядке!');
-	};
-
-	const onFinishFailed = () => {
-		message.error('Проверьте поля для ввода!');
-		setIsLoading(false);
-	};
+	const handleSubmit = () => {
+		form.validateFields().then(() => {
+			UpdateUser();
+		}).catch(() => {
+			message.error('Проверьте поля для ввода!');
+			setIsFormLoading(false);
+		})
+	}
 
 	return (
 		<>
 			<Typography.Title level={2}>Настройки пользователя</Typography.Title>
 
 			<Form
+				form={form}
 				layout="vertical"
 				variant="filled"
 				requiredMark="Default"
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
 			>
 				<Row gutter={[32, 0]}>
 					<Col span={8}>
-						<UserLastnameInput />
-						<UserFirstnameInput />
-						<UserPatronymicInput />
+						<UserLastnameInput name="lastname" />
+						<UserFirstnameInput name="firstname" />
+						<UserPatronymicInput name="patronymic" />
 
-						<UserRoleInput value={role} onSelect={setRole} />
+						<UserRoleInput disabled={true} name="role" />
 					</Col>
 					<Col span={8}>
-						<UserEmailInput />
-						<UserPasswordInput />
+						<UserEmailInput name="email" />
+						<UserPasswordInput name="password" />
 					</Col>
 					<Col span={8}>
-						<UserPhoneInput />
-						<UserOrganizationInput />
+						<UserPhoneInput name="phone" />
+						<UserOrganizationInput name="organization" />
 					</Col>
 				</Row>
 
@@ -101,7 +134,8 @@ function UsersSettings() {
 						<Button
 							type="primary"
 							htmlType="submit"
-							loading={isLoading} onClick={() => CreateUser()}
+							loading={isFormLoading}
+							onClick={handleSubmit}
 						>Сохранить настройки</Button>
 					</FormItem>
 				</Row>

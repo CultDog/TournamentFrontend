@@ -3,7 +3,7 @@ import logo from '@src/assets/img/logo.png';
 function AdminPanelLogo() {
 	return (
 		<div className="admin-panel__logo">
-			<a href="https://zubronok.by/">
+			<a href="https://zubronok.by/" target="_blank">
 				<img src={logo} alt="" />
 			</a>
 		</div>

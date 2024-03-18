@@ -3,41 +3,40 @@ import {Flex, Input, InputNumber, Typography} from "antd";
 import {PhoneOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 
-function UserPhoneInput(props) {
+function UserPhoneInput({name}) {
     return (
-        <FormItem
-            name="Telephone"
-            hasFeedback
-            validateFirst
-            rules={[
-                {
-                    required: true,
-                    message: 'Пожалуйста введите телефон',
-                },
-                {
-                    min: 9,
-                    message: "Телефон должен быть длиной 9 цифер"
-                },
-                {
-                    type: "phone",
-                    message: "Некоректный номер телефона"
-                },
-            ]}
-        >
-            <Flex vertical>
-                <Typography.Text>Телефон</Typography.Text>
+        <Flex vertical style={{
+            marginBottom: '24px'
+        }}>
+            <Typography.Text>Телефон</Typography.Text>
+            <FormItem
+                name={name}
+                hasFeedback
+                validateFirst
+                rules={[
+                    {
+                        required: true,
+                        message: 'Пожалуйста введите телефон',
+                    },
+                    {
+                        pattern: /\+375-[0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/,
+                        message: 'Пожалуйста, введите номер телефона в соответствии с примером',
+                    }
+                ]}
+                style={{
+                    marginBottom: '0px'
+                }}
+            >
                 <Input
                     prefix={<PhoneOutlined />}
-                    addonBefore={"+375"}
                     type="tel"
                     allowClear
                     placeholder="Введите телефон"
-                    maxLength={9}
-                    id="user_phone_input"
+                    maxLength={17}
                 />
-                <Typography.Text type="secondary">Пример: 251234567</Typography.Text>
-            </Flex>
-        </FormItem>
+            </FormItem>
+            <Typography.Text type="secondary">Пример: +375-25-123-45-67</Typography.Text>
+        </Flex>
     );
 }
 

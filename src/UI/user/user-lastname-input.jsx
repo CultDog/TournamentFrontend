@@ -2,35 +2,40 @@ import {Flex, Input, Typography} from "antd";
 import {UserOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 
-function UserLastnameInput() {
+function UserLastnameInput({name}) {
 	return (
-		<FormItem
-			name="Last_Name"
-			hasFeedback
-			validateFirst
-			rules={[
-				{
-					required: true,
-					message: 'Пожалуйста введите фамилию',
-				},
-				{
-					max: 255,
-					message: "Максимальное значение 255"
-				}
-			]}
-		>
-			<Flex vertical>
-				<Typography.Text>Фамилия</Typography.Text>
+		<Flex vertical style={{
+			marginBottom: '24px'
+		}}>
+			<Typography.Text>Фамилия</Typography.Text>
+			<FormItem
+				name={name}
+				hasFeedback
+				validateFirst
+				shouldUpdate={true}
+				rules={[
+					{
+						required: true,
+						message: 'Пожалуйста введите фамилию',
+					},
+					{
+						max: 255,
+						message: "Максимальное значение 255"
+					}
+				]}
+				style={{
+					marginBottom: 0
+				}}
+			>
 				<Input
 					prefix={<UserOutlined />}
 					allowClear
 					placeholder="Введите фамилию"
-					id="user_lname_input"
 					maxLength={255}
 				/>
-				<Typography.Text type="secondary">Пример: Иванов</Typography.Text>
-			</Flex>
-		</FormItem>
+			</FormItem>
+			<Typography.Text type="secondary">Пример: Иванов</Typography.Text>
+		</Flex>
 	)
 }
 
