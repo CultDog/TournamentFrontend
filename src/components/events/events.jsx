@@ -57,7 +57,7 @@ function Events() {
 	})
    const eventslist = EventsList;
    const wrapperStyle = {
-		width: 340,
+		width: 390,
 		height: 360
    };
    return (
@@ -78,16 +78,15 @@ function Events() {
 				<Card style={wrapperStyle}>
 					<Calendar fullscreen = {false}/>
 				</Card>
-				<div>
+				<div style={{width : "85%"}}>
 					<List
-						style = {{width : "auto"}}
-						grid={{ gutter: 5, column: 4 }}
+						grid={{ gutter: 5, column: 3 }}
 						pagination={{
 							onChange: (page) => {
 								console.log(page);
 							},
 							hideOnSinglePage : true,
-							pageSize : 4,
+							pageSize : 3,
 							position : "bottom",
 							align    : "center",
 						}}

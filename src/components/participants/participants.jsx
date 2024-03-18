@@ -1,50 +1,48 @@
-import { Button, DatePicker, Input, Typography, message, Flex, Form, Space } from 'antd';
-import { UserOutlined, BankOutlined, MailOutlined, CalendarOutlined, TeamOutlined, EnvironmentOutlined } from '@ant-design/icons';
-import { useState } from "react"
-import FormItem from 'antd/es/form/FormItem';
-import dayjs from 'dayjs';
+import { Button, Flex, Typography} from 'antd';
+import { useState } from "react";
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
+import ParticipantModal from "./participant-modal.jsx";
+import ParticipantsTable from "./participants-table.jsx";
 
 function Participants() {
-    const [isLoading, setIsLoading] = useState(false);
+    
+    const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] = useState(false);
 
-    const configDate = {
-        rules: [
-            {
-                type: 'object',
-                required: true,
-                message: 'Пожалуйста, выбирите дату рождения',
-            },
-        ],
-    };
+    const ParticipantData = [
+		{
+			key: '1',
+			name: 'Иван',
+			lastname: "Иванов",
+			patronymic: "Иванович",
+			participant_region: "Минская область",
+            participant_organization : "ГУО Минская гимназия №1"
+		}
+	];
 
-    const onFinish = () => {
-
-        const formattedEventDate = dayjs(event_date).format('YYYY-MM-DD');
-        console.log("Formatted date:", formattedEventDate);
-        message.success('Всё в порядке!');
-
-        setIsLoading(false);
-    };
-
-    const onFinishFailed = () => {
-        const formattedEventDate = dayjs(event_date).format('YYYY-MM-DD');
-        console.log("Formatted date:", formattedEventDate);
-        message.error('Проверьте поля для ввода!');
-
-        setIsLoading(false);
-    };
+    
 
     return (
-        <>
+        <Flex vertical gap="small">
             <Typography.Title level={2}>Управление участниками</Typography.Title>
 
             <AdminPanelControls>
-                <Button type="primary">Добавить участника</Button>
+                <Button 
+                    type="primary" 
+                    onClick={() => setIsParticipantModalOpen(true)}
+                >Добавить участника</Button>
             </AdminPanelControls>
 
+            <div>
+				<ParticipantsTable ParticipantData={ParticipantData} />
+			</div>
 
-        </>
+			<ParticipantModal
+				isOpen={isAddParticipantModalOpen}
+				onOk={() => setIsAddParticipantModalOpen(false)}
+				onCancel={() => setIsAddParticipantModalOpen(false)}
+			/>
+
+        </Flex>
     )
 }
 export default Participants;
