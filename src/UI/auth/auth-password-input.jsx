@@ -15,7 +15,7 @@ const AuthPasswordInput = ({value, onChange}) => {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите пароль',
+                    message: 'Пожалуйста, введите пароль',
                 }
             ]}
         >

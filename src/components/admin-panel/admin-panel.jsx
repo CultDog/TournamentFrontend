@@ -41,7 +41,9 @@ function AdminPanel() {
 
 	return (
 		<>
-			<Loader show={isLoading} />
+			<Loader show={isLoading} style={{
+				zIndex: 9999
+			}} />
 			<div className="admin-panel">
 				<div className="admin-panel__menu">
 					<AdminPanelLogo />

@@ -166,6 +166,7 @@ function EventSettings(){
                     {...configDate}
                 >   
                         <DatePicker
+                        format = "DD-MM-YYYY"
                         placeholder="Выберите дату мероприятия"
                         style={{"width": "20%"}}
                         />

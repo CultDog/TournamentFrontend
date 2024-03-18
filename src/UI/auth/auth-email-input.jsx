@@ -15,7 +15,7 @@ const AuthEmailInput = ({value, onChange}) => {
             rules={[
                 {
                     required: true,
-                    message: 'Пожалуйста введите Email',
+                    message: 'Пожалуйста, введите Email',
                 },
                 {
                     type: 'email',

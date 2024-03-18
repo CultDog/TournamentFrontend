@@ -9,6 +9,7 @@ import UserEmailInput from "@src/UI/user/user-email-input.jsx";
 import UserPasswordInput from "@src/UI/user/user-password-input.jsx";
 import UserPhoneInput from "@src/UI/user/user-phone-input.jsx";
 import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
+import Loader from "@components/loader/loader";
 
 function UsersSettings() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +44,7 @@ function UsersSettings() {
 						organization: user.educational_institution
 					})
 
-					setTimeout(() => setIsLoading(false), 1000);
+					setTimeout(() => setIsLoading(false), 300);
 				}
 			)
 		} catch (error) {
@@ -52,9 +53,7 @@ function UsersSettings() {
 	}
 	
 	const UpdateUser = () => {
-		console.log(21212)
 		setIsFormLoading(true)
-
 
 		const data = {
 			first_name: form.getFieldValue('firstname'),
@@ -103,6 +102,7 @@ function UsersSettings() {
 
 	return (
 		<>
+			<Loader show={isLoading} />
 			<Typography.Title level={2}>Настройки пользователя</Typography.Title>
 
 			<Form
