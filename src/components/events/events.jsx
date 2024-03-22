@@ -1,14 +1,15 @@
-import { Button, Typography, Breadcrumb, Card, Space, List,Calendar, theme, Flex } from 'antd';
+import { Button, Typography, Breadcrumb, message, Card, Space, List, Empty, Calendar, theme, Flex } from 'antd';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
 import EventsList from "@components/events/events-list";
 import Loader from "@components/loader/loader";
 
+
 function Events() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [events , setEvents] = useState([]);
-
+	
 	if(isLoading) {
 		fetch(
 			"http://127.0.0.1:8000/event/events_with_nominations?offset=0&limit=10",
@@ -45,6 +46,7 @@ function Events() {
 				<Button type="primary" href="./events/settings">Добавить мероприятие</Button>
 			</AdminPanelControls>
 			<Flex gap="small">
+				<EventsList events={events} />
 				<Card style={{
 					minWidth: 390,
 					width: 390,
@@ -53,7 +55,6 @@ function Events() {
 				}}>
 					<Calendar fullscreen={false}/>
 				</Card>
-				<EventsList events={events} />
 			</Flex>
 		</>
    );

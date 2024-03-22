@@ -16,6 +16,7 @@ const EventsList = ({events}) => {
                 }
             >
                 <List
+                    
                     size="small"
                     header = {<Typography.Text>Компетенции: </Typography.Text>}
                     footer = {<Link to = {""}>Перейти к мероприятию</Link>}

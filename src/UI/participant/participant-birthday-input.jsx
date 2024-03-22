@@ -3,6 +3,7 @@ import {DatePicker, Flex, Input, Space, Typography} from "antd";
 import {CalendarOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
 
+
 const ParticipantBirthdayInput = () => {
     return (
         <>
@@ -24,6 +25,7 @@ const ParticipantBirthdayInput = () => {
                         style={{ width: "100%" }}
                     >
                         <DatePicker
+                            format = "DD-MM-YYYY"
                             style={{ width: "100%", }}
                             placeholder="Выберите дату рождения"
                         />
