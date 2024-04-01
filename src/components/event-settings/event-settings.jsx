@@ -29,42 +29,42 @@ function EventSettings(){
         },
       ];
       const data = [
-        {
-            key: '1',
-            name_compitation: 'Робототехника',
-            porticipants_count: 30,
+        // {
+        //     key: '1',
+        //     name_compitation: 'Робототехника',
+        //     porticipants_count: 30,
 
-        },
-        {
-            key: '2',
-            name_compitation: 'Веб-дизайн',
-            porticipants_count: 23,
+        // },
+        // {
+        //     key: '2',
+        //     name_compitation: 'Веб-дизайн',
+        //     porticipants_count: 23,
   
-        },
-        {
-            key: '3',
-            name_compitation: 'Веб-разработка',
-            porticipants_count: 43,
+        // },
+        // {
+        //     key: '3',
+        //     name_compitation: 'Веб-разработка',
+        //     porticipants_count: 43,
   
-        },
-        {
-            key: '4',
-            name_compitation: 'Следование по линии',
-            porticipants_count: 30,
+        // },
+        // {
+        //     key: '4',
+        //     name_compitation: 'Следование по линии',
+        //     porticipants_count: 30,
   
-        },
-        {
-            key: '5',
-            name_compitation: 'Робосумо',
-            porticipants_count: 30,
+        // },
+        // {
+        //     key: '5',
+        //     name_compitation: 'Робосумо',
+        //     porticipants_count: 30,
   
-        },
-        {
-            key: '6',
-            name_compitation: 'Графический дизайн',
-            porticipants_count: 30,
+        // },
+        // {
+        //     key: '6',
+        //     name_compitation: 'Графический дизайн',
+        //     porticipants_count: 30,
   
-        },
+        // },
           
       ];
 

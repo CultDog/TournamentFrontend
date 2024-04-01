@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, List, Space, Typography} from "antd";
+import {Card, List, Flex, Space, Typography} from "antd";
 import {Link} from "react-router-dom";
 
 const EventsList = ({events}) => {
@@ -19,7 +19,10 @@ const EventsList = ({events}) => {
                     
                     size="small"
                     header = {<Typography.Text>Компетенции: </Typography.Text>}
-                    footer = {<Link to = {""}>Перейти к мероприятию</Link>}
+                    footer = {<Flex vertical>        
+                                <Link to = {""}>Перейти к мероприятию</Link>
+                                <Typography.Text type="secondary">Регистрация открыта</Typography.Text>
+                              </Flex>}
                     dataSource={event.nominations}
                     renderItem={(item) => (
                         <List.Item>

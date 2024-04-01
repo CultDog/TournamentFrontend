@@ -8,7 +8,7 @@ function UserOrganizationInput({name}) {
         <Flex vertical style={{
             marginBottom: '24px'
         }}>
-            <Typography.Text>Учереждение образования</Typography.Text>
+            <Typography.Text>Учреждение образования</Typography.Text>
             <FormItem
                 name={name}
                 hasFeedback
@@ -19,7 +19,7 @@ function UserOrganizationInput({name}) {
             >
                 <Input
                     prefix={<BankOutlined />}
-                    placeholder="Введите учереждение образования"
+                    placeholder="Введите учреждение образования"
                 />
             </FormItem>
             <Typography.Text type="secondary">Пример: ГУО "Гимназия-колледж искусств"</Typography.Text>

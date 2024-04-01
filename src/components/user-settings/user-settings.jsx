@@ -1,4 +1,4 @@
-import { Button, Typography, message, Form, Col, Row } from 'antd';
+import { Button, Typography, Modal, message, Form, Col, Row } from 'antd';
 import { useState } from "react"
 import FormItem from 'antd/es/form/FormItem';
 import UserLastnameInput from "@src/UI/user/user-lastname-input.jsx";
@@ -10,6 +10,7 @@ import UserPasswordInput from "@src/UI/user/user-password-input.jsx";
 import UserPhoneInput from "@src/UI/user/user-phone-input.jsx";
 import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
 import Loader from "@components/loader/loader";
+import UserPasswordModal from './user-password-change';
 
 function UsersSettings() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -100,6 +101,8 @@ function UsersSettings() {
 		})
 	}
 
+	const [isUserPasswordModalOpen, setIsUserPasswordModalOpen] = useState(false);
+
 	return (
 		<>
 			<Loader show={isLoading} />
@@ -122,6 +125,10 @@ function UsersSettings() {
 					<Col span={8}>
 						<UserEmailInput name="email" />
 						<UserPasswordInput name="password" />
+						<Button 	
+							type="primary" 
+                    		onClick={() => setIsUserPasswordModalOpen(true)}
+						>Сменить пароль</Button>
 					</Col>
 					<Col span={8}>
 						<UserPhoneInput name="phone" />
@@ -140,6 +147,11 @@ function UsersSettings() {
 					</FormItem>
 				</Row>
 			</Form>
+			<UserPasswordModal
+				isOpen={isUserPasswordModalOpen}
+				onOk={() => setIsUserPasswordModalOpen(false)}
+				onCancel={() => setIsUserPasswordModalOpen(false)}
+			/>
 		</>
 	);
 }

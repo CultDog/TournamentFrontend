@@ -62,6 +62,15 @@ function ParticipantModal ({ isOpen, onOk, onCancel })  {
                 <ParticipantAdditionalOrganizationInput name = "AdditionalOrganization"/>
                 <ParticipantEquipmentInput name = "Equipment"/>
                 <ParticipantSoftwareInput name = "Software"/>
+                <Flex  gap="middle">
+                    <Button
+                        type='primary'
+                        htmlType='submit'
+                        loading={isLoading} onClick={() => setIsLoading(true)}
+                    >Сохранить данные об участнике
+                    </Button>
+                    <Button onClick={onCancel}>Отмена</Button>
+                </Flex>
                 <ParticipantEventInput name = "Event"/>
                 <ParticipantCompitationSelect name = "Compitation"/>
 
@@ -73,7 +82,7 @@ function ParticipantModal ({ isOpen, onOk, onCancel })  {
                             type='primary'
                             htmlType='submit'
                             loading={isLoading} onClick={() => setIsLoading(true)}
-                        >Сохранить данные
+                        >Сохранить данные даный об участии на мерприятии
                         </Button>
                         <Button onClick={onCancel}>Отмена</Button>
                     </Flex>

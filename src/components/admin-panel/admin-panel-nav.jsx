@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Tooltip } from "antd";
 
 function AdminPanelNav({role}) {
 	return (
@@ -6,22 +7,26 @@ function AdminPanelNav({role}) {
 			<ul className="admin-panel__menu-list">
 				{
 					role === 'admin' && (
-						<li>
-							<NavLink
-								to='/admin/events'
-								className="admin-panel__menu-link admin-panel__menu-link--event"
-							/>
-						</li>
+						<Tooltip title="Мероприятия">
+							<li>
+								<NavLink
+									to='/admin/events'
+									className="admin-panel__menu-link admin-panel__menu-link--event"
+								/>
+							</li>
+						</Tooltip>
 					)
 				}
 				{
 					role === 'admin' && (
-						<li>
-							<NavLink
-								to="/admin/judgment"
-								className="admin-panel__menu-link admin-panel__menu-link--judgment"
-							/>
-						</li>
+						<Tooltip title= "Судейство">
+							<li>
+								<NavLink
+									to="/admin/judgment"
+									className="admin-panel__menu-link admin-panel__menu-link--judgment"
+								/>
+							</li>
+						</Tooltip>
 					)
 				}
 				{

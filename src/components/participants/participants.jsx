@@ -1,4 +1,5 @@
 import { Button, Flex, Typography} from 'antd';
+import {DownloadOutlined} from "@ant-design/icons";
 import { useState } from "react";
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
 import ParticipantModal from "./participant-modal.jsx";
@@ -24,10 +25,13 @@ function Participants() {
             <Typography.Title level={2}>Управление участниками</Typography.Title>
 
             <AdminPanelControls>
-                <Button 
-                    type="primary" 
-                    onClick={() => setIsAddParticipantModalOpen(true)}
-                >Добавить участника</Button>
+                <Flex gap="small">
+                    <Button type="primary" icon={<DownloadOutlined />}/>
+                    <Button 
+                        type="primary" 
+                        onClick={() => setIsAddParticipantModalOpen(true)}
+                    >Добавить участника</Button>
+                </Flex>
             </AdminPanelControls>
 
             <div>

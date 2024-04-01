@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {Flex, Input, Typography} from "antd";
 import {EyeInvisibleOutlined} from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
@@ -28,7 +29,9 @@ const AuthPasswordInput = ({value, onChange}) => {
                     value={value}
                     onChange={(event) => onChange(event.target.value)}
                 />
-                <Typography.Text type="secondary">Забыли пароль? Обратитесь к администратору сайта</Typography.Text>
+                <Typography.Text type="secondary">Забыли пароль? </Typography.Text>
+                <Typography.Text type="secondary">Обратитесь к администратору сайта.</Typography.Text>
+                <Link href="mailto: info@robin-zubronok.by">profil@zubronok.by</Link>
             </Flex>
         </FormItem>
     );

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
 import EventsList from "@components/events/events-list";
 import Loader from "@components/loader/loader";
+import Locale from "@src/UI/locale-settings.jsx"
 
 
 function Events() {
@@ -53,7 +54,7 @@ function Events() {
 					minHeight: 360,
 					height: 360
 				}}>
-					<Calendar fullscreen={false}/>
+					<Calendar fullscreen={false} locale={Locale}/>
 				</Card>
 			</Flex>
 		</>
