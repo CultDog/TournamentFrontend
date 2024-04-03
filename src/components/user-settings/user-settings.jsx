@@ -20,7 +20,7 @@ function UsersSettings() {
 
 	if(isLoading) {
 		try {
-			fetch('http://127.0.0.1:8000/user/profile', {
+			fetch('http://127.0.0.1:8000/api/user/profile', {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ function UsersSettings() {
 			credentials: 'include',
 		};
 
-		fetch('http://127.0.0.1:8000/user/profile', requestOptions).then(
+		fetch('http://127.0.0.1:8000/api/user/profile', requestOptions).then(
 			response => {
 				if(response.ok) {
 					message.success('Данные успешно сохранены');

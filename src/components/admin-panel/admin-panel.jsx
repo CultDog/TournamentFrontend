@@ -13,7 +13,7 @@ function AdminPanel() {
 
 	if(isLoading) {
 		try {
-			fetch('http://127.0.0.1:8000/user/profile', {
+			fetch('http://127.0.0.1:8000/api/user/profile', {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'

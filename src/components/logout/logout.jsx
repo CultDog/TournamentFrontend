@@ -3,7 +3,7 @@ import Loader from "@components/loader/loader";
 
 const Logout = () => {
     const navigate = useNavigate();
-    fetch('http://127.0.0.1:8000/auth/logout', {
+    fetch('http://127.0.0.1:8000/api/auth/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

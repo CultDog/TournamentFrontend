@@ -6,22 +6,24 @@ import { useState } from 'react';
 
 function ParticipantsTable ({ParticipantData}) {
 
+
+
     const columns = [
         {
             title: 'ФИО',
             key: 'participant_fullname',
-            render: (_, { name, lastname, patronymic }) => (
-                <Typography.Text>{`${lastname} ${name} ${patronymic}`}</Typography.Text>
+            render: (_, { first_name, second_name, third_name }) => (
+                <Typography.Text>{`${second_name} ${first_name} ${third_name}`}</Typography.Text>
             )
         },
         {
             title: 'Регион',
-            dataIndex: 'participant_region',
+            dataIndex: 'region',
             key: 'participant_region',
         },
         {
             title: 'Учреждение образования',
-            dataIndex: 'participant_organization',
+            dataIndex: 'educational_institution',
             key: 'participant_organization',
         },
         {
@@ -62,6 +64,7 @@ function ParticipantsTable ({ParticipantData}) {
 	}
 
     return (
+        
         <div>
             <Table 
                 dataSource={ParticipantData}

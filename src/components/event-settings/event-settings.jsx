@@ -6,6 +6,38 @@ import { useState } from 'react';
 
 function EventSettings(){
     const [loadings, setLoadings] = useState([]);
+
+    const create_event_request = async () => {
+        const myHeaders = new Headers();
+        myHeaders.append("accept", "application/json");
+        myHeaders.append("Content-Type", "application/json");
+        
+        const raw = JSON.stringify({
+          "name": document.getElementById("event_name_input").value,
+          "date": dayjs(document.getElementById("event_date").value).format('YYYY-MM-DD'),
+        });
+        
+        console.log( dayjs(document.getElementById("event_date").value).format('YYYY-MM-DD'))
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+          credentials: 'include',
+        };
+        
+        const response = await fetch("http://127.0.0.1:8000/api/event/event", requestOptions)
+        const response_json = response.json();
+
+        if("detail" in response_json || response.status != 200){
+
+            alert("ERROR", response_json["detail"])
+            return;
+        }
+        alert("OK")
+    }
+
     const columns = [
         {
           title: 'Название компетенции',
@@ -166,6 +198,7 @@ function EventSettings(){
                     {...configDate}
                 >   
                         <DatePicker
+                        id="event_date"
                         format = "DD-MM-YYYY"
                         placeholder="Выберите дату мероприятия"
                         style={{"width": "20%"}}
@@ -174,7 +207,8 @@ function EventSettings(){
                 <Button 
                     type='primary' 
                     htmlType='submit'
-                    loading={loadings[0]} onClick={() => enterLoading(0)}
+                    loading={loadings[0]} onClick={
+                        () => {enterLoading(0); create_event_request()}}
                     >Сохранить данные
                 </Button>
             </Form>

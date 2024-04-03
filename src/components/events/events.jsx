@@ -13,7 +13,7 @@ function Events() {
 	
 	if(isLoading) {
 		fetch(
-			"http://127.0.0.1:8000/event/events_with_nominations?offset=0&limit=10",
+			"http://127.0.0.1:8000/api/event/events_with_nominations?offset=0&limit=10",
 			{
 				method: "GET",
 				headers: {
