@@ -5,6 +5,7 @@ import {useState} from "react";
 import {message} from "antd";
 import {Outlet, useNavigate} from "react-router-dom";
 import Loader from "@components/loader/loader";
+import ApiPath from "@components/enums.js"
 
 function AdminPanel() {
 	const navigate = useNavigate();
@@ -13,7 +14,7 @@ function AdminPanel() {
 
 	if(isLoading) {
 		try {
-			fetch('http://127.0.0.1:8000/api/user/profile', {
+			fetch(`${ApiPath}/user/profile`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'

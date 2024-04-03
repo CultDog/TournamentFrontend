@@ -1,9 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import Loader from "@components/loader/loader";
+import ApiPath from "@components/enums.js"
 
 const Logout = () => {
     const navigate = useNavigate();
-    fetch('http://127.0.0.1:8000/api/auth/logout', {
+    fetch(`${ApiPath}/api/auth/logout`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

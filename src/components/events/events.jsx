@@ -5,7 +5,7 @@ import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
 import EventsList from "@components/events/events-list";
 import Loader from "@components/loader/loader";
 import Locale from "@src/UI/locale-settings.jsx"
-
+import ApiPath from "@components/enums.js"
 
 function Events() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ function Events() {
 	
 	if(isLoading) {
 		fetch(
-			"http://127.0.0.1:8000/api/event/events_with_nominations?offset=0&limit=10",
+			`${ApiPath}/event/events_with_nominations?offset=0&limit=10`,
 			{
 				method: "GET",
 				headers: {

@@ -11,6 +11,7 @@ import UserPhoneInput from "@src/UI/user/user-phone-input.jsx";
 import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
 import Loader from "@components/loader/loader";
 import UserPasswordModal from './user-password-change';
+import ApiPath from "@components/enums.js"
 
 function UsersSettings() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +21,7 @@ function UsersSettings() {
 
 	if(isLoading) {
 		try {
-			fetch('http://127.0.0.1:8000/api/user/profile', {
+			fetch(`${ApiPath}/user/profile`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
@@ -79,7 +80,7 @@ function UsersSettings() {
 			credentials: 'include',
 		};
 
-		fetch('http://127.0.0.1:8000/api/user/profile', requestOptions).then(
+		fetch(`${ApiPath}/user/profile`, requestOptions).then(
 			response => {
 				if(response.ok) {
 					message.success('Данные успешно сохранены');

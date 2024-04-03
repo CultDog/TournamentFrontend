@@ -3,6 +3,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import FormItem from 'antd/es/form/FormItem';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import ApiPath from "@components/enums.js"
 
 function EventSettings(){
     const [loadings, setLoadings] = useState([]);
@@ -27,7 +28,7 @@ function EventSettings(){
           credentials: 'include',
         };
         
-        const response = await fetch("http://127.0.0.1:8000/api/event/event", requestOptions)
+        const response = await fetch(`${ApiPath}/event/event`, requestOptions)
         const response_json = response.json();
 
         if("detail" in response_json || response.status != 200){

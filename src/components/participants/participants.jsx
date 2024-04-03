@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
 import ParticipantModal from "./participant-modal.jsx";
 import ParticipantsTable from "./participants-table.jsx";
+import ApiPath from "@components/enums.js"
 
 function Participants() {
     
@@ -23,7 +24,7 @@ function Participants() {
         credentials: 'include'
         };
 
-        const response = await fetch("http://127.0.0.1:8000/api/participant/participant?offset=0&limit=10", requestOptions)
+        const response = await fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, requestOptions)
         const data = await response.json();
         setParticipants(data);
     }
