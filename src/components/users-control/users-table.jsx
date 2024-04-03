@@ -33,8 +33,8 @@ function UsersTable({ usersData }) {
 		{
 			title: 'ФИО',
 			key: 'fullname',
-			render: (_, { name, lastname, patronymic }) => (
-				<Typography.Text>{`${lastname} ${name} ${patronymic}`}</Typography.Text>
+			render: (_, { first_name, second_name, third_name }) => (
+				<Typography.Text>{`${second_name} ${first_name} ${third_name}`}</Typography.Text>
 			)
 		},
 		{

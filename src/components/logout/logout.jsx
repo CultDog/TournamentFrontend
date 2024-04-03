@@ -4,7 +4,7 @@ import ApiPath from "@components/enums.js"
 
 const Logout = () => {
     const navigate = useNavigate();
-    fetch(`${ApiPath}/api/auth/logout`, {
+    fetch(`${ApiPath}/auth/logout`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

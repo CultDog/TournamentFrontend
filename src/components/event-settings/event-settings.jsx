@@ -17,9 +17,6 @@ function EventSettings(){
           "name": document.getElementById("event_name_input").value,
           "date": dayjs(document.getElementById("event_date").value).format('YYYY-MM-DD'),
         });
-        
-        console.log( dayjs(document.getElementById("event_date").value).format('YYYY-MM-DD'))
-
         const requestOptions = {
           method: "POST",
           headers: myHeaders,
@@ -27,16 +24,7 @@ function EventSettings(){
           redirect: "follow",
           credentials: 'include',
         };
-        
-        const response = await fetch(`${ApiPath}/event/event`, requestOptions)
-        const response_json = response.json();
-
-        if("detail" in response_json || response.status != 200){
-
-            alert("ERROR", response_json["detail"])
-            return;
-        }
-        alert("OK")
+        await fetch(`${ApiPath}/event/event`, requestOptions)
     }
 
     const columns = [
