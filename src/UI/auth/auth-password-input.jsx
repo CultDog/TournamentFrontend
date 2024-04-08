@@ -31,7 +31,7 @@ const AuthPasswordInput = ({value, onChange}) => {
                 />
                 <Typography.Text type="secondary">Забыли пароль? </Typography.Text>
                 <Typography.Text type="secondary">Обратитесь к администратору сайта.</Typography.Text>
-                <Link href="mailto: info@robin-zubronok.by">profil@zubronok.by</Link>
+                <a href="mailto:profil@zubronok.by">profil@zubronok.by</a>
             </Flex>
         </FormItem>
     );
