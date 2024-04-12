@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, List, Flex, Space, Typography} from "antd";
 import {Link} from "react-router-dom";
-
+import dayjs from 'dayjs';
 const EventsList = ({events}) => {
     const data = events.map((event, index) => {
         return (
@@ -11,7 +11,7 @@ const EventsList = ({events}) => {
                 title = {
                     <Space direction="vertical">
                         <Typography.Title level={2}>{event.name}</Typography.Title>
-                        <Typography.Text type="secondary">{event.date}</Typography.Text>
+                        <Typography.Text type="secondary">{dayjs(event.date).format('DD-MM-YYYY')}</Typography.Text>
                     </Space>
                 }
             >
@@ -20,7 +20,7 @@ const EventsList = ({events}) => {
                     size="small"
                     header = {<Typography.Text>Компетенции: </Typography.Text>}
                     footer = {<Flex vertical>        
-                                <Link to = {""}>Перейти к мероприятию</Link>
+                                <Link to = {"/admin/events/settings"}>Перейти к мероприятию</Link>
                                 <Typography.Text type="secondary">Регистрация открыта</Typography.Text>
                               </Flex>}
                     dataSource={event.nominations}

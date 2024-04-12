@@ -13,6 +13,7 @@ import UserOrganizationInput from "@src/UI/user/user-organization-input.jsx";
 
 function UserModal({ isOpen, onOk, onCancel }) {
 	const [isLoading, setIsLoading] = useState(false);
+	const [form] = Form.useForm();
 
 	const onFinish = () => {
 		message.success('Всё в порядке!');
@@ -23,6 +24,33 @@ function UserModal({ isOpen, onOk, onCancel }) {
 		message.error('Проверьте поля для ввода!');
 		setIsLoading(false);
 	};
+
+	const create_user_request = async () => {
+        const myHeaders = new Headers();
+		myHeaders.append("accept", "application/json");
+		myHeaders.append("Content-Type", "application/json");
+
+		const raw = JSON.stringify({
+		email: form.getFieldValue('email'),
+		first_name: form.getFieldValue('first_name'),
+		second_name: form.getFieldValue('second_name'),
+		third_name: form.getFieldValue('third_name'),
+		phone: form.getFieldValue('phone'),
+		role: form.getFieldValue('role'),
+		educational_institution: form.getFieldValue('organization'),
+		password: form.getFieldValue('password'),
+		});
+
+		const requestOptions = {
+		method: "POST",
+		headers: myHeaders,
+		body: raw,
+		redirect: "follow",
+		credentials: 'include',
+		};
+		console.log(document.getElementById("user_role_select"))
+        await fetch(`${ApiPath}/user/create_user`, requestOptions)
+    }
 
 	return (
 		<Modal
@@ -36,30 +64,32 @@ function UserModal({ isOpen, onOk, onCancel }) {
 			footer={[]}
 		>
 			<Form
+				form={form}
 				layout="vertical"
 				variant="filled"
 				requiredMark="Default"
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
 			>
-				<UserLastnameInput />
-				<UserFirstnameInput />
-				<UserPatronymicInput />
+				<UserLastnameInput name = "second_name" />
+				<UserFirstnameInput name = "first_name"/>
+				<UserPatronymicInput name = "third_name"/>
 
-				<UserRoleInput />
+				<UserRoleInput name = "role" />
 
-				<UserEmailInput />
-				<UserPasswordInput />
+				<UserEmailInput name = "email" />
+				<UserPasswordInput name = "password" />
 
-				<UserPhoneInput />
-				<UserOrganizationInput />
+				<UserPhoneInput name = "phone" />
+				<UserOrganizationInput name = "organization"/>
 
 				<Space>
 					<FormItem>
 						<Button
 							type="primary"
 							htmlType="submit"
-							loading={isLoading} onClick={() => setIsLoading(true)}
+							loading={isLoading}
+							onClick={() => {setIsLoading(true); create_user_request()}}
 						>Добавить пользователя</Button>
 					</FormItem>
 					<FormItem>

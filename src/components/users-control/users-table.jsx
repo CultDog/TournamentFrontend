@@ -6,16 +6,46 @@ import {useState} from "react";
 function UsersTable({ usersData }) {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+	// const delete_user_request = async () => {
+    //     const myHeaders = new Headers();
+	// 	myHeaders.append("accept", "application/json");
+	// 	myHeaders.append("Content-Type", "application/json");
+
+	// 	const raw = JSON.stringify({
+	// 	email: form.getFieldValue('email'),
+	// 	first_name: form.getFieldValue('first_name'),
+	// 	second_name: form.getFieldValue('second_name'),
+	// 	third_name: form.getFieldValue('third_name'),
+	// 	phone: form.getFieldValue('phone'),
+	// 	role: form.getFieldValue('role'),
+	// 	educational_institution: form.getFieldValue('organization'),
+	// 	password: form.getFieldValue('password'),
+	// 	});
+
+	// 	const requestOptions = {
+	// 	method: "POST",
+	// 	headers: myHeaders,
+	// 	body: raw,
+	// 	redirect: "follow",
+	// 	credentials: 'include',
+	// 	};
+	// 	console.log(document.getElementById("user_role_select"))
+    //     await fetch(`${ApiPath}/user/delete`, requestOptions)
+    // }
+
 	const deleteUserConfirm = () => {
 		Modal.confirm({
 			title: 'Вы уверены?',
 			content: 'Вы уверены что хотите удалить этого пользователя?',
 			footer: (_, { OkBtn, CancelBtn }) => (
 				<>
-					<OkBtn />
+					<OkBtn  />
 					<CancelBtn />
 				</>
 			),
+			// onOk: () => {
+			// 	alert(123)
+			// },
 			okText: 'Да',
 			cancelText: 'Отмена'
 		});

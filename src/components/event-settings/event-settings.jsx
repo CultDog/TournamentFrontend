@@ -1,21 +1,26 @@
-import { Button, Typography, Breadcrumb,DatePicker, Table, Flex, message, Input, Form, Space} from 'antd';
+import { Button, Typography, Breadcrumb, Table, Flex, message, Form, Space} from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import FormItem from 'antd/es/form/FormItem';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import ApiPath from "@components/enums.js"
+import CompitationModal from "./event-settings-modal";
+import EventName from '@src/UI/events/event-name';
+import EventDate from '@src/UI/events/event-date';
+
 
 function EventSettings(){
     const [loadings, setLoadings] = useState([]);
+    const [isAddCompitationModalOpen, setIsAddCompitationModalOpen] = useState(false);
 
-    const create_event_request = async () => {
+    const update_event_request = async () => {
         const myHeaders = new Headers();
         myHeaders.append("accept", "application/json");
         myHeaders.append("Content-Type", "application/json");
         
         const raw = JSON.stringify({
-          "name": document.getElementById("event_name_input").value,
-          "date": dayjs(document.getElementById("event_date").value).format('YYYY-MM-DD'),
+          "old_name": "Робин",
+          "new_name": form.getFieldValue("event_name"),
+          "new_date": dayjs(form.getFieldValue("event_date")).format('YYYY-MM-DD'),
         });
         const requestOptions = {
           method: "POST",
@@ -49,66 +54,12 @@ function EventSettings(){
           ),
         },
       ];
-      const data = [
-        // {
-        //     key: '1',
-        //     name_compitation: 'Робототехника',
-        //     porticipants_count: 30,
-
-        // },
-        // {
-        //     key: '2',
-        //     name_compitation: 'Веб-дизайн',
-        //     porticipants_count: 23,
-  
-        // },
-        // {
-        //     key: '3',
-        //     name_compitation: 'Веб-разработка',
-        //     porticipants_count: 43,
-  
-        // },
-        // {
-        //     key: '4',
-        //     name_compitation: 'Следование по линии',
-        //     porticipants_count: 30,
-  
-        // },
-        // {
-        //     key: '5',
-        //     name_compitation: 'Робосумо',
-        //     porticipants_count: 30,
-  
-        // },
-        // {
-        //     key: '6',
-        //     name_compitation: 'Графический дизайн',
-        //     porticipants_count: 30,
-  
-        // },
-          
-      ];
-
-    const configDate = {
-        rules: [
-            {
-                type: 'object',
-                required: true,
-                message: 'Пожалуйста выбирите дату мероприятия',
-            },
-        ],
-    };
 
     const onFinish = () => {
-
-        const formattedEventDate = dayjs(event_date).format('YYYY-MM-DD');
-        console.log("Formatted date:", formattedEventDate);
         message.success('Всё в порядке!');
     };
 
     const onFinishFailed = () => {
-        const formattedEventDate = dayjs(event_date).format('YYYY-MM-DD');
-        console.log("Formatted date:", formattedEventDate);
         message.error('Проверьте поля для ввода!');
     };
 
@@ -126,6 +77,7 @@ function EventSettings(){
           });
         }, 6000);
       };
+      const [form] = Form.useForm();
     return(
 
         <Flex vertical gap = "middle">
@@ -138,12 +90,13 @@ function EventSettings(){
                             href: './'
                         },
                         {
-                            title: "РобИн-2024"
+                            title: "Hастройка мероприятия"
                         },
                         ]}
                     />
             </div>
             <Form
+                form={form}
                 layout="vertical"
                 variant="filled"
                 requiredMark = "Default"
@@ -153,51 +106,13 @@ function EventSettings(){
                 <Flex vertical align="center">
                     <Typography.Title level={2}>Данные мероприятия</Typography.Title>
                 </Flex>
-                <FormItem
-                    name="event_name"
-                    hasFeedback
-                    validateFirst
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Пожалуйста введите название мероприятия',
-                        },
-                        {
-                            max: 255,
-                            message : "Максимальное значение 255"
-                        },
-                    ]}
-                >
-                    <Flex vertical>
-                    <Typography.Text>Название мероприятия</Typography.Text>
-                    <Input
-                        allowClear
-                        placeholder="Введите название мероприятия"
-                        id = "event_name_input"
-                        maxLength={255}
-                        style={{"width": "20%"}}
-                    />
-                    </Flex>
-                </FormItem>
-                <Typography.Text>Дата мероприятия</Typography.Text>
-                <FormItem
-                    name="event_date"
-                    hasFeedback
-                    validateFirst
-                    {...configDate}
-                >   
-                        <DatePicker
-                        id="event_date"
-                        format = "DD-MM-YYYY"
-                        placeholder="Выберите дату мероприятия"
-                        style={{"width": "20%"}}
-                        />
-                </FormItem>
+                <EventName name="event_name"/>
+                <EventDate name="event_date"/>
                 <Button 
                     type='primary' 
                     htmlType='submit'
                     loading={loadings[0]} onClick={
-                        () => {enterLoading(0); create_event_request()}}
+                        () => {enterLoading(0); update_event_request()}}
                     >Сохранить данные
                 </Button>
             </Form>
@@ -206,15 +121,23 @@ function EventSettings(){
                     <Typography.Title level={2}>Компетенции</Typography.Title>
                 </Flex>
                 <Flex vertical align = "flex-end">
-                    <Button type='primary'> Добавить компетенцию </Button>
+                    <Button
+                        onClick={() => setIsAddCompitationModalOpen(true)} 
+                        type='primary'> Добавить компетенцию </Button>
                 </Flex>
                 <Table 
                     columns={columns} 
-                    dataSource={data} 
+                    //dataSource={data} 
                     //pagination={{position:'bottom'}}
                 />
             </Space>
+            <CompitationModal
+            isOpen={isAddCompitationModalOpen}
+            onOk={() => setIsAddCompitationModalOpen(false)}
+            onCancel={() => setIsAddCompitationModalOpen(false)}
+            />
         </Flex>
+        
     );
 }
 

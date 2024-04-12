@@ -72,6 +72,7 @@ module.exports = (env) => {
 			static: {
 				directory: path.join(__dirname, 'build')
 			},
+			host: "127.0.0.1",
 			compress: true,
 			port: 9000,
 			watchFiles: [

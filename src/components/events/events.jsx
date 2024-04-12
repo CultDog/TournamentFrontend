@@ -1,15 +1,16 @@
-import { Button, Typography, Breadcrumb, message, Card, Space, List, Empty, Calendar, theme, Flex } from 'antd';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Typography, Breadcrumb, message, Card,Calendar,Flex } from 'antd';
+import { useState} from 'react';
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
 import EventsList from "@components/events/events-list";
 import Loader from "@components/loader/loader";
 import Locale from "@src/UI/locale-settings.jsx"
 import ApiPath from "@components/enums.js"
+import EventModal from "./events-modal"
 
 function Events() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [events , setEvents] = useState([]);
+	const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false);
 	
 	if(isLoading) {
 		fetch(
@@ -44,7 +45,7 @@ function Events() {
 				}]}
 			/>
 			<AdminPanelControls>
-				<Button type="primary" href="./events/settings">Добавить мероприятие</Button>
+				<Button type="primary" onClick={() => setIsAddEventModalOpen(true)}>Добавить мероприятие</Button>
 			</AdminPanelControls>
 			<Flex gap="small">
 				<EventsList events={events} />
@@ -56,6 +57,11 @@ function Events() {
 				}}>
 					<Calendar fullscreen={false} locale={Locale}/>
 				</Card>
+				<EventModal
+					isOpen={isAddEventModalOpen}
+					onOk={() => setIsAddEventModalOpen(false)}
+					onCancel={() => setIsAddEventModalOpen(false)}
+				/>
 			</Flex>
 		</>
    );

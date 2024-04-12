@@ -6,7 +6,7 @@ function AdminPanelNav({role}) {
 		<nav className="admin-panel__nav">
 			<ul className="admin-panel__menu-list">
 				{
-					role === 'admin' && (
+					(role === 'admin' || role ==='judge') && (
 						<Tooltip title="Мероприятия">
 							<li>
 								<NavLink
@@ -18,7 +18,7 @@ function AdminPanelNav({role}) {
 					)
 				}
 				{
-					role === 'admin' && (
+					(role === 'admin' || role ==='judge') && (
 						<Tooltip title= "Судейство">
 							<li>
 								<NavLink
@@ -30,7 +30,7 @@ function AdminPanelNav({role}) {
 					)
 				}
 				{
-					role === 'admin' && (
+					(role === 'admin' || role ==='specialist') && (
 						<li>
 							<Tooltip title="Управление участниками">
 							<NavLink

@@ -30,7 +30,7 @@ function AdminPanel() {
 					}
 				}
 			).then(
-				user => {
+				(user) => {
 					setRole(user.role);
 					setTimeout(() => setIsLoading(false), 1000);
 				}

@@ -19,14 +19,19 @@ function UserRoleInput({name, ...props}) {
                             style={{ "width": "38px" }}
                             disabled
                         />
-                        <FormItem name={name} style={{
+                        <FormItem 
+                            name={name} 
+                            style={{
                             width: "100%",
                             marginBottom: '0px'
+                            
+                            
                         }}>
                             <Select
                                 disabled={disabled}
-                                id="user_role_select"
-                                defaultValue="specialist"
+                                name = "role_select"
+                                value="specialist"
+                                // defaultValue={{value:'specialist'}}
                                 options={[
                                     {
                                         value: 'admin',
