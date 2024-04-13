@@ -43,9 +43,6 @@ function UsersTable({ usersData }) {
 					<CancelBtn />
 				</>
 			),
-			// onOk: () => {
-			// 	alert(123)
-			// },
 			okText: 'Да',
 			cancelText: 'Отмена'
 		});

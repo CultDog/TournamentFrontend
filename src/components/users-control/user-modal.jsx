@@ -48,7 +48,6 @@ function UserModal({ isOpen, onOk, onCancel }) {
 		redirect: "follow",
 		credentials: 'include',
 		};
-		console.log(document.getElementById("user_role_select"))
         await fetch(`${ApiPath}/user/create_user`, requestOptions)
     }
 

@@ -15,7 +15,6 @@ function EventDate ({name}){
         <>
             <Typography.Text>Дата мероприятия</Typography.Text>
             <FormItem
-            
                 name={name}
                 hasFeedback
                 validateFirst
@@ -26,7 +25,7 @@ function EventDate ({name}){
                     id="event_date"
                     format = "DD-MM-YYYY"
                     placeholder="Выберите дату мероприятия"
-                    style={{"width": "20%"}}
+                    style={{"width": "100%"}}
                     />
             </FormItem>
         </>

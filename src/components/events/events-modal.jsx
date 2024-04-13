@@ -1,5 +1,6 @@
 import {Form, message, Modal, Button, Space } from 'antd'
 import { useState} from 'react';
+import dayjs from 'dayjs';
 import FormItem from 'antd/es/form/FormItem';
 import EventName from '@src/UI/events/event-name';
 import EventDate from '@src/UI/events/event-date';
@@ -58,10 +59,8 @@ function CreateEventModal({ isOpen, onOk, onCancel }) {
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
 			>
-                <Flex >
                 <EventName name="event_name"/>
-                <EventDate name="event_date"/>	
-                </Flex>			
+                <EventDate name="event_date"/>			
 				<Space>
 					<FormItem>
 						<Button

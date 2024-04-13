@@ -29,7 +29,7 @@ function EventName ({name}) {
                         placeholder="Введите название мероприятия"
                         id = "event_name_input"
                         maxLength={255}
-                        style={{"width": "20%"}}
+                        style={{"width": "100%"}}
                     />
                     </Flex>
                 </FormItem>

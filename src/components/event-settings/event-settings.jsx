@@ -104,10 +104,16 @@ function EventSettings(){
                 onFinishFailed={onFinishFailed}
             >
                 <Flex vertical align="center">
-                    <Typography.Title level={2}>Данные мероприятия</Typography.Title>
+                  <Typography.Title level={2}>Данные мероприятия</Typography.Title>
                 </Flex>
-                <EventName name="event_name"/>
-                <EventDate name="event_date"/>
+                <Flex 
+                  vertical 
+                  style={{
+                  width: "20%"
+                }}>
+                  <EventName name="event_name"/>
+                  <EventDate name="event_date"/>
+                </Flex>
                 <Button 
                     type='primary' 
                     htmlType='submit'
