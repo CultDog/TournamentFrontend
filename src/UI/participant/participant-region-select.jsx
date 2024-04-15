@@ -34,6 +34,7 @@ function ParticipantRegionSelect({name})
                     >
                         <Select
                             // disabled={disabled}
+                            value={""}
                             id="participant_region_select"
                             placeholder = "Выберите регион"
                             options={[

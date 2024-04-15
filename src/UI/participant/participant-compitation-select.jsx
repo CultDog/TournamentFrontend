@@ -24,12 +24,12 @@ function ParticipantCompitationSelect ({name}){
                         }}
                         hasFeedback
                         validateFirst
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста, выбирите компетенцию',
-                            },
-                        ]}
+                        // rules={[
+                        //     {
+                        //         required: true,
+                        //         message: 'Пожалуйста, выбирите компетенцию',
+                        //     },
+                        // ]}
                     >
                         <Select
                             // disabled={disabled}

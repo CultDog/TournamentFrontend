@@ -20,16 +20,16 @@ function ParticipantEventInput ({name}){
                         name={name}
                         hasFeedback
                         validateFirst
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста, выбирите мероприятие',
-                            },
-                            {
-                                max: 255,
-                                message: "Максимальное значение 255"
-                            }
-                        ]}
+                        // rules={[
+                        //     {
+                        //         required: true,
+                        //         message: 'Пожалуйста, выбирите мероприятие',
+                        //     },
+                        //     {
+                        //         max: 255,
+                        //         message: "Максимальное значение 255"
+                        //     }
+                        // ]}
                     >
                         <Flex vertical>
                             <AutoComplete

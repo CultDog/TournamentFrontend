@@ -23,7 +23,7 @@ function EventSettings(){
           "new_date": dayjs(form.getFieldValue("event_date")).format('YYYY-MM-DD'),
         });
         const requestOptions = {
-          method: "POST",
+          method: "PUT",
           headers: myHeaders,
           body: raw,
           redirect: "follow",

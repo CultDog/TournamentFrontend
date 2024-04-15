@@ -29,10 +29,10 @@ function ParticipantsTable ({ParticipantData}) {
         {
             title: 'Действия',
             key: 'action',
-            render: () => (
+            render: ({email}) => (
                 <Flex>
                     <Button type="text" icon={<EditOutlined/>} onClick={() => openEditModal()}></Button>
-                    <Button type="text" icon={<DeleteOutlined/>} onClick={() => deleteParticipantConfirm()}></Button>
+                    <Button type="text" icon={<DeleteOutlined/>} onClick={() => deleteParticipantConfirm(email)}></Button>
                 </Flex>
             ),
         },
@@ -40,7 +40,26 @@ function ParticipantsTable ({ParticipantData}) {
 
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-	const deleteParticipantConfirm = () => {
+	const deleteParticipantConfirm = (email) => {
+        const hide_participant_request = async () => {
+            const myHeaders = new Headers();
+            myHeaders.append("accept", "application/json");
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+            participant_email: email
+            });
+
+            const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+            credentials: 'include',
+            };
+
+            await fetch(`${ApiPath}/participant/hide_participant`, requestOptions)
+        }
 		Modal.confirm({
 			title: 'Вы уверены?',
 			content: 'Вы уверены что хотите удалить этого участника?',
@@ -51,6 +70,9 @@ function ParticipantsTable ({ParticipantData}) {
 				</>
 			),
 			okText: 'Да',
+            onOk: () => {
+                hide_participant_request();
+            },
 			cancelText: 'Отмена'
 		});
 	}

@@ -53,7 +53,7 @@ function UserModal({ isOpen, onOk, onCancel }) {
 
 	return (
 		<Modal
-			title="Добавить пользователя"
+			title="Настройка пользователя"
 			style={{
 				top: 20,
 			}}
@@ -89,7 +89,7 @@ function UserModal({ isOpen, onOk, onCancel }) {
 							htmlType="submit"
 							loading={isLoading}
 							onClick={() => {setIsLoading(true); create_user_request()}}
-						>Добавить пользователя</Button>
+						>Сохранить</Button>
 					</FormItem>
 					<FormItem>
 						<Button onClick={onCancel}>Отмена</Button>

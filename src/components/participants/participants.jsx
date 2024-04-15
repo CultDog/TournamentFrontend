@@ -1,4 +1,4 @@
-import { Button, Flex, Typography} from 'antd';
+import { Button, Flex, Typography, Tooltip} from 'antd';
 import {DownloadOutlined} from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import AdminPanelControls from "@components/admin-panel/admin-panel-controls";
@@ -39,7 +39,9 @@ function Participants() {
 
             <AdminPanelControls>
                 <Flex gap="small">
+                    <Tooltip title= "Сохранить список участников">
                     <Button type="primary" icon={<DownloadOutlined />}/>
+                    </Tooltip>
                     <Button 
                         type="primary" 
                         onClick={() => setIsAddParticipantModalOpen(true)}

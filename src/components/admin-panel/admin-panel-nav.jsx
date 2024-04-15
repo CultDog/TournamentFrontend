@@ -54,7 +54,7 @@ function AdminPanelNav({role}) {
 					)
 				}
 				<li>
-					<Tooltip title="Натсройки аккаунта">
+					<Tooltip title="Настройки аккаунта">
 					<NavLink
 						to="/admin/settings"
 						className="admin-panel__menu-link admin-panel__menu-link--settings"
