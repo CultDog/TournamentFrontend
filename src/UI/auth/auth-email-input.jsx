@@ -1,7 +1,7 @@
 import React from 'react'
-import { Input, Typography } from 'antd'
+import {Input} from 'antd'
 import FormItem from 'antd/es/form/FormItem'
-const { Text } = Typography
+
 
 const AuthEmailInput = ({ value, onChange }) => {
   return (

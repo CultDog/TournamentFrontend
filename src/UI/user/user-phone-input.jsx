@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Input, InputNumber, Typography } from 'antd'
+import { Flex, Input, Typography } from 'antd'
 import { PhoneOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
 

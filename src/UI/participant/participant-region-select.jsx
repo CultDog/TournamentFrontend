@@ -1,6 +1,6 @@
 import React from 'react'
 import FormItem from 'antd/es/form/FormItem'
-import { Select, Flex, Form, Input, Space, Typography } from 'antd'
+import { Select, Flex, Input, Space, Typography } from 'antd'
 import { EnvironmentOutlined } from '@ant-design/icons'
 
 function ParticipantRegionSelect({ name }) {

@@ -25,7 +25,6 @@
     "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
-    "eslint.workingDirectories": [{ "mode": "auto" }],
     "react": {
       "version": "detect"
     }
