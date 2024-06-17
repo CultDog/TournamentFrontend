@@ -2,9 +2,10 @@ import {
   Button,
   Typography,
   message,
-  Flex,
+  Breadcrumb,
 } from 'antd'
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 import TeamModal from '@components/event-registration/team-modal'
 import TeamsTable from '@components/event-registration/teams-table'
 import Loader from '@components/loader/loader'
@@ -15,27 +16,59 @@ function EventsRegistration() {
 const [isAddTeamModalOpen, setIsAddTeamModalOpen] = useState(false)
 const [isLoading, setIsLoading] = useState(true)
 const [dataTeams, setTeams] = useState([])
-if (isLoading) {
-  fetch(`${ApiPath}/team/teams?offset=0&limit=49`, {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-    },
-    redirect: 'follow',
-    credentials: 'include',
-  })
-    .then((response) => response.json())
-    .then((data) => setTeams(data))
-    .catch(() =>
-      message.error('Невозможно получить данные. Обратитесь к администратору')
-    )
-    .finally(() => setTimeout(() => setIsLoading(false), 300))
-}
+const [dataEvent, setEvent] = useState({})
+const {eventID} = useParams();
+
+useEffect(() => {
+  if (isLoading) {
+    fetch(`${ApiPath}/event/event/get_by_id?event_id=${eventID}`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+      },
+      redirect: 'follow',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => setEvent(data))
+      .catch(() =>
+        message.error('Невозможно получить данные. Обратитесь к администратору')
+      )
+  
+    fetch(`${ApiPath}/team/teams?offset=0&limit=49`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+      },
+      redirect: 'follow',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => setTeams(data))
+      .catch(() =>
+        message.error('Невозможно получить данные. Обратитесь к администратору')
+      )
+      .finally(() => setTimeout(() => setIsLoading(false), 300))
+  }
+}, [isLoading, eventID]);
+
 return(
   <>
   <Loader show={isLoading} /> 
   <Typography.Title level={2}>Регистрация участников</Typography.Title>
-
+  <Breadcrumb
+    items={[
+      {
+        title: 'Мероприятия'
+      },
+      {
+        title: dataEvent?.event_data?.name ?? ''
+      },
+      {
+        title: 'Регистрация участников'
+      }
+    ]}
+  />
   <AdminPanelControls>
         <Button type="primary" onClick={() => setIsAddTeamModalOpen(true)}>
           Добавить команду

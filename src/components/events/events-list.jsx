@@ -10,7 +10,6 @@ const EventsList = ({ events }) => {
   const data = events.map((event, index) => {
 
     const navigate = useNavigate()
-
     return (
       <Card
         key={index}
@@ -25,7 +24,7 @@ const EventsList = ({ events }) => {
           <Tooltip title="Регистрация участников">
             <EditOutlined
               key="edit"
-              onClick={() => navigate('/admin/events/registration')}
+              onClick={() => navigate(`/admin/events/${event.id}/registration`)}
             />
           </Tooltip>,
           <Tooltip title="Описание мероприятия">

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, Input, Typography } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { TeamOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
 
 function TeamNameInput({ name }) {
@@ -32,7 +32,7 @@ function TeamNameInput({ name }) {
       >
         <Input
           allowClear
-          prefix={<UserOutlined />}
+          prefix={<TeamOutlined />}
           placeholder="Введите название команды"
           maxLength={255}
         />

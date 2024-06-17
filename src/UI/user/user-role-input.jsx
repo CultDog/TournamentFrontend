@@ -35,7 +35,6 @@ function UserRoleInput({ name, ...props }) {
               disabled={disabled}
               name="role_select"
               value="specialist"
-              // defaultValue={{value:'specialist'}}
               options={[
                 {
                   value: 'admin',
