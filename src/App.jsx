@@ -8,6 +8,8 @@ import Participants from '@components/participants/participants'
 import NotFound from '@components/notfound/notfound'
 import Auth from '@components/auth/auth'
 import Logout from '@components/logout/logout'
+import Test from '@components/test-artem-components/group-stage'
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/admin/auth" Component={Auth} />
         <Route path="/admin/logout" Component={Logout} />
         <Route path="/admin" Component={AdminPanel}>
+          <Route path="test/Artem" Component={Test}/>
           <Route path="participants" Component={Participants} />
           <Route path="users" Component={UsersControl} />
           <Route path="settings" Component={UserSettings} />
