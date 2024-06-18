@@ -4,33 +4,39 @@ import { useEffect, useState } from 'react'
 import AdminPanelControls from '@components/admin-panel/admin-panel-controls'
 import ParticipantModal from './participant-modal.jsx'
 import ParticipantsTable from './participants-table.jsx'
-import Loader from '@components/loader/loader'
 import ApiPath from '@components/enums.js'
 
 function Participants() {
-  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [dataParticipants, setParticipants] = useState([])
-  if(isLoading){
-    fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
+  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
+    useState(false)
+
+  const [participants, setParticipants] = useState([])
+
+  const participants_request = async () => {
+    const myHeaders = new Headers()
+    myHeaders.append('accept', 'application/json')
+
+    const requestOptions = {
       method: 'GET',
-      headers: {
-        accept: 'application/json',
-      },
+      headers: myHeaders,
       redirect: 'follow',
       credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((data) => setParticipants(data))
-      .catch(() =>
-        message.error('Невозможно получить данные. Обратитесь к администратору')
-      )
-      .finally(() => setTimeout(() => setIsLoading(false), 300))
-  } 
+    }
+
+    const response = await fetch(
+      `${ApiPath}/participant/participant?offset=0&limit=10`,
+      requestOptions
+    )
+    const data = await response.json()
+    setParticipants(data)
+  }
+
+  useEffect(() => {
+    participants_request()
+  }, [])
 
   return (
     <>
-      <Loader show={isLoading} />
       <Typography.Title level={2}>Управление участниками</Typography.Title>
 
       <AdminPanelControls>
@@ -47,7 +53,9 @@ function Participants() {
         </Flex>
       </AdminPanelControls>
 
-      <ParticipantsTable ParticipantData={dataParticipants} />
+      <div>
+        <ParticipantsTable ParticipantData={participants} />
+      </div>
 
       <ParticipantModal
         isOpen={isAddParticipantModalOpen}

@@ -30,7 +30,7 @@ function EventSettings() {
       old_name: 'Робин',
       new_name: form.getFieldValue('event_name'),
       new_date: dayjs(form.getFieldValue('event_date')).format('YYYY-MM-DD'),
-    })//#TODO
+    })
     const requestOptions = {
       method: 'PUT',
       headers: myHeaders,

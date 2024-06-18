@@ -1,15 +1,49 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Card, List, Tooltip, Typography } from 'antd'
+import { Card, List, Modal, Tooltip, Typography } from 'antd'
 import {
   EditOutlined,
   EllipsisOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons'
 import dayjs from 'dayjs'
 const EventsList = ({ events }) => {
   const data = events.map((event, index) => {
+    const delete_user_request = async () => {
+      const myHeaders = new Headers()
+      myHeaders.append('accept', 'application/json')
+      myHeaders.append('Content-Type', 'application/json')
 
+      const raw = JSON.stringify({
+        name: event.name,
+      })
+
+      const requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+        credentials: 'include',
+      }
+
+      await fetch(`${ApiPath}/event/event`, requestOptions)
+    }
     const navigate = useNavigate()
+    const deleteEventConfirm = () => {
+      Modal.confirm({
+        title: 'Вы уверены?',
+        content: 'Вы уверены, что хотите удалить это мероприятие?',
+        footer: (_, { OkBtn, CancelBtn }) => (
+          <>
+            <OkBtn />
+            <CancelBtn />
+          </>
+        ),
+        onOk: () => delete_user_request(),
+        okText: 'Да',
+        cancelText: 'Отмена',
+      })
+    }
     return (
       <Card
         key={index}
@@ -21,13 +55,16 @@ const EventsList = ({ events }) => {
           />
         }
         actions={[
-          <Tooltip title="Регистрация участников">
+          <Tooltip title="Редактировать мероприятие">
             <EditOutlined
               key="edit"
-              onClick={() => navigate(`/admin/events/${event.id}/registration`)}
+              onClick={() => navigate('/admin/events/settings')}
             />
           </Tooltip>,
-          <Tooltip title="Описание мероприятия">
+          <Tooltip title="Удалить мероприятие">
+            <DeleteOutlined key="delete" onClick={() => deleteEventConfirm()} />
+          </Tooltip>,
+          <Tooltip title="Перейти к мероприятию">
             <EllipsisOutlined key="ellipsis" />
           </Tooltip>,
         ]}
@@ -39,9 +76,6 @@ const EventsList = ({ events }) => {
         }
       >
         <List
-          locale={{
-            emptyText: 'Компетенции пока отсутствуют',
-          }}
           size="small"
           header={<Typography.Text>Компетенции: </Typography.Text>}
           footer={
