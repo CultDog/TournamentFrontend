@@ -22,7 +22,10 @@ function App() {
           <Route path="users" Component={UsersControl} />
           <Route path="settings" Component={UserSettings} />
           <Route path="events" Component={Events} />
-          <Route path="events/:eventID/registration" Component={EventsRegistration} />
+          <Route
+            path="events/:eventID/registration"
+            Component={EventsRegistration}
+          />
           {/* <Route path="events/settings" Component={EventSettings} /> */}
           <Route path="*" Component={NotFound} />
         </Route>

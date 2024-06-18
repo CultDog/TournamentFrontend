@@ -40,31 +40,31 @@ function ParticipantRegionSelect({ name }) {
               placeholder="Выберите регион"
               options={[
                 {
-                  value: 'Minsk',
+                  value: 'г.Минск',
                   label: 'г.Минск',
                 },
                 {
-                  value: 'minskreg',
+                  value: 'Минская область',
                   label: 'Минская область',
                 },
                 {
-                  value: 'mogilev',
+                  value: 'Могилевская область',
                   label: 'Могилевская область',
                 },
                 {
-                  value: 'grodno',
+                  value: 'Гродненская область',
                   label: 'Гродненская область',
                 },
                 {
-                  value: 'gomel',
+                  value: 'Гомельская область',
                   label: 'Гомельская область',
                 },
                 {
-                  value: 'brest',
+                  value: 'Брестская область',
                   label: 'Брестская область',
                 },
                 {
-                  value: 'vitebsk',
+                  value: 'Витебская область',
                   label: 'Витебская область',
                 },
               ]}

@@ -1,17 +1,9 @@
-import {
-  Typography,
-  Breadcrumb,
-  message,
-  Card,
-  Calendar,
-  Flex,
-} from 'antd'
+import { Typography, Breadcrumb, message, Card, Calendar, Flex } from 'antd'
 import { useState } from 'react'
 import EventsList from '@components/events/events-list'
 import Loader from '@components/loader/loader'
 import Locale from '@src/UI/locale-settings.jsx'
 import ApiPath from '@components/enums.js'
-
 
 function Events() {
   const [isLoading, setIsLoading] = useState(true)

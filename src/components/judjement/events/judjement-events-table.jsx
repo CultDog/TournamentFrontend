@@ -1,15 +1,14 @@
 import { Table, Flex, List, Button, Typography, Modal } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
-import TeamModal from '@components/event-registration/team-modal'
 import { useState } from 'react'
 
-function TeamsTable({ TeamsData }) {
+function JudjementEventsTable({ EventsData }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
   const deleteUserConfirm = () => {
     Modal.confirm({
       title: 'Вы уверены?',
-      content: 'Вы уверены что хотите удалить эту команду?',
+      content: 'Вы уверены что хотите удалить это мероприятие?',
       footer: (_, { OkBtn, CancelBtn }) => (
         <>
           <OkBtn />
@@ -25,31 +24,26 @@ function TeamsTable({ TeamsData }) {
     setIsEditModalOpen(true)
   }
 
-  const changeTeamData = () => {
+  const changeEventData = () => {
     setIsEditModalOpen(false)
   }
 
   const columns = [
     {
-      title: 'Команда',
-      key: 'nameTeam',
+      title: 'Название мероприятия',
+      key: 'nameEvent',
       dataIndex: 'name',
     },
     {
-      title: 'Компетенция',
-      key: 'nomination',
-      dataIndex: 'nomination',
-    },
-    {
-      title: 'Участники',
-      key: 'participants',
-      render: (_, { participants }) => (
+      title: 'Компетенции',
+      key: 'nominations',
+      render: (_, { nominations }) => (
         <List
           locale={{
-            emptyText: 'Участники пока отсутствуют',
+            emptyText: 'Компетенции пока отсутствуют',
           }}
           split={false}
-          dataSource={participants}
+          dataSource={nominations}
           renderItem={(item) => (
             <List.Item>
               <Typography.Text>{`${item.second_name} ${item.first_name} ${item.third_name}`}</Typography.Text>
@@ -59,9 +53,9 @@ function TeamsTable({ TeamsData }) {
       ),
     },
     {
-      title: 'Статус',
-      key: 'Status',
-      dataIndex: 'Status',
+      title: 'Дата мероприятия',
+      key: 'dateEvent',
+      dataIndex: 'ii',
     },
     {
       title: 'Действия',
@@ -85,15 +79,15 @@ function TeamsTable({ TeamsData }) {
 
   return (
     <>
-      <Table dataSource={TeamsData} columns={columns} />
+      <Table dataSource={EventsData} columns={columns} />
 
-      <TeamModal
+      <EventModal
         isOpen={isEditModalOpen}
-        onOk={() => changeTeamData()}
+        onOk={() => changeEventData()}
         onCancel={() => setIsEditModalOpen(false)}
       />
     </>
   )
 }
 
-export default TeamsTable
+export default JudjementEventsTable
