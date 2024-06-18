@@ -67,7 +67,16 @@ function UsersTable({ usersData }) {
     {
       title: 'Роль',
       key: 'role',
-      dataIndex: 'role',
+      render: (_, {role}) => (
+          role === 'admin'? (
+            <Typography.Text>Админ</Typography.Text>
+        ) : role === 'judge'? (
+          <Typography.Text>Судейство</Typography.Text>
+        ) : role ==='specialist'? (
+          <Typography.Text>Специалист</Typography.Text>
+        ) : (
+          <Typography.Text></Typography.Text>)
+      )
     },
     {
       title: 'Действия',
