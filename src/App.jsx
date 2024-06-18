@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import AdminPanel from '@components/admin-panel/admin-panel'
+import EventsRegistration from '@components/event-registration/event-registration'
 import EventSettings from '@components/event-settings/event-settings'
 import Events from '@components/events/events'
 import UserSettings from '@components/user-settings/user-settings'
@@ -21,7 +22,8 @@ function App() {
           <Route path="users" Component={UsersControl} />
           <Route path="settings" Component={UserSettings} />
           <Route path="events" Component={Events} />
-          <Route path="events/settings" Component={EventSettings} />
+          <Route path="events/:eventID/registration" Component={EventsRegistration} />
+          {/* <Route path="events/settings" Component={EventSettings} /> */}
           <Route path="*" Component={NotFound} />
         </Route>
         <Route path="*" Component={NotFound} />

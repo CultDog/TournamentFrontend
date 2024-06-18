@@ -1,5 +1,6 @@
-import { Button, message, Typography } from 'antd'
+import { Button, message, Typography} from 'antd'
 import { useState } from 'react'
+import Loader from '@components/loader/loader'
 import AdminPanelControls from '../admin-panel/admin-panel-controls.jsx'
 import UserModal from './user-modal.jsx'
 import UsersTable from './users-table.jsx'
@@ -29,18 +30,14 @@ function UsersControl() {
 
   return (
     <div className="users-control">
+      <Loader show={isLoading} />
       <Typography.Title level={2}>Управление пользователями</Typography.Title>
-
       <AdminPanelControls>
         <Button type="primary" onClick={() => setIsAddUserModalOpen(true)}>
           Добавить пользователя
         </Button>
       </AdminPanelControls>
-
-      <div className="users-control__users">
         <UsersTable usersData={dataUsers} />
-      </div>
-
       <UserModal
         isOpen={isAddUserModalOpen}
         onOk={() => setIsAddUserModalOpen(false)}
