@@ -4,13 +4,11 @@ import { useParams } from 'react-router-dom'
 import { Button, Flex, Form, Modal, message } from 'antd'
 import TeamNameInput from '@src/UI/team/team-name-input'
 import TeamParticipantsInput from '@src/UI/team/team-participants-input'
-import TeamNominationInput from '@src/UI/team/team-nomination-select'
 
-function TeamModal({ isOpen, onOk, onCancel }) {
+function TeamCreateModal({ isOpen, onOk, onCancel }) {
   const [isLoading, setIsLoading] = useState(false)
   const [form] = Form.useForm()
   const [dataTeamParticipants, setTeamParticipants] = useState([])
-  const [dataNomination, setNomination] = useState({})
   const { eventID } = useParams()
 
   const onFinish = () => {
@@ -25,29 +23,6 @@ function TeamModal({ isOpen, onOk, onCancel }) {
 
   useEffect(() => {
     if (isOpen) {
-      fetch(`${ApiPath}/event/event/get_by_id?event_id=${eventID}`, {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-        redirect: 'follow',
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .then((data) =>
-          setNomination(
-            data?.event_data?.nominations.map((nomination) => ({
-              value: nomination.name,
-              label: nomination.name,
-            }))
-          )
-        )
-        .catch(() =>
-          message.error(
-            'Невозможно получить данные. Обратитесь к администратору'
-          )
-        )
-
       fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
         method: 'GET',
         headers: {
@@ -95,7 +70,7 @@ function TeamModal({ isOpen, onOk, onCancel }) {
 
   return (
     <Modal
-      title="Редактирование команды"
+      title="Создание команды"
       style={{
         top: 20,
       }}
@@ -117,7 +92,6 @@ function TeamModal({ isOpen, onOk, onCancel }) {
           name="teamParticipants"
           options={dataTeamParticipants}
         />
-        <TeamNominationInput name="teamNomination" options={dataNomination} />
         <Flex gap="middle">
           <Button
             type="primary"
@@ -126,6 +100,7 @@ function TeamModal({ isOpen, onOk, onCancel }) {
             onClick={() => {
               setIsLoading(true)
               create_team_request()
+              onOk
             }}
           >
             Сохранить
@@ -137,4 +112,4 @@ function TeamModal({ isOpen, onOk, onCancel }) {
   )
 }
 
-export default TeamModal
+export default TeamCreateModal

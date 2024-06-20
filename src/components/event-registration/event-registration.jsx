@@ -1,7 +1,7 @@
 import { Button, Typography, message, Breadcrumb } from 'antd'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import TeamModal from '@components/event-registration/team-modal'
+import TeamCreateModal from '@components/event-registration/team-create-modal'
 import TeamsTable from '@components/event-registration/teams-table'
 import Loader from '@components/loader/loader'
 import AdminPanelControls from '@components/admin-panel/admin-panel-controls'
@@ -76,7 +76,7 @@ function EventsRegistration() {
 
       <TeamsTable TeamsData={dataTeams} />
 
-      <TeamModal
+      <TeamCreateModal
         isOpen={isAddTeamModalOpen}
         onOk={() => setIsAddTeamModalOpen(false)}
         onCancel={() => setIsAddTeamModalOpen(false)}

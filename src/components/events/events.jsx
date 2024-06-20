@@ -30,14 +30,7 @@ function Events() {
     <>
       <Loader show={isLoading} />
       <Typography.Title level={2}>Мероприятия</Typography.Title>
-      <Flex vertical gap={50}>
-        <Breadcrumb
-          items={[
-            {
-              title: 'Мероприятия',
-            },
-          ]}
-        />
+      <Flex vertical gap={500}>
         <Flex gap="small">
           <EventsList events={events} />
           <Card
