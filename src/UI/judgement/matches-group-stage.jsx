@@ -1,8 +1,8 @@
-import {Grid,Row,Col,Card} from 'antd'
-import {useEffect,useState} from 'react'
+import { Grid, Row, Col, Card } from 'antd'
+import { useEffect, useState } from 'react'
 
-function MatchesGroupStage(){
-  const [dataMatches,setMatches] = useState([])
+function MatchesGroupStage() {
+  const [dataMatches, setMatches] = useState([])
   useEffect(() => {
     ;(async () => {
       const myHeaders = new Headers()
@@ -21,23 +21,18 @@ function MatchesGroupStage(){
       )
       let responseJson = await response.json()
 
-    
       setMatches(responseJson)
       console.log(responseJson)
     })()
   }, [])
 
-
-    return (
-      dataMatches.map((group) => {
-        group.matches.map((match) => {
-          <Card title={match.match_id}>
-            ${match.team1}
-            ${match.team2}
-          </Card>
-        })
-      })
-    )
+  return dataMatches.map((group) => {
+    group.matches.map((match) => {
+      ;<Card title={match.match_id}>
+        ${match.team1}${match.team2}
+      </Card>
+    })
+  })
 }
 
 export default MatchesGroupStage

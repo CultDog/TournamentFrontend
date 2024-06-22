@@ -12,19 +12,18 @@ export default function TableGroupStage() {
     },
     {
       title: 'Участник',
-      key: 'participants',
-      dataIndex:'name',
-      
+      key: 'name',
+      dataIndex: 'name',
     },
     {
       title: 'Количество матчей',
+      key: 'matches',
       dataIndex: 'matches',
     },
     {
       title: 'Победы',
       dataIndex: 'wins',
       key: 'wins',
-      
     },
     {
       title: 'Ничьи',
@@ -34,9 +33,80 @@ export default function TableGroupStage() {
     {
       title: 'Поражения',
       dataIndex: 'losses',
-      key: 'losses'
-    }
+      key: 'losses',
+    },
   ]
+
+  const getStats = (group) => {
+    const teams = new Map()
+
+    const addTeam = (team) => {
+      teams.set(team, {
+        matches: 0,
+        wins: 0,
+        losses: 0,
+        draws: 0,
+      })
+    }
+
+    const changeStats = (name, winner, draw) => {
+      if (!teams.has(name)) {
+        addTeam(name)
+      }
+
+      teams.get(name).matches++
+      if (draw) {
+        teams.get(name).draws++
+      } else if (name == winner) {
+        teams.get(name).wins++
+      } else {
+        teams.get(name).losses++
+      }
+    }
+
+    group.matches.forEach((match) => {
+      if (match.team1) {
+        changeStats(match.team1.name, match.winner.name)
+      }
+
+      if (match.team2) {
+        changeStats(match.team2.name, match.winner.name)
+      }
+    })
+
+    const result = []
+
+    for (let el of teams) {
+      result.push({
+        key: el[0],
+        name: el[0],
+        matches: el[1].matches,
+        wins: el[1].wins,
+        losses: el[1].losses,
+        draws: el[1].draws,
+        place: 1,
+      })
+    }
+    result.sort((first, second) => {
+      if (first.wins * 2 > second.wins * 2) {
+        return -1
+      }
+      if (first.wins * 2 < second.wins * 2) {
+        return 1
+      }
+      return 0
+    })
+
+    result.forEach((team, index) => {
+      team.place = index + 1
+    })
+
+
+
+    console.log(result)
+
+    return result
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -56,102 +126,22 @@ export default function TableGroupStage() {
       )
       let responseJson = await response.json()
       setParticipant(responseJson)
-      console.log(responseJson)
+      console.log(dataParticipant)
     })()
   }, [])
 
-  const getTeamStats = (data) => {
-    const teamStats = {}
-
-    data.forEach((group) => {
-      group.matches.forEach((match) => {
-        if (match.team1) {
-          if (teamStats[match.team1.name]) {
-            teamStats[match.team1.name].matches++;
-            if (match.winner && match.winner.name === match.team1.name) {
-              teamStats[match.team1.name].wins++;
-            } else if (match.winner && match.winner.name !== match.team1.name) {
-              teamStats[match.team1.name].losses++;
-            } else {
-              teamStats[match.team1.name].draws++;
-            }
-          } else {
-            teamStats[match.team1.name] = {
-              matches: 1,
-              wins: match.winner && match.winner.name === match.team1.name ? 1 : 0,
-              losses: match.winner && match.winner.name !== match.team1.name ? 1 : 0,
-              draws: match.winner ? 0 : 1,
-            };
-          }
-        }
-        if (match.team2) {
-          if (teamStats[match.team2.name]) {
-            teamStats[match.team2.name].matches++;
-            if (match.winner && match.winner.name === match.team2.name) {
-              teamStats[match.team2.name].wins++;
-            } else if (match.winner && match.winner.name !== match.team2.name) {
-              teamStats[match.team2.name].losses++;
-            } else {
-              teamStats[match.team2.name].draws++;
-            }
-          } else {
-            teamStats[match.team2.name] = {
-              matches: 1,
-              wins: match.winner && match.winner.name === match.team2.name ? 1 : 0,
-              losses: match.winner && match.winner.name !== match.team2.name ? 1 : 0,
-              draws: match.winner ? 0 : 1,
-            };
-          }
-        }
-      });
-    });
-  
-    const sortedTeams = Object.entries(teamStats)
-      .map(([team, stats]) => ({
-        key: team,
-        name: team,
-        matches: stats.matches,
-        wins: stats.wins,
-        losses: stats.losses,
-        draws: stats.draws,
-      }))
-      .sort((a, b) => {
-        if (b.wins !== a.wins) {
-          return b.wins - a.wins;
-        } else if (a.draws !== b.draws) {
-          return b.draws - a.draws;
-        } else {
-          return a.losses - b.losses;
-        }
-      })
-      .map((team, index) => ({
-        ...team,
-        place: index + 1,
-      }));
-  
-    return sortedTeams;
-  }
-
-  console.log("asdas")
-  console.log(dataParticipant)
-  console.log(getTeamStats(dataParticipant))
-
-  return (
+  return ( 
     <Flex vertical gap='large'>
-
-      
-      <Table
-        
-        columns={columns}
-        dataSource={getTeamStats(dataParticipant)}
-        pagination={false}
-      />
-      <Table
-        
-        columns={columns}
-        dataSource={getTeamStats(dataParticipant)}
-        pagination={false}
-        />
+      {
+          dataParticipant?.map((participants, index) => 
+            <Table 
+              columns={columns} 
+              key={index}
+              dataSource={getStats(participants)}
+              pagination={false}
+            />
+        )
+      }
     </Flex>
   )
 }
