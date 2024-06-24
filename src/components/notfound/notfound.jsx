@@ -8,7 +8,7 @@ function NotFound() {
       title="404"
       subTitle="Извините, страница, которую вы посетили, не существует."
       extra={
-        <NavLink to="/">
+        <NavLink to="/settings">
           <Button type="primary">Вернуться на главную</Button>
         </NavLink>
       }

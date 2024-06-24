@@ -3,19 +3,21 @@ import {
     Typography,
     message,
   } from 'antd'
+  import { useNavigate } from 'react-router-dom'
   import { useState , useEffect} from 'react'
   import Loader from '@components/loader/loader'
   import AdminPanelControls from '@components/admin-panel/admin-panel-controls'
   import ApiPath from '@components/enums.js'
+  import EventTable from '@components/judgment/events/judgment-events-table'
   
-  function JudjementEvents() {
-  const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false)
+  function JudgmentEvents() {
   const [isLoading, setIsLoading] = useState(true)
-  const [dataEvent, setTeams] = useState([])
-  
+  const [dataEvents, setEvents] = useState([])
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (isLoading) {
-      fetch(`${ApiPath}/team/teams?offset=0&limit=49`, {
+      fetch(`${ApiPath}/event/events_with_nominations?offset=0&limit=49`, {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -24,34 +26,27 @@ import {
         credentials: 'include',
       })
         .then((response) => response.json())
-        .then((data) => setTeams(data))
+        .then((data) => setEvents(data))
         .catch(() =>
           message.error('Невозможно получить данные. Обратитесь к администратору')
         )
-        .finally(() => setTimeout(() => setIsLoading(false), 300))
+        .finally(() => setIsLoading(false))
     }
   }, [isLoading]);
-  
   return(
     <>
     <Loader show={isLoading} /> 
     <Typography.Title level={2}>Редактирование мероприятий</Typography.Title>
     <AdminPanelControls>
-          <Button type="primary" onClick={() => setIsAddEventModalOpen(true)}>
+          <Button type="primary" onClick={() => navigate(`/judgment/events/create`)}>
             Добавить мероприятие
           </Button>
     </AdminPanelControls>
   
-    <EventTable TeamsData={dataEvent} />
-  
-    <EventModal
-          isOpen={isAddEventModalOpen}
-          onOk={() => setIsAddEventModalOpen(false)}
-          onCancel={() => setIsAddEventModalOpen(false)}
-        />
+    <EventTable EventsData={dataEvents} />
     </>
   )
   }
   
-  export default JudjementEvents;
+  export default JudgmentEvents;
   

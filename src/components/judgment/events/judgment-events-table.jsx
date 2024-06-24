@@ -1,10 +1,9 @@
 import { Table, Flex, List, Button, Typography, Modal } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
-import { useState } from 'react'
-
-function JudjementEventsTable({ EventsData }) {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-
+import { useNavigate } from 'react-router-dom'
+function JudgmentEventsTable({ EventsData }) {
+  const navigate = useNavigate()
+  
   const deleteUserConfirm = () => {
     Modal.confirm({
       title: 'Вы уверены?',
@@ -20,13 +19,6 @@ function JudjementEventsTable({ EventsData }) {
     })
   }
 
-  const openEditModal = () => {
-    setIsEditModalOpen(true)
-  }
-
-  const changeEventData = () => {
-    setIsEditModalOpen(false)
-  }
 
   const columns = [
     {
@@ -46,7 +38,7 @@ function JudjementEventsTable({ EventsData }) {
           dataSource={nominations}
           renderItem={(item) => (
             <List.Item>
-              <Typography.Text>{`${item.second_name} ${item.first_name} ${item.third_name}`}</Typography.Text>
+              <Typography.Text>{`${item.name}`}</Typography.Text>
             </List.Item>
           )}
         />
@@ -55,17 +47,17 @@ function JudjementEventsTable({ EventsData }) {
     {
       title: 'Дата мероприятия',
       key: 'dateEvent',
-      dataIndex: 'ii',
+      dataIndex: 'date',
     },
     {
       title: 'Действия',
       key: 'action',
-      render: () => (
+      render: ({id}) => (
         <Flex>
           <Button
             type="text"
             icon={<EditOutlined />}
-            onClick={() => openEditModal()}
+            onClick={() => navigate(`/judgment/events/${id}/settings`)}
           ></Button>
           <Button
             type="text"
@@ -80,14 +72,8 @@ function JudjementEventsTable({ EventsData }) {
   return (
     <>
       <Table dataSource={EventsData} columns={columns} />
-
-      <EventModal
-        isOpen={isEditModalOpen}
-        onOk={() => changeEventData()}
-        onCancel={() => setIsEditModalOpen(false)}
-      />
     </>
   )
 }
 
-export default JudjementEventsTable
+export default JudgmentEventsTable

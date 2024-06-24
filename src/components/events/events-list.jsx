@@ -20,7 +20,7 @@ const EventsList = ({ events }) => {
           <Tooltip title="Регистрация участников">
             <EditOutlined
               key="edit"
-              onClick={() => navigate(`/admin/events/${event.id}/registration`)}
+              onClick={() => navigate(`/events/${event.id}/registration`)}
             />
           </Tooltip>,
           <Tooltip title="Описание мероприятия">
