@@ -21,17 +21,17 @@ const items = [
     disabled: true,
   },
 ]
-export default function GroupTab(group) {
+function GroupTab() {
   return (
     <>
       <div
         style={{
           marginTop: 10,
         }}
-      >
-        Группа {group.number}
-      </div>
+      ></div>
       <Tabs className="Tabs" defaultActiveKey="1" items={items} />
     </>
   )
 }
+
+export default GroupTab

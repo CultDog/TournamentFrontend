@@ -1,39 +1,50 @@
-import { Flex, Table, Typography } from 'antd'
+import { Flex, Table, Tooltip, Typography } from 'antd'
 import { useState, useEffect } from 'react'
-
 
 export default function TableGroupStage() {
   const [dataParticipant, setParticipant] = useState([])
   const columns = [
     {
-      title: 'Место',
+      title: <Tooltip title="Место">Место</Tooltip>,
       dataIndex: 'place',
       key: 'place',
     },
     {
-      title: 'Участник',
+      title: <Tooltip title="Участники">Участники</Tooltip>,
       key: 'name',
       dataIndex: 'name',
     },
     {
-      title: 'Количество матчей',
+      title: <Tooltip title="Количество сыгранных матчей">Матчи</Tooltip>,
       key: 'matches',
       dataIndex: 'matches',
     },
     {
-      title: 'Победы',
+      title: <Tooltip title="Количество выигранных матчи">Победы</Tooltip>,
       dataIndex: 'wins',
       key: 'wins',
     },
     {
-      title: 'Ничьи',
+      title: (
+        <Tooltip title="Количество матчей,сыгранных вничью">Ничьи</Tooltip>
+      ),
       dataIndex: 'draws',
       key: 'draws',
     },
     {
-      title: 'Поражения',
+      title: <Tooltip title="Количество проигранных матчей">Поражения</Tooltip>,
       dataIndex: 'losses',
       key: 'losses',
+    },
+    {
+      title: <Tooltip title="Количество заработанных очков">Очки</Tooltip>,
+      dataIndex: 'points',
+      key: 'points',
+    },
+    {
+      title: (
+        <Tooltip title="Количество баллов, выставленных судьёй">Счёт</Tooltip>
+      ),
     },
   ]
 
@@ -46,6 +57,7 @@ export default function TableGroupStage() {
         wins: 0,
         losses: 0,
         draws: 0,
+        points: 0,
       })
     }
 
@@ -57,8 +69,10 @@ export default function TableGroupStage() {
       teams.get(name).matches++
       if (draw) {
         teams.get(name).draws++
+        teams.get(name).points += 1
       } else if (name == winner) {
         teams.get(name).wins++
+        teams.get(name).points += 3
       } else {
         teams.get(name).losses++
       }
@@ -85,13 +99,14 @@ export default function TableGroupStage() {
         losses: el[1].losses,
         draws: el[1].draws,
         place: 1,
+        points: el[1].points,
       })
     }
     result.sort((first, second) => {
-      if (first.wins * 2 > second.wins * 2) {
+      if (first.points > second.points) {
         return -1
       }
-      if (first.wins * 2 < second.wins * 2) {
+      if (first.points < second.points) {
         return 1
       }
       return 0
@@ -100,11 +115,7 @@ export default function TableGroupStage() {
     result.forEach((team, index) => {
       team.place = index + 1
     })
-
-
-
-    console.log(result)
-
+    console.log
     return result
   }
 
@@ -126,22 +137,25 @@ export default function TableGroupStage() {
       )
       let responseJson = await response.json()
       setParticipant(responseJson)
-      console.log(dataParticipant)
     })()
   }, [])
 
-  return ( 
-    <Flex vertical gap='large'>
-      {
-          dataParticipant?.map((participants, index) => 
-            <Table 
-              columns={columns} 
-              key={index}
-              dataSource={getStats(participants)}
-              pagination={false}
-            />
-        )
-      }
+  return (
+    <Flex vertical gap="large">
+      {dataParticipant?.map((participants, index) => (
+        <div key={index}>
+          <div>Группа {index + 1}</div>
+          <Table
+            style={{
+              width: 100,
+            }}
+            pagination={false}
+            columns={columns}
+            dataSource={getStats(participants)}
+            key={index}
+          />
+        </div>
+      ))}
     </Flex>
   )
 }
