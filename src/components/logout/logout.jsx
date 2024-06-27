@@ -12,7 +12,7 @@ const Logout = () => {
     redirect: 'follow',
     credentials: 'include',
   }).then((response) => {
-    navigate('/admin/auth')
+    navigate('/')
   })
 
   return <Loader show={true} />

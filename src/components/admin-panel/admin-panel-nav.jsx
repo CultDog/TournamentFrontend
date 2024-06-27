@@ -9,7 +9,7 @@ function AdminPanelNav({ role }) {
           <Tooltip title="Мероприятия">
             <li>
               <NavLink
-                to="/admin/events"
+                to="/events"
                 className="admin-panel__menu-link admin-panel__menu-link--event"
               />
             </li>
@@ -19,7 +19,7 @@ function AdminPanelNav({ role }) {
           <Tooltip title="Судейство">
             <li>
               <NavLink
-                to="/admin/judgment"
+                to="/judgment/events"
                 className="admin-panel__menu-link admin-panel__menu-link--judgment"
               />
             </li>
@@ -29,7 +29,7 @@ function AdminPanelNav({ role }) {
           <li>
             <Tooltip title="Управление участниками">
               <NavLink
-                to="/admin/participants"
+                to="/participants"
                 className="admin-panel__menu-link admin-panel__menu-link--add-participants"
               />
             </Tooltip>
@@ -39,7 +39,7 @@ function AdminPanelNav({ role }) {
           <li>
             <Tooltip title="Управление пользователями">
               <NavLink
-                to="/admin/users"
+                to="/users"
                 className="admin-panel__menu-link admin-panel__menu-link--users"
               />
             </Tooltip>
@@ -48,7 +48,7 @@ function AdminPanelNav({ role }) {
         <li>
           <Tooltip title="Настройки аккаунта">
             <NavLink
-              to="/admin/settings"
+              to="/settings"
               className="admin-panel__menu-link admin-panel__menu-link--settings"
             />
           </Tooltip>
@@ -58,7 +58,7 @@ function AdminPanelNav({ role }) {
         <li>
           <Tooltip title="Выход">
             <NavLink
-              to="/admin/logout"
+              to="/logout"
               className="admin-panel__menu-link admin-panel__menu-link--logout"
             />
           </Tooltip>
