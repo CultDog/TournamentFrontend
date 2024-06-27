@@ -15,8 +15,8 @@ function ParticipantsTable({ ParticipantData }) {
     },
     {
       title: 'Регион',
+      dataIndex: 'region',
       key: 'participant_region',
-      dataIndex: 'region'
     },
     {
       title: 'Учреждение образования',

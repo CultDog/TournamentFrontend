@@ -1,4 +1,4 @@
-import { Button, message, Typography } from 'antd'
+import { Button, message, Typography} from 'antd'
 import { useState } from 'react'
 import Loader from '@components/loader/loader'
 import AdminPanelControls from '../admin-panel/admin-panel-controls.jsx'
@@ -37,7 +37,7 @@ function UsersControl() {
           Добавить пользователя
         </Button>
       </AdminPanelControls>
-      <UsersTable usersData={dataUsers} />
+        <UsersTable usersData={dataUsers} />
       <UserModal
         isOpen={isAddUserModalOpen}
         onOk={() => setIsAddUserModalOpen(false)}

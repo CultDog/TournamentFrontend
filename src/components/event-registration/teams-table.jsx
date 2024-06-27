@@ -1,13 +1,25 @@
 import { Table, Flex, List, Button, Typography, Modal } from 'antd'
-import {  useState } from 'react'
-import { EditOutlined, DeleteOutlined, UsergroupAddOutlined } from '@ant-design/icons'
-import TeamEditModal from '@components/event-registration/team-edit-modal'
-import ParticipantNominationModal from '@components/event-registration/participant-nomination-modal'
-import TeamDeleteModal from '@components/event-registration/team-delete-modal'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import TeamModal from '@components/event-registration/team-modal'
+import { useState } from 'react'
 
 function TeamsTable({ TeamsData }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const [isParticipantModalOpen, setIsParticipantModalOpen] = useState(false)
+
+  const deleteUserConfirm = () => {
+    Modal.confirm({
+      title: 'Вы уверены?',
+      content: 'Вы уверены что хотите удалить эту команду?',
+      footer: (_, { OkBtn, CancelBtn }) => (
+        <>
+          <OkBtn />
+          <CancelBtn />
+        </>
+      ),
+      okText: 'Да',
+      cancelText: 'Отмена',
+    })
+  }
 
   const openEditModal = () => {
     setIsEditModalOpen(true)
@@ -17,71 +29,44 @@ function TeamsTable({ TeamsData }) {
     setIsEditModalOpen(false)
   }
 
-  const openParticipantModal = () => {
-    setIsParticipantModalOpen(true)
-  }
-
-  const changeParticipantData = () => {
-    setIsParticipantModalOpen(false)
-  }
-
   const columns = [
     {
       title: 'Команда',
       key: 'nameTeam',
-      width: '15%',
       dataIndex: 'name',
+      
     },
     {
-      title: 'Компетенция - участники ',
-      key: 'nomination_particioant',
-      width: '75%',
-      children:
-      [
-        {
-          title: 'Компетенции',
-          key: 'nomination',
-          width: '25%',
-          dataIndex: 'nomination',
-        },
-        {
-          title: 'Cтатус участника',
-          children: 
-          [
-            {
-              title: 'Участники',
-              key: 'participants',
-              width: '40%',
-              render: (_, { participants }) => (
-                <List
-                  locale={{
-                    emptyText: 'Участники пока отсутствуют',
-                  }}
-                  split={false}
-                  dataSource={participants}
-                  renderItem={(item) => (
-                    <List.Item>
-                      <Typography.Text>{`${item.second_name} ${item.first_name} ${item.third_name}`}</Typography.Text>
-                    </List.Item>
-                  )}
-                />
-              ),
-            },
-            {
-              title: 'Статус',
-              key: 'Status',
-              width: '10%',
-              dataIndex: 'Status',
-            },
-          ]
-        }
-      ]
+      title: 'Компетенция',
+      key: 'nomination',
+      dataIndex: 'nomination'
+    },
+    {
+        title: 'Участники',
+        key: 'participants',
+        render: (_, {participants}) => (
+        <List
+            locale={{
+                emptyText: 'Участники пока отсутствуют',  
+            }}
+            split = {false}
+            dataSource={participants}
+            renderItem={(item) => (
+            <List.Item><Typography.Text>{`${item.second_name} ${item.first_name} ${item.third_name}`}</Typography.Text></List.Item>
+            )}
+        />
+        
+        )
+      
+    },
+    {
+      title: "Статус",
+      key: 'Status',
+      dataIndex:'Status'
     },
     {
       title: 'Действия',
-      width: '10%',
       key: 'action',
-      fixed: 'right',
       render: () => (
         <Flex>
           <Button
@@ -91,15 +76,9 @@ function TeamsTable({ TeamsData }) {
           ></Button>
           <Button
             type="text"
-            icon={<UsergroupAddOutlined />}
-            onClick={openParticipantModal()}
-          ></Button>
-          <Button
-            type="text"
             icon={<DeleteOutlined />}
-            onClick={() => TeamDeleteModal}
+            onClick={() => deleteUserConfirm()}
           ></Button>
-         
         </Flex>
       ),
     },
@@ -107,18 +86,13 @@ function TeamsTable({ TeamsData }) {
 
   return (
     <>
-      <Table dataSource={TeamsData} columns={columns} bordered/>
+      <Table dataSource={TeamsData} columns={columns} />
 
-      <TeamEditModal
+      <TeamModal
         isOpen={isEditModalOpen}
         onOk={() => changeTeamData()}
         onCancel={() => setIsEditModalOpen(false)}
       />
-      {/* <ParticipantNominationModal
-        isOpen={isParticipantModalOpen}
-        onOk={() => changeParticipantData()}
-        onCancel={() => setIsParticipantModalOpen(false)}
-      /> */}
     </>
   )
 }

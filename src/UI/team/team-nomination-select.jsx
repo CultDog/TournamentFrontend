@@ -3,8 +3,9 @@ import { FlagOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
 
 function TeamNominationInput({ name, options }) {
+
   const filterOption = (input, option) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   return (
     <Flex
@@ -20,7 +21,11 @@ function TeamNominationInput({ name, options }) {
             width: '100%',
           }}
         >
-          <Input prefix={<FlagOutlined />} style={{ width: '38px' }} disabled />
+          <Input
+            prefix={<FlagOutlined />}
+            style={{ width: '38px' }}
+            disabled
+          />
           <FormItem
             name={name}
             style={{
@@ -38,9 +43,12 @@ function TeamNominationInput({ name, options }) {
           </FormItem>
         </Space.Compact>
       </Flex>
-      <Typography.Text type="secondary">Робофутбол</Typography.Text>
+      <Typography.Text type="secondary">
+        Робофутбол
+      </Typography.Text>
     </Flex>
   )
 }
 
 export default TeamNominationInput
+
