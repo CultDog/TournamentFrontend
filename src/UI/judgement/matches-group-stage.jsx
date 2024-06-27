@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { EditOutlined } from '@ant-design/icons'
-import { Card, Flex, Tooltip, Table, Button, Modal } from 'antd'
+import { Card, Flex, Tooltip, Table, Button, Modal, Row, Col } from 'antd'
 import { useEffect, useState } from 'react'
 import ModalGroupStage from './modal-matches-group-stage'
 
@@ -61,9 +61,9 @@ function MatchesGroupStage() {
         title: <Tooltip title="Команды">Команды</Tooltip>,
         key: 'team1',
         render: (record) => (
-          <div>
-            <div>{record?.team1}</div>
-            <div>{record?.team2}</div>
+          <div style={{alignItems: 'center' }}>
+            <div>{record?.team1} </div>
+            <div>{record?.team2} </div>
           </div>
         ),
       },
@@ -71,13 +71,24 @@ function MatchesGroupStage() {
         title: <Tooltip title="Результаты матча">Результат</Tooltip>,
         key: 'result',
         render: (record) => (
-          <ModalGroupStage match={record}/>
+          <div >
+              <div style={{ marginTop: '15px'}}>
+                <div ><span style={{float: 'left', alignItems: 'center'}}>0</span></div><br/>
+                <div><span style={{float: 'left',alignItems: 'center'}}>0</span></div>
+              </div>
+                <div style={{marginLeft: '100px',alignItems: 'center'}}><ModalGroupStage match={record} /></div>
+              
+              
+          </div>
+          
+         
         ),
       },
     ]
 
     return (
-      <Card title={`Матч ${match.matchNumber}`} style={{ height: '300px' }}>
+      <Card title={`Матч ${match.matchNumber}`} style={{width: '80%'
+       }}>
         <Table
           columns={columns}
           dataSource={[match]}
@@ -90,12 +101,14 @@ function MatchesGroupStage() {
     )
   }
   return (
-    <Flex vertical gap="large" style={{width:'50%'}}>
+    <Row gutter={[16, 16]} style={{ maxWidth: '100vw', overflowX: 'auto', overflowY: 'auto'}}>
       {data.map((match, index) => (
-        <MatchCard key={index} match={match} />
+        <Col key={index} span={8} style={{ minWidth: '200px' }}>
+          <MatchCard match={match} />
+        </Col>
       ))}
-    </Flex>
+    </Row>
   )
-}
+} 
 
 export default MatchesGroupStage
