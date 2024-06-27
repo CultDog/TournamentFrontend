@@ -1,6 +1,7 @@
 import { Typography, Upload, message, Button, Flex } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
 import { UploadOutlined } from '@ant-design/icons';
+
 function EventRegulation({ name }) {
   return (
     <FormItem

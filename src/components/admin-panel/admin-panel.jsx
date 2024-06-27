@@ -7,6 +7,9 @@ import { Outlet, useNavigate, Navigate } from 'react-router-dom'
 import Loader from '@components/loader/loader'
 import ApiPath from '@components/enums.js'
 
+const STATUS_OK = 200;
+const STATUS_UNAUTHORIZED = 401;
+
 function AdminPanel() {
   const [isLoading, setIsLoading] = useState(true)
   const [role, setRole] = useState('unauthorized')
@@ -22,10 +25,12 @@ function AdminPanel() {
         credentials: 'include',
       })
       .then((response) => {
-        if (response.ok) {
+        if (response.status === STATUS_OK) {
           return response.json()
-        }else if(response.status === 401){
+        } else if (response.status === STATUS_UNAUTHORIZED) {
           navigate('/401', { replace: true });
+        } else {
+          throw new Error(`Error ${response.status}`);
         }
       })
       .then((user) => {

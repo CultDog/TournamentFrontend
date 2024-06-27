@@ -11,34 +11,49 @@ import Auth from '@components/auth/auth'
 import Logout from '@components/logout/logout'
 import Judgment from '@components/judgment/events/judgment-events'
 import Unauthorized from '@components/unauthorized/unauthorized'
-function App() {
 
+const ROUTES = {
+  NOT_FOUND: '*',
+  UNAUTHORIZED: '/401',
+  ROOT: '/',
+  LOGOUT: '/logout',
+  ADMIN_PANEL: '',
+  PARTICIPANTS: '/participants',
+  USERS_CONTROL: '/users',
+  USER_SETTINGS: '/settings',
+  EVENTS: '/events',
+  EVENTS_REGISTRATION: '/events/:eventID/registration',
+  JUDGMENT: '/judgment/events',
+  JUDGMENT_CREATE: '/judgment/events/create',
+  JUDGMENT_EVENT_SETTINGS: '/judgment/events/:eventID/settings',
+};
+
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<NotFound />}/>
-        <Route path="/401" element={<Unauthorized />} />
-        <Route path="/">
+        <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
+        <Route path={ROUTES.UNAUTHORIZED} element={<Unauthorized />} />
+        <Route path={ROUTES.ROOT}>
           <Route index element={<Auth />} />
-          <Route path="logout" element={<Logout />} />
-          <Route path="" element={<AdminPanel />}>
-            <Route path="participants" element={<Participants />} />
-            <Route path="users" element={<UsersControl />} />
-            <Route path="settings" element={<UserSettings />} />
-            <Route path="events">
+          <Route path={ROUTES.LOGOUT} element={<Logout />} />
+          <Route path={ROUTES.ADMIN_PANEL} element = {<AdminPanel/>}>
+            <Route path={ROUTES.PARTICIPANTS} element={<Participants />} />
+            <Route path={ROUTES.USERS_CONTROL} element={<UsersControl />} />
+            <Route path={ROUTES.USER_SETTINGS} element={<UserSettings />} />
+            <Route path={ROUTES.EVENTS}>
               <Route index element={<Events />} />
-              <Route path=":eventID/registration" element={<EventsRegistration />} />
+              <Route path={ROUTES.EVENTS_REGISTRATION} element={<EventsRegistration />} />
             </Route>
-            <Route path="judgment/events">
+            <Route path={ROUTES.JUDGMENT}>
               <Route index element={<Judgment />} />
-              <Route path="create" element={<EventSettings />} />
-              <Route path=":eventID/settings" element={<EventSettings />} />
+              <Route path={ROUTES.JUDGMENT_CREATE} element={<EventSettings />} />
+              <Route path={ROUTES.JUDGMENT_EVENT_SETTINGS} element={<EventSettings />} />
             </Route>
           </Route>
         </Route>
       </Routes>
     </BrowserRouter>
   );
-}
-
+};
 export default App

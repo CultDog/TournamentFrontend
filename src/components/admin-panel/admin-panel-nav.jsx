@@ -1,5 +1,14 @@
-import { NavLink } from 'react-router-dom'
-import { Tooltip } from 'antd'
+import { NavLink } from 'react-router-dom';
+import { Tooltip } from 'antd';
+
+const ROUTES = {
+  EVENTS: '/events',
+  JUDGMENT_EVENTS: '/judgment/events',
+  PARTICIPANTS: '/participants',
+  USERS: '/users',
+  SETTINGS: '/settings',
+  LOGOUT: '/logout',
+};
 
 function AdminPanelNav({ role }) {
   return (
@@ -9,7 +18,7 @@ function AdminPanelNav({ role }) {
           <Tooltip title="Мероприятия">
             <li>
               <NavLink
-                to="/events"
+                to={ROUTES.EVENTS}
                 className="admin-panel__menu-link admin-panel__menu-link--event"
               />
             </li>
@@ -19,7 +28,7 @@ function AdminPanelNav({ role }) {
           <Tooltip title="Судейство">
             <li>
               <NavLink
-                to="/judgment/events"
+                to={ROUTES.JUDGMENT_EVENTS}
                 className="admin-panel__menu-link admin-panel__menu-link--judgment"
               />
             </li>
@@ -29,7 +38,7 @@ function AdminPanelNav({ role }) {
           <li>
             <Tooltip title="Управление участниками">
               <NavLink
-                to="/participants"
+                to={ROUTES.PARTICIPANTS}
                 className="admin-panel__menu-link admin-panel__menu-link--add-participants"
               />
             </Tooltip>
@@ -39,7 +48,7 @@ function AdminPanelNav({ role }) {
           <li>
             <Tooltip title="Управление пользователями">
               <NavLink
-                to="/users"
+                to={ROUTES.USERS}
                 className="admin-panel__menu-link admin-panel__menu-link--users"
               />
             </Tooltip>
@@ -48,7 +57,7 @@ function AdminPanelNav({ role }) {
         <li>
           <Tooltip title="Настройки аккаунта">
             <NavLink
-              to="/settings"
+              to={ROUTES.SETTINGS}
               className="admin-panel__menu-link admin-panel__menu-link--settings"
             />
           </Tooltip>
@@ -58,14 +67,14 @@ function AdminPanelNav({ role }) {
         <li>
           <Tooltip title="Выход">
             <NavLink
-              to="/logout"
+              to={ROUTES.LOGOUT}
               className="admin-panel__menu-link admin-panel__menu-link--logout"
             />
           </Tooltip>
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
-export default AdminPanelNav
+export default AdminPanelNav;

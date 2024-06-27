@@ -1,6 +1,7 @@
 import { DatePicker, Typography } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
 import Locale from '@src/UI/locale-settings.jsx'
+
 function EventDate({ name }) {
   const configDate = {
     rules: [
