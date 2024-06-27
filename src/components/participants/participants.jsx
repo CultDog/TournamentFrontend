@@ -8,10 +8,11 @@ import Loader from '@components/loader/loader'
 import ApiPath from '@components/enums.js'
 
 function Participants() {
-  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] = useState(false)
+  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
+    useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [dataParticipants, setParticipants] = useState([])
-  if(isLoading){
+  if (isLoading) {
     fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
       method: 'GET',
       headers: {
@@ -26,7 +27,7 @@ function Participants() {
         message.error('Невозможно получить данные. Обратитесь к администратору')
       )
       .finally(() => setTimeout(() => setIsLoading(false), 300))
-  } 
+  }
 
   return (
     <>

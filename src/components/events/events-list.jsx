@@ -1,14 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, List, Tooltip, Typography } from 'antd'
-import {
-  EditOutlined,
-  EllipsisOutlined,
-} from '@ant-design/icons'
+import { EditOutlined, EllipsisOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 const EventsList = ({ events }) => {
   const data = events.map((event, index) => {
-
     const navigate = useNavigate()
     return (
       <Card
@@ -24,7 +20,7 @@ const EventsList = ({ events }) => {
           <Tooltip title="Регистрация участников">
             <EditOutlined
               key="edit"
-              onClick={() => navigate(`/admin/events/${event.id}/registration`)}
+              onClick={() => navigate(`/events/${event.id}/registration`)}
             />
           </Tooltip>,
           <Tooltip title="Описание мероприятия">

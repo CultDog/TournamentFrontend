@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Button, Flex, Form, Modal, message } from 'antd'
-import Compitation from '@src/UI/events/сompitation-name.jsx'
+import Compitation from '@src/UI/judgment/events/сompitation-name.jsx'
 
 function EventSettingsCompitations({ isOpen, onOk, onCancel }) {
   const [isLoading, setIsLoading] = useState(false)

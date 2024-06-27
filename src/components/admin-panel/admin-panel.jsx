@@ -1,19 +1,18 @@
 import AdminPanelLogo from './admin-panel-logo.jsx'
 import AdminPanelNav from './admin-panel-nav.jsx'
 import './sass/admin-panel.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { message } from 'antd'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, Navigate } from 'react-router-dom'
 import Loader from '@components/loader/loader'
 import ApiPath from '@components/enums.js'
 
 function AdminPanel() {
-  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const [role, setRole] = useState('unauthorized')
-
-  if (isLoading) {
-    try {
+  const navigate = useNavigate();
+  useEffect (() => {
+    if (isLoading) {
       fetch(`${ApiPath}/user/profile`, {
         method: 'GET',
         headers: {
@@ -22,23 +21,24 @@ function AdminPanel() {
         redirect: 'follow',
         credentials: 'include',
       })
-        .then((response) => {
-          if (response.ok) {
-            return response.json()
-          } else {
-            navigate('/admin/auth')
-          }
-        })
-        .then((user) => {
-          setRole(user.role)
-          setTimeout(() => setIsLoading(false), 1000)
-        })
-    } catch (error) {
-      message.error(
-        'Ошибка: Невозможно получить данные. Обратитесь к администратору...'
-      )
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }else if(response.status === 401){
+          navigate('/401', { replace: true });
+        }
+      })
+      .then((user) => {
+        setRole(user.role);
+        setIsLoading(false);
+      })
+      .catch (() =>{
+        message.error(
+          'Невозможно получить данные. Обратитесь к администратору'
+        )
+      })
     }
-  }
+  })
 
   return (
     <>

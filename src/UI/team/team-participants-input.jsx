@@ -3,9 +3,8 @@ import { UserOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
 
 function TeamParticipantsInput({ name, options }) {
-
-    const filterOption = (input, option) =>
-        (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+  const filterOption = (input, option) =>
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
   return (
     <Flex
       vertical
@@ -20,11 +19,7 @@ function TeamParticipantsInput({ name, options }) {
             width: '100%',
           }}
         >
-          <Input
-            prefix={<UserOutlined />}
-            style={{ width: '38px' }}
-            disabled
-          />
+          <Input prefix={<UserOutlined />} style={{ width: '38px' }} disabled />
           <FormItem
             name={name}
             style={{
@@ -44,12 +39,9 @@ function TeamParticipantsInput({ name, options }) {
           </FormItem>
         </Space.Compact>
       </Flex>
-      <Typography.Text type="secondary">
-        Робофутбол
-      </Typography.Text>
+      <Typography.Text type="secondary">Робофутбол</Typography.Text>
     </Flex>
   )
 }
 
 export default TeamParticipantsInput
-
