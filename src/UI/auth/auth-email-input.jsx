@@ -1,6 +1,7 @@
 import React from 'react'
-import { Input } from 'antd'
+import {Input} from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+
 
 const AuthEmailInput = ({ value, onChange }) => {
   return (

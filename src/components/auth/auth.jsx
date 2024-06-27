@@ -1,7 +1,7 @@
 import './sass/auth.scss'
 import { Form, message, Button } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import logo from '@src/assets/img/logo.png'
 import AuthEmailInput from '@src/UI/auth/auth-email-input'
 import AuthPasswordInput from '@src/UI/auth/auth-password-input'
@@ -18,29 +18,29 @@ function Auth() {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-  useEffect(() => {
-    if (isLoading) {
-        fetch(`${ApiPath}/user/profile`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          redirect: 'follow',
-          credentials: 'include',
-        }).then((response) => {
-          if (response.ok) {
-            navigate('/settings')
-          } else {
-            setIsLoading(false)
-          }
-        })
-      .catch (() =>{
-        message.error(
-          'Ошибка: Невозможно получить данные. Обратитесь к администратору...'
-        )
+
+  if (isLoading) {
+    try {
+      fetch(`${ApiPath}/user/profile`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        credentials: 'include',
+      }).then((response) => {
+        if (response.ok) {
+          navigate('/admin/settings')
+        } else {
+          setTimeout(() => setIsLoading(false), 1000)
+        }
       })
+    } catch (error) {
+      message.error(
+        'Ошибка: Невозможно получить данные. Обратитесь к администратору...'
+      )
     }
-  },[isLoading,navigate])
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -63,7 +63,7 @@ function Auth() {
       })
 
       if (response.ok) {
-        navigate('/settings')
+        navigate('/admin/settings')
       } else {
         message.error('Ошибка: Неверный email или пароль.')
       }

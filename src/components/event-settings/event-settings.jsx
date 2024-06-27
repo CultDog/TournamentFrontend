@@ -10,42 +10,16 @@ import {
 } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
-import { useState , useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import ApiPath from '@components/enums.js'
 import CompitationModal from './event-settings-modal'
-import EventName from '@src/UI/judgment/events/event-name'
-import EventDate from '@src/UI/judgment/events/event-date'
-import EventDescription from '@src/UI/judgment/events/event-description'
-import EventEmail from '@src/UI/judgment/events/event-email'
-import EventPlace from '@src/UI/judgment/events/event-place'
-import EventRegistrationSwitch from '@src/UI/judgment/events/event-registration-switch'
-import EventRegulation from '@src/UI/judgment/events/event-regulation'
-import EventLogo from '@src/UI/judgment/events/event-logo'
-
+import EventName from '@src/UI/events/event-name'
+import EventDate from '@src/UI/events/event-date'
 
 function EventSettings() {
   const [loadings, setLoadings] = useState([])
-  const [isAddCompitationModalOpen, setIsAddCompitationModalOpen] = useState(false)
-  const [dataEvent, setEvent] = useState({})
-  const { eventID } = useParams()
-  useEffect(() => {
-      fetch(`${ApiPath}/event/event/get_by_id?event_id=${eventID}`, {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-        redirect: 'follow',
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .then((data) => setEvent(data))
-        .catch(() =>
-          message.error(
-            'Невозможно получить данные. Обратитесь к администратору'
-          )
-        )
-  }, [eventID])
+  const [isAddCompitationModalOpen, setIsAddCompitationModalOpen] =
+    useState(false)
 
   const update_event_request = async () => {
     const myHeaders = new Headers()
@@ -53,10 +27,10 @@ function EventSettings() {
     myHeaders.append('Content-Type', 'application/json')
 
     const raw = JSON.stringify({
-      old_name: dataEvent?.event_data?.name,
+      old_name: 'Робин',
       new_name: form.getFieldValue('event_name'),
       new_date: dayjs(form.getFieldValue('event_date')).format('YYYY-MM-DD'),
-    }) //#TODO
+    })//#TODO
     const requestOptions = {
       method: 'PUT',
       headers: myHeaders,
@@ -145,19 +119,11 @@ function EventSettings() {
         <Flex
           vertical
           style={{
-            width: '30%',
+            width: '20%',
           }}
         >
           <EventName name="event_name" />
-          <EventEmail name="event_email"/>
-          <EventPlace name="event_place"/>
-          <EventLogo name="event_logo"/>
           <EventDate name="event_date" />
-          <EventRegistrationSwitch name="event_registartion"/>
-          <EventRegulation name="event_regulation"/>
-          <EventDescription name="event_description"/>
-
-
         </Flex>
         <Button
           type="primary"

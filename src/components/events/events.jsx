@@ -1,9 +1,17 @@
-import { Typography, Breadcrumb, message, Card, Calendar, Flex } from 'antd'
+import {
+  Typography,
+  Breadcrumb,
+  message,
+  Card,
+  Calendar,
+  Flex,
+} from 'antd'
 import { useState } from 'react'
 import EventsList from '@components/events/events-list'
 import Loader from '@components/loader/loader'
 import Locale from '@src/UI/locale-settings.jsx'
 import ApiPath from '@components/enums.js'
+
 
 function Events() {
   const [isLoading, setIsLoading] = useState(true)
@@ -30,7 +38,14 @@ function Events() {
     <>
       <Loader show={isLoading} />
       <Typography.Title level={2}>Мероприятия</Typography.Title>
-      <Flex vertical gap={500}>
+      <Flex vertical gap={50}>
+        <Breadcrumb
+          items={[
+            {
+              title: 'Мероприятия',
+            },
+          ]}
+        />
         <Flex gap="small">
           <EventsList events={events} />
           <Card
