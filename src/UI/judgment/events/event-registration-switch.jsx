@@ -1,16 +1,16 @@
 import { Typography, Switch, Flex } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/events.scss'
 
 function EventName({ name }) {
   return (
-    <FormItem
-      name={name}
-      hasFeedback
-      validateFirst
-    >
+    <FormItem name={name} hasFeedback validateFirst>
       <Flex vertical>
         <Typography.Text>Регистрация открыта/закрыта</Typography.Text>
-        <Switch onChange={console.log("switched")} style={{width : '10%'}}/>
+        <Switch
+          onChange={console.log('switched')}
+          className="events__event-registration-switch__switch"
+        />
       </Flex>
     </FormItem>
   )

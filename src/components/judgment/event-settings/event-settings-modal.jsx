@@ -19,9 +19,7 @@ function EventSettingsCompitations({ isOpen, onOk, onCancel }) {
   return (
     <Modal
       title="Добавить компетенцию"
-      style={{
-        top: 20,
-      }}
+      className="event-settings__modal"
       open={isOpen}
       onOk={onOk}
       onCancel={onCancel}

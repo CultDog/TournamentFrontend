@@ -1,9 +1,11 @@
-import { Table, Flex, List, Button, Typography, Modal } from 'antd'
+import { Table, Flex, List, Button, Typography, Modal, Tooltip } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '@components/enums'
+
 function JudgmentEventsTable({ EventsData }) {
   const navigate = useNavigate()
-  
+
   const deleteUserConfirm = () => {
     Modal.confirm({
       title: 'Вы уверены?',
@@ -18,7 +20,6 @@ function JudgmentEventsTable({ EventsData }) {
       cancelText: 'Отмена',
     })
   }
-
 
   const columns = [
     {
@@ -52,18 +53,22 @@ function JudgmentEventsTable({ EventsData }) {
     {
       title: 'Действия',
       key: 'action',
-      render: ({id}) => (
+      render: ({ id }) => (
         <Flex>
-          <Button
-            type="text"
-            icon={<EditOutlined />}
-            onClick={() => navigate(`/judgment/events/${id}/settings`)}
-          ></Button>
-          <Button
-            type="text"
-            icon={<DeleteOutlined />}
-            onClick={() => deleteUserConfirm()}
-          ></Button>
+          <Tooltip title={ROUTES.JUDGMENT_EVENT_SETTINGS.TITLE}>
+            <Button
+              type="text"
+              icon={<EditOutlined />}
+              onClick={() => navigate(ROUTES.JUDGMENT_EVENT_SETTINGS.PATH(id))}
+            ></Button>
+          </Tooltip>
+          <Tooltip title="Удалить мероприятие">
+            <Button
+              type="text"
+              icon={<DeleteOutlined />}
+              onClick={() => deleteUserConfirm()}
+            ></Button>
+          </Tooltip>
         </Flex>
       ),
     },

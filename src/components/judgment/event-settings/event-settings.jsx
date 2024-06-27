@@ -10,9 +10,8 @@ import {
 } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
-import { useState , useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import ApiPath from '@components/enums.js'
 import CompitationModal from './event-settings-modal'
 import EventName from '@src/UI/judgment/events/event-name'
 import EventDate from '@src/UI/judgment/events/event-date'
@@ -22,29 +21,28 @@ import EventPlace from '@src/UI/judgment/events/event-place'
 import EventRegistrationSwitch from '@src/UI/judgment/events/event-registration-switch'
 import EventRegulation from '@src/UI/judgment/events/event-regulation'
 import EventLogo from '@src/UI/judgment/events/event-logo'
-
+import './sass/event-settings.scss'
 
 function EventSettings() {
   const [loadings, setLoadings] = useState([])
-  const [isAddCompitationModalOpen, setIsAddCompitationModalOpen] = useState(false)
+  const [isAddCompitationModalOpen, setIsAddCompitationModalOpen] =
+    useState(false)
   const [dataEvent, setEvent] = useState({})
   const { eventID } = useParams()
   useEffect(() => {
-      fetch(`${ApiPath}/event/event/get_by_id?event_id=${eventID}`, {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-        redirect: 'follow',
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .then((data) => setEvent(data))
-        .catch(() =>
-          message.error(
-            'Невозможно получить данные. Обратитесь к администратору'
-          )
-        )
+    fetch(`${API_PATH}/event/event/get_by_id?event_id=${eventID}`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+      },
+      redirect: 'follow',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => setEvent(data))
+      .catch(() =>
+        message.error('Невозможно получить данные. Обратитесь к администратору')
+      )
   }, [eventID])
 
   const update_event_request = async () => {
@@ -64,7 +62,7 @@ function EventSettings() {
       redirect: 'follow',
       credentials: 'include',
     }
-    await fetch(`${ApiPath}/event/event`, requestOptions)
+    await fetch(`${API_PATH}/event/event`, requestOptions)
   }
 
   const columns = [
@@ -142,22 +140,15 @@ function EventSettings() {
         <Flex vertical align="center">
           <Typography.Title level={2}>Данные мероприятия</Typography.Title>
         </Flex>
-        <Flex
-          vertical
-          style={{
-            width: '30%',
-          }}
-        >
+        <Flex vertical className="event-settings__form-flex">
           <EventName name="event_name" />
-          <EventEmail name="event_email"/>
-          <EventPlace name="event_place"/>
-          <EventLogo name="event_logo"/>
+          <EventEmail name="event_email" />
+          <EventPlace name="event_place" />
+          <EventLogo name="event_logo" />
           <EventDate name="event_date" />
-          <EventRegistrationSwitch name="event_registartion"/>
-          <EventRegulation name="event_regulation"/>
-          <EventDescription name="event_description"/>
-
-
+          <EventRegistrationSwitch name="event_registartion" />
+          <EventRegulation name="event_regulation" />
+          <EventDescription name="event_description" />
         </Flex>
         <Button
           type="primary"

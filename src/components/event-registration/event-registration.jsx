@@ -5,7 +5,7 @@ import TeamCreateModal from '@components/event-registration/team-create-modal'
 import TeamsTable from '@components/event-registration/teams-table'
 import Loader from '@components/loader/loader'
 import AdminPanelControls from '@components/admin-panel/admin-panel-controls'
-import ApiPath from '@components/enums.js'
+import './sass/event-registration.scss'
 
 function EventsRegistration() {
   const [isAddTeamModalOpen, setIsAddTeamModalOpen] = useState(false)
@@ -16,7 +16,7 @@ function EventsRegistration() {
 
   useEffect(() => {
     if (isLoading) {
-      fetch(`${ApiPath}/event/event/get_by_id?event_id=${eventID}`, {
+      fetch(`${API_PATH}/event/event/get_by_id?event_id=${eventID}`, {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -32,7 +32,7 @@ function EventsRegistration() {
           )
         )
 
-      fetch(`${ApiPath}/team/teams?offset=0&limit=49`, {
+      fetch(`${API_PATH}/team/teams?offset=0&limit=49`, {
         method: 'GET',
         headers: {
           accept: 'application/json',

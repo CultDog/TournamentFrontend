@@ -1,39 +1,31 @@
 import { Flex, Input, Select, Space, Typography } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/team.scss'
+import { FILTER_OPTION } from '@src/components/enums'
 
 function TeamParticipantsInput({ name, options }) {
-  const filterOption = (input, option) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
   return (
-    <Flex
-      vertical
-      style={{
-        marginBottom: '24px',
-      }}
-    >
+    <Flex vertical className="team__team-participants-input__flex">
       <Typography.Text>Участники</Typography.Text>
       <Flex>
-        <Space.Compact
-          style={{
-            width: '100%',
-          }}
-        >
-          <Input prefix={<UserOutlined />} style={{ width: '38px' }} disabled />
+        <Space.Compact className="team__team-participants-input__space">
+          <Input
+            prefix={<UserOutlined />}
+            className="team__team-participants-input__input"
+            disabled
+          />
           <FormItem
             name={name}
-            style={{
-              width: '100%',
-              marginBottom: '0px',
-            }}
+            className="team__team-participants-input__formitem"
           >
             <Select
               allowClear
               mode="multiple"
               showSearch
-              name="team_participant_select"
+              name="team_participants_select"
               value=""
-              filterOption={filterOption}
+              filterOption={FILTER_OPTION}
               options={options}
             />
           </FormItem>

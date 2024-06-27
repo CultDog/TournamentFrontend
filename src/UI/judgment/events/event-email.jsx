@@ -1,5 +1,6 @@
 import { Typography, Input, Flex } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/events.scss'
 
 function EventEmail({ name }) {
   return (
@@ -13,8 +14,8 @@ function EventEmail({ name }) {
           message: 'Пожалуйста, введите email для вопросов участников',
         },
         {
-            type: 'email',
-            message: 'Некоректный Email',
+          type: 'email',
+          message: 'Некоректный Email',
         },
       ]}
     >
@@ -25,7 +26,7 @@ function EventEmail({ name }) {
           placeholder="Введите email для вопросов участников"
           id="event_email_input"
           maxLength={255}
-          style={{ width: '100%' }}
+          className="events__event-email__input"
         />
       </Flex>
     </FormItem>

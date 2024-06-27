@@ -1,5 +1,6 @@
 import { Typography, Input, Flex } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/events.scss'
 
 function EventName({ name }) {
   return (
@@ -29,7 +30,7 @@ function EventName({ name }) {
           placeholder="Введите название мероприятия"
           id="event_name_input"
           maxLength={255}
-          style={{ width: '100%' }}
+          className="events__event-name__input"
         />
       </Flex>
     </FormItem>

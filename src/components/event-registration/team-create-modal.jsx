@@ -23,7 +23,7 @@ function TeamCreateModal({ isOpen, onOk, onCancel }) {
 
   useEffect(() => {
     if (isOpen) {
-      fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
+      fetch(`${API_PATH}/participant/participant?offset=0&limit=10`, {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -65,15 +65,13 @@ function TeamCreateModal({ isOpen, onOk, onCancel }) {
       redirect: 'follow',
       credentials: 'include',
     }
-    await fetch(`${ApiPath}/team/teams`, requestOptions)
+    await fetch(`${API_PATH}/team/teams`, requestOptions)
   }
 
   return (
     <Modal
       title="Создание команды"
-      style={{
-        top: 20,
-      }}
+      className="event-registration__team-create-modal"
       open={isOpen}
       onOk={onOk}
       onCancel={onCancel}

@@ -1,6 +1,7 @@
 import { DatePicker, Typography } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
-import Locale from '@src/UI/locale-settings.jsx'
+import { Locale } from '@src/components/enums'
+import './sass/events.scss'
 
 function EventDate({ name }) {
   const configDate = {
@@ -21,7 +22,7 @@ function EventDate({ name }) {
           id="event_date"
           format="DD-MM-YYYY"
           placeholder="Выберите дату мероприятия"
-          style={{ width: '100%' }}
+          className="events__event-date__datepicker"
         />
       </FormItem>
     </>

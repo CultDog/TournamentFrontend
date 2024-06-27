@@ -1,38 +1,29 @@
 import { Flex, Input, Select, Space, Typography } from 'antd'
 import { FlagOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/team.scss'
+import { FILTER_OPTION } from '@src/components/enums'
 
 function TeamNominationInput({ name, options }) {
-  const filterOption = (input, option) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-
   return (
-    <Flex
-      vertical
-      style={{
-        marginBottom: '24px',
-      }}
-    >
+    <Flex vertical className="team__team-nomination-select__flex">
       <Typography.Text>Компетенция</Typography.Text>
       <Flex>
-        <Space.Compact
-          style={{
-            width: '100%',
-          }}
-        >
-          <Input prefix={<FlagOutlined />} style={{ width: '38px' }} disabled />
+        <Space.Compact className="team__team-nomination-select__space">
+          <Input
+            prefix={<FlagOutlined />}
+            className="team__team-nomination-select__input"
+            disabled
+          />
           <FormItem
             name={name}
-            style={{
-              width: '100%',
-              marginBottom: '0px',
-            }}
+            className="team__team-nomination-select__formitem"
           >
             <Select
               name="team_nomination_select"
               value=""
               showSearch
-              filterOption={filterOption}
+              filterOption={FILTER_OPTION}
               options={options}
             />
           </FormItem>

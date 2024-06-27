@@ -1,6 +1,10 @@
-import { Table, Flex, List, Button, Typography, Modal } from 'antd'
-import {  useState } from 'react'
-import { EditOutlined, DeleteOutlined, UsergroupAddOutlined } from '@ant-design/icons'
+import { Table, Flex, List, Button, Typography } from 'antd'
+import { useState } from 'react'
+import {
+  EditOutlined,
+  DeleteOutlined,
+  UsergroupAddOutlined,
+} from '@ant-design/icons'
 import TeamEditModal from '@components/event-registration/team-edit-modal'
 import ParticipantNominationModal from '@components/event-registration/participant-nomination-modal'
 import TeamDeleteModal from '@components/event-registration/team-delete-modal'
@@ -36,8 +40,7 @@ function TeamsTable({ TeamsData }) {
       title: 'Компетенция - участники ',
       key: 'nomination_particioant',
       width: '75%',
-      children:
-      [
+      children: [
         {
           title: 'Компетенции',
           key: 'nomination',
@@ -46,8 +49,7 @@ function TeamsTable({ TeamsData }) {
         },
         {
           title: 'Cтатус участника',
-          children: 
-          [
+          children: [
             {
               title: 'Участники',
               key: 'participants',
@@ -73,9 +75,9 @@ function TeamsTable({ TeamsData }) {
               width: '10%',
               dataIndex: 'Status',
             },
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     },
     {
       title: 'Действия',
@@ -99,7 +101,6 @@ function TeamsTable({ TeamsData }) {
             icon={<DeleteOutlined />}
             onClick={() => TeamDeleteModal}
           ></Button>
-         
         </Flex>
       ),
     },
@@ -107,7 +108,7 @@ function TeamsTable({ TeamsData }) {
 
   return (
     <>
-      <Table dataSource={TeamsData} columns={columns} bordered/>
+      <Table dataSource={TeamsData} columns={columns} bordered />
 
       <TeamEditModal
         isOpen={isEditModalOpen}

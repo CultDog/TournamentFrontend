@@ -5,7 +5,7 @@ import AdminPanelControls from '@components/admin-panel/admin-panel-controls'
 import ParticipantModal from './participant-modal.jsx'
 import ParticipantsTable from './participants-table.jsx'
 import Loader from '@components/loader/loader'
-import ApiPath from '@components/enums.js'
+import './sass/participants.scss'
 
 function Participants() {
   const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
@@ -13,7 +13,7 @@ function Participants() {
   const [isLoading, setIsLoading] = useState(true)
   const [dataParticipants, setParticipants] = useState([])
   if (isLoading) {
-    fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
+    fetch(`${API_PATH}/participant/participant?offset=0&limit=10`, {
       method: 'GET',
       headers: {
         accept: 'application/json',

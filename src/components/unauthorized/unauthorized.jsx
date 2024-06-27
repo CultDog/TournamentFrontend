@@ -1,7 +1,6 @@
-import { Button, Result } from 'antd';
+import { Button, Result } from 'antd'
 import { NavLink } from 'react-router-dom'
-
-const LOGIN_ROUTE = '/';
+import { ROUTES } from '@src/components/enums'
 
 const Forbidden = () => (
   <Result
@@ -9,10 +8,10 @@ const Forbidden = () => (
     title="401"
     subTitle="Извините, для входа на эту страницу надо авторизоваться"
     extra={
-        <NavLink to={LOGIN_ROUTE}>
-          <Button type="primary">Вернуться к авторизации</Button>
-        </NavLink>
-      }
+      <NavLink to={ROUTES.AUTHORIZATION.PATH}>
+        <Button type="primary">Вернуться к авторизации</Button>
+      </NavLink>
+    }
   />
-);
-export default Forbidden;
+)
+export default Forbidden

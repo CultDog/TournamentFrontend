@@ -2,15 +2,11 @@ import React from 'react'
 import { Flex, Input, Typography } from 'antd'
 import { TeamOutlined } from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/team.scss'
 
 function TeamNameInput({ name }) {
   return (
-    <Flex
-      vertical
-      style={{
-        marginBottom: '24px',
-      }}
-    >
+    <Flex vertical className="team__team-name-input__flex">
       <Typography.Text>Название команды</Typography.Text>
       <FormItem
         name={name}
@@ -26,9 +22,7 @@ function TeamNameInput({ name }) {
             message: 'Максимальное значение 255',
           },
         ]}
-        style={{
-          marginBottom: '0px',
-        }}
+        className="team__team-name-input__formitem"
       >
         <Input
           allowClear

@@ -1,14 +1,13 @@
 import React from 'react'
 import { Input } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+import './sass/auth.scss'
 
 const AuthEmailInput = ({ value, onChange }) => {
   return (
     <FormItem
       name="Email"
-      style={{
-        width: 300,
-      }}
+      сlassName="auth-email-input"
       hasFeedback
       validateFirst
       rules={[

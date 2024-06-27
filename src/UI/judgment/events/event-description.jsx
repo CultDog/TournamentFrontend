@@ -1,6 +1,7 @@
 import { Typography, Input, Flex } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
 import TextArea from 'antd/es/input/TextArea'
+import './sass/events.scss'
 
 function EventDescription({ name }) {
   return (
@@ -31,7 +32,7 @@ function EventDescription({ name }) {
           placeholder="Введите описание мероприятия"
           id="event_description_input"
           maxLength={255}
-          style={{ width: '100%' }}
+          className="events__event-description__textarea"
         />
       </Flex>
     </FormItem>

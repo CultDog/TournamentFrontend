@@ -12,7 +12,7 @@ function ParticipantNominationModal({ isOpen, onOk, onCancel }) {
   const [dataNominations, setNomination] = useState({})
   const { eventID } = useParams()
 
-  const onFinish = () => { 
+  const onFinish = () => {
     message.success('Всё в порядке!')
     setIsLoading(false)
   }
@@ -24,31 +24,30 @@ function ParticipantNominationModal({ isOpen, onOk, onCancel }) {
 
   useEffect(() => {
     if (isOpen) {
-        fetch(`${ApiPath}/event/event/get_by_id?event_id=${eventID}`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-            },
-            redirect: 'follow',
-            credentials: 'include',
-            })
-            .then((response) => response.json())
-            .then((data) =>
-                setNomination(
-                data?.event_data?.nominations.map((nomination) => ({
-                    value: nomination.name,
-                    label: nomination.name,
-                }))
-                )
-            )
-            .catch(() =>
-                message.error(
-                'Невозможно получить данные. Обратитесь к администратору'
-                )
-            )
-    
+      fetch(`${API_PATH}/event/event/get_by_id?event_id=${eventID}`, {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+        },
+        redirect: 'follow',
+        credentials: 'include',
+      })
+        .then((response) => response.json())
+        .then((data) =>
+          setNomination(
+            data?.event_data?.nominations.map((nomination) => ({
+              value: nomination.name,
+              label: nomination.name,
+            }))
+          )
+        )
+        .catch(() =>
+          message.error(
+            'Невозможно получить данные. Обратитесь к администратору'
+          )
+        )
 
-      fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
+      fetch(`${API_PATH}/participant/participant?offset=0&limit=10`, {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -90,15 +89,13 @@ function ParticipantNominationModal({ isOpen, onOk, onCancel }) {
       redirect: 'follow',
       credentials: 'include',
     }
-    await fetch(`${ApiPath}/team/teams`, requestOptions)
+    await fetch(`${API_PATH}/team/teams`, requestOptions)
   }
 
   return (
     <Modal
       title="Редактирование команды"
-      style={{
-        top: 20,
-      }}
+      className="event-registration__participant-nomination-modal"
       open={isOpen}
       onOk={onOk}
       onCancel={onCancel}
@@ -116,9 +113,9 @@ function ParticipantNominationModal({ isOpen, onOk, onCancel }) {
           name="teamParticipants"
           options={dataTeamParticipants}
         />
-        <TeamNominationInput    
-            name="nomination_select"
-            options={dataNominations}
+        <TeamNominationInput
+          name="nomination_select"
+          options={dataNominations}
         />
         <Flex gap="middle">
           <Button
