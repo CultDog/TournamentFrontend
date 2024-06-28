@@ -1,10 +1,10 @@
-import { Button, message, Typography} from 'antd'
+import { Button, message, Typography } from 'antd'
 import { useState } from 'react'
 import Loader from '@components/loader/loader'
 import AdminPanelControls from '../admin-panel/admin-panel-controls.jsx'
 import UserModal from './user-modal.jsx'
 import UsersTable from './users-table.jsx'
-import ApiPath from '@components/enums.js'
+import './sass/users-control.scss'
 
 function UsersControl() {
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false)
@@ -12,7 +12,7 @@ function UsersControl() {
   const [dataUsers, setUsers] = useState([])
 
   if (isLoading) {
-    fetch(`${ApiPath}/user/users`, {
+    fetch(`${API_PATH}/user/users`, {
       method: 'GET',
       headers: {
         accept: 'application/json',
@@ -37,7 +37,7 @@ function UsersControl() {
           Добавить пользователя
         </Button>
       </AdminPanelControls>
-        <UsersTable usersData={dataUsers} />
+      <UsersTable usersData={dataUsers} />
       <UserModal
         isOpen={isAddUserModalOpen}
         onOk={() => setIsAddUserModalOpen(false)}

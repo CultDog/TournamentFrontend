@@ -5,14 +5,15 @@ import AdminPanelControls from '@components/admin-panel/admin-panel-controls'
 import ParticipantModal from './participant-modal.jsx'
 import ParticipantsTable from './participants-table.jsx'
 import Loader from '@components/loader/loader'
-import ApiPath from '@components/enums.js'
+import './sass/participants.scss'
 
 function Participants() {
-  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] = useState(false)
+  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
+    useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [dataParticipants, setParticipants] = useState([])
-  if(isLoading){
-    fetch(`${ApiPath}/participant/participant?offset=0&limit=10`, {
+  if (isLoading) {
+    fetch(`${API_PATH}/participant/participant?offset=0&limit=10`, {
       method: 'GET',
       headers: {
         accept: 'application/json',
@@ -26,7 +27,7 @@ function Participants() {
         message.error('Невозможно получить данные. Обратитесь к администратору')
       )
       .finally(() => setTimeout(() => setIsLoading(false), 300))
-  } 
+  }
 
   return (
     <>

@@ -1,14 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, List, Tooltip, Typography } from 'antd'
-import {
-  EditOutlined,
-  EllipsisOutlined,
-} from '@ant-design/icons'
+import { EditOutlined, EllipsisOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
+import { ROUTES } from '@components/enums'
+
 const EventsList = ({ events }) => {
   const data = events.map((event, index) => {
-
     const navigate = useNavigate()
     return (
       <Card
@@ -21,14 +19,19 @@ const EventsList = ({ events }) => {
           />
         }
         actions={[
-          <Tooltip title="Регистрация участников">
+          <Tooltip title={ROUTES.EVENTS_REGISTRATION.TITLE}>
             <EditOutlined
               key="edit"
-              onClick={() => navigate(`/admin/events/${event.id}/registration`)}
+              onClick={() =>
+                navigate(ROUTES.EVENTS_REGISTRATION.PATH(event.id))
+              }
             />
           </Tooltip>,
-          <Tooltip title="Описание мероприятия">
-            <EllipsisOutlined key="ellipsis" />
+          <Tooltip title={ROUTES.EVENTS_DESCRIPTION.TITLE}>
+            <EllipsisOutlined
+              key="description"
+              onClick={() => navigate(ROUTES.EVENTS_DESCRIPTION.PATH(event.id))}
+            />
           </Tooltip>,
         ]}
         title={<Typography.Title level={2}>{event.name}</Typography.Title>}
@@ -70,9 +73,7 @@ const EventsList = ({ events }) => {
       locale={{
         emptyText: 'Мероприятия отсутствуют',
       }}
-      style={{
-        width: '100%',
-      }}
+      className="events__list"
     />
   )
 }
