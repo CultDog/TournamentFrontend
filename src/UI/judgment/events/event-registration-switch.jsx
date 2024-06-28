@@ -8,7 +8,6 @@ function EventName({ name }) {
       <Flex vertical>
         <Typography.Text>Регистрация открыта/закрыта</Typography.Text>
         <Switch
-          onChange={console.log('switched')}
           className="events__event-registration-switch__switch"
         />
       </Flex>

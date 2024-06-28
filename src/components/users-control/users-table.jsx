@@ -29,7 +29,6 @@ function UsersTable({ usersData }) {
   // 	redirect: "follow",
   // 	credentials: 'include',
   // 	};
-  // 	console.log(document.getElementById("user_role_select"))
   //     await fetch(`${API_PATH}/user/delete`, requestOptions)
   // }
 
