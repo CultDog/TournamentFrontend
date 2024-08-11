@@ -8,9 +8,12 @@ import EventTable from "@components/judgment/events/JudgmentEventsTable";
 import { eventApi } from "@api";
 
 function ChangeDateFormat(date){
-  const parts = date.split("-")
+  const formattedDate = new Date(date)
 
-  return `${parts[2]}.${parts[1]}.${parts[0]}`
+  const month = formattedDate.getMonth() + 1
+  const formattedMonth = String(month).padStart(2,'0')
+
+  return formattedDate.getDate() + '.' + formattedMonth + '.' + formattedDate.getFullYear()
 }
 
 function JudgmentEvents() {
@@ -23,6 +26,7 @@ function JudgmentEvents() {
       eventApi
         .getEventWithNominations({ limit: 49 })
         .then((response) => response.json())
+        .then((data) => console.log(data))
         .then((response) => {
           const formattedObject = response.map(user => ({
             ...user,
