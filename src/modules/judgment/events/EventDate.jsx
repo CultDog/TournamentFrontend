@@ -10,13 +10,13 @@ const configDate = {
     {
       type: "object",
       required: true,
-      message: "",
+      message: "Пожалуйста, выберите дату и время проведения",
     },
   ],
 };
 
-function EventRegisterDate({ name, value, onChange: onChangeBase }) {
-  const { registration_start_date, registration_finish_date } = value || {};
+function EventDate({ name, value, onChange: onChangeBase }) {
+  const { holding_start_date, holding_finish_date } = value || {};
 
   const onChange = (val, type) => {
     const date = dayjs(val).toISOString();
@@ -26,7 +26,7 @@ function EventRegisterDate({ name, value, onChange: onChangeBase }) {
         onChangeBase({
           [name]: {
             ...value,
-            registration_start_date: date,
+            holding_start_date: date,
           },
         });
 
@@ -35,7 +35,7 @@ function EventRegisterDate({ name, value, onChange: onChangeBase }) {
         onChangeBase({
           [name]: {
             ...value,
-            registration_finish_date: date,
+            holding_finish_date: date,
           },
         });
 
@@ -45,17 +45,19 @@ function EventRegisterDate({ name, value, onChange: onChangeBase }) {
 
   return (
     <>
-      <Typography.Text>Регистрация</Typography.Text>
+      <Typography.Text>Проведение</Typography.Text>
       <FormItem name={name} hasFeedback validateFirst {...configDate}>
-        <div>
+        <div className="events__event-date__datepickercontainer">
           <Typography.Text>С</Typography.Text>
           <DatePicker
             locale={Locale}
-            id="event_register_start_date"
+            id="event_date"
             format={Locale.dateTimeFormat}
             showTime={{ format: Locale.timeFormat }}
             placeholder="Выберите дату и время мероприятия"
             className="events__event-date__datepicker"
+            value={dayjs(holding_start_date)}
+            onChange={(value) => onChange(value, "from")}
           />
         </div>
         <div className="events__event-date__datepickercontainer">
@@ -67,10 +69,12 @@ function EventRegisterDate({ name, value, onChange: onChangeBase }) {
             showTime={{ format: Locale.timeFormat }}
             placeholder="Выберите дату и время мероприятия"
             className="events__event-date__datepicker"
+            value={dayjs(holding_finish_date)}
+            onChange={(value) => onChange(value, "to")}
           />
         </div>
       </FormItem>
     </>
   );
 }
-export default EventRegisterStartDate;
+export default EventDate;
