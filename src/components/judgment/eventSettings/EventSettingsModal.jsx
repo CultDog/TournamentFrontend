@@ -12,7 +12,7 @@ function EventSettingsCompitations({ isOpen, onOk, onCancel, name }) {
   const [inputName, setInputName] = useState("");
   const [inputReglament, setInputReglament] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
-  const { event_id } = useParams();
+  const { eventID } = useParams();
 
   const handleInputNameChange = (value) => {
     setInputName(value);
@@ -31,49 +31,21 @@ function EventSettingsCompitations({ isOpen, onOk, onCancel, name }) {
     setIsLoading(false);
   };
 
-  const sendRequest = async () => {
-    setIsLoading(true);
-
-    let url = "";
-
-    switch (selectedValue) {
-      case "time":
-        const response =
-          await competenciesApi.addOlympicCompetenciesForEvent(event_id);
-        break;
-
-      case "olympic":
-        break;
-
-      case "criteria":
-        break;
-    }
-    try {
-      const response = await competenciesApi.addOlympicCompetenciesForEvent(
-        event_id,
-        inputName,
-        inputReglament
-      );
-      console.log("Компетенция создана", response);
-      message.success("Компетенция успешно создана!");
-      onOk(); // Вызываем функцию onOk, если требуется
-    } catch (error) {
-      console.error("Ошибка при создании компетенции:", error);
-      message.error(
-        "Ошибка при создании компетенции. Пожалуйста, попробуйте снова."
-      );
-    } finally {
-      setIsLoading(false); // Сбрасываем состояние загрузки
-    }
+  const sendRequest = () => {
+    console.log(selectedValue);
+    competenciesApi.addOlympicCompetenciesForEvent(
+      eventID,
+      inputName,
+      inputReglament
+    );
   };
-  console.log(selectedValue);
   return (
     <Modal
       title={name}
       className="event-settings__modal"
       open={isOpen}
       onCancel={onCancel}
-      footer={null} // Убираем стандартные кнопки
+      footer={null}
       width={600}
     >
       <Form
@@ -90,14 +62,17 @@ function EventSettingsCompitations({ isOpen, onOk, onCancel, name }) {
           value={inputReglament}
         />
         <CompetitionJudge />
-        <CompetitionType onSelectChange={handleSelectChange} />
+        <CompetitionType
+          onSelectChange={handleSelectChange}
+          value={selectedValue}
+        />
 
         <Flex gap="middle">
           <Button
             className="event-settings__saveButton"
             type="primary"
             loading={isLoading}
-            onClick={sendRequest} // Вызываем sendRequest при нажатии на кнопку "Сохранить"
+            onClick={sendRequest}
           >
             Сохранить
           </Button>

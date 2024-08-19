@@ -8,6 +8,7 @@ import {
   message,
   Form,
   Space,
+  Tooltip,
 } from "antd";
 import {
   DeleteOutlined,
@@ -107,10 +108,22 @@ function EventSettings() {
       key: "action",
       render: () => (
         <Space>
-          <Button type="text" icon={<EditOutlined />} onClick={openEditModal} />
-          <Button type="text" icon={<TrophyOutlined />} />
-          <Button type="text" icon={<TeamOutlined />} />
-          <Button type="text" icon={<DeleteOutlined />} />
+          <Tooltip title="Редактировать">
+            <Button
+              type="text"
+              icon={<EditOutlined />}
+              onClick={openEditModal}
+            />
+          </Tooltip>
+          <Tooltip title="Начать соревнования">
+            <Button type="text" icon={<TrophyOutlined />} />
+          </Tooltip>
+          <Tooltip title="Участники соревнования">
+            <Button type="text" icon={<TeamOutlined />} />
+          </Tooltip>
+          <Tooltip title="Удалить">
+            <Button type="text" icon={<DeleteOutlined />} />
+          </Tooltip>
         </Space>
       ),
     },

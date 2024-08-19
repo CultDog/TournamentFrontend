@@ -15,18 +15,20 @@ export const competenciesApi = {
     );
   },
 
-  addOlympicCompetenciesForEvent: async (
-    eventID,
-    nominationName,
-    reglament
-  ) => {
+  addOlympicCompetenciesForEvent: (eventID, nominationName, reglament) => {
     axios.post(
       `${API_PATH}/nomination_event/append_nomination_for_event_olympic`,
       {
-        event_id: eventID,
-        nomination_name: nominationName,
-        reglament: reglament,
+        append_nomination_event_data: {
+          event_id: eventID,
+          nomination_name: nominationName,
+          reglament: reglament,
+          judges_ids: [6, 7, 8],
+        },
+        group_count: 0,
+        play_of_participants_count: 0,
       }
     );
+    console.log(nominationName, reglament);
   },
 };
