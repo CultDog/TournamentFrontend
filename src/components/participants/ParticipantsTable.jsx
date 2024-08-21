@@ -48,11 +48,6 @@ function ParticipantsTable({ ParticipantData, getParticipant }) {
               icon={<EditOutlined />}
               onClick={() => openEditModal(data)}
             />
-            <Button
-              type="text"
-              icon={<DeleteOutlined />}
-              onClick={() => deleteParticipantConfirm(email)}
-            />
           </Flex>
         );
       },

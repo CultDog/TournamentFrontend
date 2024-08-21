@@ -43,7 +43,7 @@ export const ROUTES = {
     TITLE: "Регистрация участников",
     PATH: (eventID) => `/events/${eventID}/registration`,
   },
-  JUDGMENT: { TITLE: "Судейство", PATH: "/judgment/events" },
+  JUDGMENT: { TITLE: "Управление мероприятиями", PATH: "/judgment/events" },
   JUDGMENT_CREATE: {
     TITLE: "Создание мероприятия",
     PATH: "/judgment/events/create",

@@ -17,31 +17,6 @@ import { changeDateFormat } from "@utils";
 function JudgmentEventsTable({ EventsData }) {
   const navigate = useNavigate();
 
-  const deleteEventConfirm = (id) => {
-    Modal.confirm({
-      title: "Вы уверены?",
-      content: "Вы уверены что хотите удалить это мероприятие?",
-      footer: (_, { OkBtn, CancelBtn }) => (
-        <>
-          <OkBtn />
-          <CancelBtn />
-        </>
-      ),
-      okText: "Да",
-      cancelText: "Отмена",
-      onOk: () => {
-        const body = JSON.stringify({
-          id,
-        });
-        try {
-          eventApi.deleteEvent(body);
-          message.success("Мероприятие успешно удалено.");
-        } catch (error) {
-          message.error("Ошибка: Невозможно удалить мероприятие.");
-        }
-      },
-    });
-  };
   const columns = [
     {
       title: "Название мероприятия",
@@ -90,14 +65,6 @@ function JudgmentEventsTable({ EventsData }) {
                 navigate(ROUTES.JUDGMENT_EVENT_SETTINGS.PATH(event.id))
               }
             />
-          </Tooltip>
-          <Tooltip title="Удалить мероприятие">
-            <Button
-              type="text"
-              icon={<DeleteOutlined />}
-              onClick={() => deleteEventConfirm(id)}
-            />
-          </Tooltip>
         </Flex>
       ),
     },

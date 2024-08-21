@@ -5,15 +5,15 @@ import { useState } from "react";
 
 const filters = [
   {
-    text: "Админ",
+    text: "Администратор",
     value: "admin",
   },
   {
-    text: "Судейство",
+    text: "Судья",
     value: "judge",
   },
   {
-    text: "Специалист",
+    text: "Менеджер",
     value: "specialist",
   },
 ];
@@ -89,11 +89,11 @@ function UsersTable({ usersData }) {
       key: "role",
       render: (_, { role }) =>
         role === "admin" ? (
-          <Typography.Text>Админ</Typography.Text>
+          <Typography.Text>Администратор</Typography.Text>
         ) : role === "judge" ? (
-          <Typography.Text>Судейство</Typography.Text>
+          <Typography.Text>Судья</Typography.Text>
         ) : role === "specialist" ? (
-          <Typography.Text>Специалист</Typography.Text>
+          <Typography.Text>Менеджер</Typography.Text>
         ) : (
           <Typography.Text />
         ),

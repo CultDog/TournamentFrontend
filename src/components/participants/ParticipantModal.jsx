@@ -31,7 +31,7 @@ function ParticipantModal({ isOpen, onOk, onCancel, data, isEdit }) {
   }, [data, form]);
 
   const onFinish = () => {
-    message.success("Всё в порядке!");
+    message.success("Успех!");
 
     setIsLoading(false);
   };
