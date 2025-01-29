@@ -1,0 +1,17 @@
+.user-settings {
+  &__password-change-modal {
+    top: 20;
+  }
+}
+
+.change-password-button {
+  margin-top: 20px;
+  margin-bottom: 14px;
+}
+
+.change-password-button,
+.save-button {
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}

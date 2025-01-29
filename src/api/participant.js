@@ -1,0 +1,61 @@
+import { instance } from ".";
+import { fetchWithPagination } from "@utils";
+
+export const participantApi = {
+  getParticipant: () => {
+    return fetchWithPagination(instance, `/participant/participant`);
+  },
+  getParticipantsInSystem: (params) => {
+    return instance
+      .get(`/participant/get_participants_in_system`, { params })
+      .then((res) => res.data);
+  },
+  getParticipantByName: (params) => {
+    return fetchWithPagination(
+      instance,
+      `/participant/get_participant_by_name`,
+      params
+    );
+  },
+  setHideParticipant: (body) =>
+    instance.post(`/participant/hide_participant`, body),
+  setParticipant: (body) => {
+    return instance.post(`/participant/participant`, body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
+  addParticipantToNomination: (body) => {
+    return instance.post(
+      "/team_participant_nomination_event/team_participant",
+      body
+    );
+  },
+  changeParticipant: (body) => {
+    return instance.patch(`/participant/participant`, body);
+  },
+  getParticipantStats: (body) => {
+    return instance
+      .get(`/participant/get_participant_stats`, { params: body })
+      .then((res) => res.data);
+  },
+  getParticipantsWithInfo: async (eventID, nominationID, competitionType) => {
+    const response = await instance.get(
+      `/nomination_event/team_participants_of_nomination_event?related=true`,
+      {
+        params: {
+          event_id: eventID,
+          nomination_id: nominationID,
+          kind: competitionType,
+        },
+      }
+    );
+    return response.data;
+  },
+  sendParticipantRegistrationNotice: (queryString) => {
+    return instance.post(
+      `/system_notice/send_participant_registration_notice?${queryString}`
+    );
+  },
+};

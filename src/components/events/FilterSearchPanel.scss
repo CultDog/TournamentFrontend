@@ -1,0 +1,49 @@
+@import "@src/sass/darkTheme/variables.scss";
+@import "@src/sass/lightTheme/variables.scss";
+
+.filter-search-panel {
+  background-color: $light-blue;
+  border: 0;
+
+  &__filters {
+    &__columns {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        flex: 1;
+      }
+    }
+
+    &__title {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 26px;
+      margin-bottom: 4px;
+    }
+
+    &__checkbox-group {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__checkbox-all {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__buttons {
+    & > button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 14px;
+  }
+}
+
+.dark-theme .filter-search-panel {
+  background-color: $darkest-gray !important;
+  border: 0.5px solid #fff !important;
+}

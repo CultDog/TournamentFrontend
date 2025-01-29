@@ -1,0 +1,25 @@
+.participants {
+  &__modal {
+    top: 20;
+
+    &__buttons {
+      margin-top: 16px;
+    }
+  }
+
+  &__information {
+    &__img {
+      width: 15vw;
+      margin-right: 24px;
+      margin-bottom: 24px;
+    }
+
+    &__name {
+      margin-top: 0;
+    }
+
+    &__row {
+      margin-bottom: 14px;
+    }
+  }
+}

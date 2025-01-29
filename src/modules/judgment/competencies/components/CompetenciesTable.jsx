@@ -1,0 +1,97 @@
+import { LoadingOutlined } from "@ant-design/icons";
+import { generateCriteriaColumns, getContentSectionWidth } from "@utils";
+import { InputNumber, Spin, Table } from "antd";
+import { useEffect, useMemo, useState } from "react";
+import { tableLocale } from "@constants";
+import { getTranslation } from "@utils";
+import { useTranslation } from "react-i18next";
+
+import "./CompetenciesTable.scss";
+
+export const CompetenciesTable = ({
+  criteria,
+  dataSource,
+  isLoading,
+  hasError,
+  editable,
+  onChange,
+}) => {
+  const { t } = useTranslation();
+  const [tableWidth, setTableWidth] = useState(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setTableWidth(getContentSectionWidth());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const columns = useMemo(
+    () => [
+      {
+        title: t("COMMON.TEAM"),
+        dataIndex: "team",
+        key: "team",
+        fixed: "left",
+        render: (text, { team }) => {
+          const { name } = team;
+          return name;
+        },
+      },
+      ...generateCriteriaColumns(criteria, (text, record, index, columnId) => {
+        const currentCriteria = record[`criteria${columnId}`];
+        return (
+          <div className="criteria-table__column">
+            <InputNumber
+              className="criteria-table__column__input"
+              disabled={!editable}
+              placeholder={currentCriteria.maxScore}
+              defaultValue={currentCriteria.score}
+              controls={false}
+              max={currentCriteria.maxScore}
+              min={0}
+              onChange={(value) =>
+                onChange(value, index, columnId, currentCriteria)
+              }
+            />
+            <span>/</span>
+            <span>{currentCriteria.maxScore}</span>
+          </div>
+        );
+      }),
+      {
+        title: t("COMMON.TOTAL"),
+        dataIndex: "totalScore",
+        key: "totalScore",
+        fixed: "right",
+      },
+    ],
+    [criteria, editable, onChange]
+  );
+
+  return isLoading ? (
+    <Spin indicator={<LoadingOutlined className="icon" spin />} />
+  ) : hasError ? (
+    <h1>{t("MESSAGES.ERROR")}</h1>
+  ) : (
+    <Table
+      className="criteria-table"
+      style={{ width: tableWidth }}
+      locale={getTranslation(tableLocale, t)}
+      columns={columns}
+      dataSource={dataSource}
+      expandable={{
+        expandedRowRender: (record) => <p>{record.participants}</p>,
+      }}
+      pagination={false}
+      scroll={{
+        x: true,
+      }}
+    />
+  );
+};

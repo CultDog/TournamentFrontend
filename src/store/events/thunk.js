@@ -1,0 +1,60 @@
+import { eventApi } from "@api";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
+export const getEvent = createAsyncThunk("events/getEvent", async (eventID) => {
+  const data = await eventApi.getEvent(eventID);
+  return data;
+});
+
+export const getEventWithNominations = createAsyncThunk(
+  "events/getEventWithNominations",
+  async (data) => {
+    const response = await eventApi.getEventWithNominations(data);
+    return response;
+  }
+);
+
+export const getEventsRelatedToDate = createAsyncThunk(
+  "events/getEventsRelatedToDate",
+  async (data) => {
+    const response = await eventApi.getEventsRelatedToDate(data);
+    return response;
+  }
+);
+
+export const changeEvent = createAsyncThunk(
+  "events/changeEvent",
+  async (body) => {
+    const response = await eventApi.changeEvent(body);
+    return response.config.data;
+  }
+);
+
+export const changeLogo = createAsyncThunk(
+  "events/changeLogo",
+  async (formData) => {
+    const response = await eventApi.changeLogo(formData);
+    return response.config.data;
+  }
+);
+
+export const changeRegulation = createAsyncThunk(
+  "events/changeRegulation",
+  async (formData) => {
+    const response = await eventApi.changeRegulation(formData);
+    return response.config.data;
+  }
+);
+
+export const deleteEvent = createAsyncThunk(
+  "events/deleteEvent",
+  async (body) => {
+    const response = await eventApi.deleteEvent(body);
+    return response.config.data;
+  }
+);
+
+export const setEvent = createAsyncThunk("events/setEvent", async (body) => {
+  const response = await eventApi.setEvent(body);
+  return response.config.data;
+});

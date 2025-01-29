@@ -1,0 +1,104 @@
+@import "@src/sass/darkTheme/variables.scss";
+@import "@src/sass/lightTheme/variables.scss";
+
+.user-support {
+  width: calc(100vw - 128px);
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
+  &__about {
+    &__laptop-img {
+      width: 25vw;
+      margin-top: 16px;
+      margin-left: 100px;
+
+      @media (max-width: 991px) {
+        width: 50%;
+        margin-left: 25%;
+      }
+    }
+    &__logo {
+      width: 7vw;
+
+      @media (max-width: 767px) {
+        width: 70%;
+      }
+    }
+    &__bntuLogo,
+    &__fitrLogo {
+      width: 8vw;
+
+      @media (max-width: 767px) {
+        margin-top: 5px;
+        width: 70%;
+      }
+    }
+    &__logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+    &__titles {
+      margin-top: 16px;
+      text-align: center;
+      padding: 0 2vw 0 2vw;
+
+      &__advantages {
+        color: $white !important;
+        margin-top: 0;
+      }
+    }
+    &__institution {
+      color: $dark-blue;
+    }
+    &__text {
+      font-size: 16px;
+
+      &__blue {
+        font-size: 16px;
+        color: $dark-blue;
+      }
+
+      &__advantages {
+        font-size: 16px;
+        color: $white !important;
+      }
+    }
+    &__advantages-container {
+      margin-top: 50px;
+      background-color: $light-blue;
+      border-radius: 10px;
+      padding: 18px 18px 18px 32px;
+    }
+  }
+  &__feedback {
+    &__laptop-img {
+      width: 45vw;
+
+      @media (max-width: 991px) {
+        margin-top: 24px;
+        width: 90%;
+      }
+    }
+    &__img-container {
+      text-align: center;
+    }
+    &__text {
+      font-size: 16px;
+
+      &__white {
+        font-size: 16px;
+        color: $white !important;
+      }
+    }
+    &__warning-container {
+      background-color: $light-blue;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 32px;
+    }
+  }
+}
